@@ -1,0 +1,25 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Game of Life.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  game.c
+C:\Users\Admin\source\repos\GAM100\Src\game.c(168,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(169,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(170,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(171,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(193,63): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(193,90): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(198,63): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(198,90): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+  main.c
+  Generating Code...
+game.obj : error LNK2019: unresolved external symbol __imp__CP_System_SetWindowSize referenced in function _game_init
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Settings_Fill referenced in function _game_update
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Settings_Stroke referenced in function _game_init
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Color_Create referenced in function _game_init
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Graphics_DrawLine referenced in function _game_init
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Graphics_DrawRect referenced in function _game_update
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Input_KeyTriggered referenced in function _game_update
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Input_MouseClicked referenced in function _game_update
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Input_GetMouseX referenced in function _game_update
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Input_GetMouseY referenced in function _game_update
+main.obj : error LNK2019: unresolved external symbol __imp__CP_Engine_Run referenced in function _main
+main.obj : error LNK2019: unresolved external symbol __imp__CP_Engine_SetNextGameState referenced in function _main
+C:\Users\Admin\source\repos\GAM100\Debug\GAM100.exe : fatal error LNK1120: 12 unresolved externals

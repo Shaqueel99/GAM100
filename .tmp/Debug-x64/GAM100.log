@@ -1,4 +1,4 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (C:\Users\User\Desktop\GAM100\.tmp\Debug-x64\) contains files shared from another project (Game of Life.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (C:\Users\User\Desktop\GAM100\GAM100\.tmp\Debug-x64\) contains files shared from another project (Game of Life.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   game.c
 C:\Users\User\Desktop\GAM100\Src\game.c(35,26): warning C4013: 'sqrt' undefined; assuming extern returning int
 C:\Users\User\Desktop\GAM100\Src\game.c(35,1): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
@@ -23,8 +23,11 @@ C:\Users\User\Desktop\GAM100\Src\game.c(129,80): warning C4244: 'function': conv
 C:\Users\User\Desktop\GAM100\Src\game.c(144,68): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
 C:\Users\User\Desktop\GAM100\Src\game.c(149,70): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
 C:\Users\User\Desktop\GAM100\Src\game.c(154,70): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+  main.c
+  mainmenu.c
+  Generating Code...
 C:\Users\User\Desktop\GAM100\Src\game.c(39): warning C4716: 'iscirclecollided': must return a value
-  GAM100.vcxproj -> C:\Users\User\Desktop\GAM100\bin\Debug-x64\GAM100.exe
+  GAM100.vcxproj -> C:\Users\User\Desktop\GAM100\GAM100\bin\Debug-x64\GAM100.exe
   1 File(s) copied
   1 File(s) copied
   2 File(s) copied

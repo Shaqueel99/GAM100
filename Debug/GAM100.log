@@ -1,25 +1,56 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Game of Life.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   game.c
-C:\Users\Admin\source\repos\GAM100\Src\game.c(168,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(169,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(170,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(171,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(193,63): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(193,90): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(198,63): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(198,90): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(35,26): warning C4013: 'sqrt' undefined; assuming extern returning int
+C:\Users\User\Desktop\GAM100\Src\game.c(35,1): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(45,43): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(45,59): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(66,55): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(66,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(67,54): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(67,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(68,62): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(68,90): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(73,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(74,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(75,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(76,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(80,76): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(97,46): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(97,73): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(98,52): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(98,85): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(129,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(144,68): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(149,70): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\Src\game.c(154,70): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
   main.c
+  mainmenu.c
   Generating Code...
+C:\Users\User\Desktop\GAM100\Src\game.c(39): warning C4716: 'iscirclecollided': must return a value
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Engine_SetNextGameStateForced referenced in function _iscirclecollided
+mainmenu.obj : error LNK2001: unresolved external symbol __imp__CP_Engine_SetNextGameStateForced
 game.obj : error LNK2019: unresolved external symbol __imp__CP_System_SetWindowSize referenced in function _game_init
+mainmenu.obj : error LNK2001: unresolved external symbol __imp__CP_System_SetWindowSize
+game.obj : error LNK2019: unresolved external symbol __imp__CP_System_GetDt referenced in function _game_update
 game.obj : error LNK2019: unresolved external symbol __imp__CP_Settings_Fill referenced in function _game_update
-game.obj : error LNK2019: unresolved external symbol __imp__CP_Settings_Stroke referenced in function _game_init
+mainmenu.obj : error LNK2001: unresolved external symbol __imp__CP_Settings_Fill
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Settings_Stroke referenced in function _game_update
 game.obj : error LNK2019: unresolved external symbol __imp__CP_Color_Create referenced in function _game_init
-game.obj : error LNK2019: unresolved external symbol __imp__CP_Graphics_DrawLine referenced in function _game_init
-game.obj : error LNK2019: unresolved external symbol __imp__CP_Graphics_DrawRect referenced in function _game_update
+mainmenu.obj : error LNK2001: unresolved external symbol __imp__CP_Color_Create
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Graphics_ClearBackground referenced in function _game_update
+mainmenu.obj : error LNK2001: unresolved external symbol __imp__CP_Graphics_ClearBackground
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Graphics_DrawLine referenced in function _game_update
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Graphics_DrawCircle referenced in function _game_update
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Graphics_DrawTriangleAdvanced referenced in function _game_update
 game.obj : error LNK2019: unresolved external symbol __imp__CP_Input_KeyTriggered referenced in function _game_update
-game.obj : error LNK2019: unresolved external symbol __imp__CP_Input_MouseClicked referenced in function _game_update
-game.obj : error LNK2019: unresolved external symbol __imp__CP_Input_GetMouseX referenced in function _game_update
-game.obj : error LNK2019: unresolved external symbol __imp__CP_Input_GetMouseY referenced in function _game_update
+mainmenu.obj : error LNK2001: unresolved external symbol __imp__CP_Input_KeyTriggered
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Input_KeyDown referenced in function _game_update
+game.obj : error LNK2019: unresolved external symbol __imp__CP_Vector_Set referenced in function _game_init
 main.obj : error LNK2019: unresolved external symbol __imp__CP_Engine_Run referenced in function _main
 main.obj : error LNK2019: unresolved external symbol __imp__CP_Engine_SetNextGameState referenced in function _main
-C:\Users\Admin\source\repos\GAM100\Debug\GAM100.exe : fatal error LNK1120: 12 unresolved externals
+mainmenu.obj : error LNK2019: unresolved external symbol __imp__CP_System_GetWindowWidth referenced in function _Main_Menu_Update
+mainmenu.obj : error LNK2019: unresolved external symbol __imp__CP_System_GetWindowHeight referenced in function _Main_Menu_Update
+mainmenu.obj : error LNK2019: unresolved external symbol __imp__CP_Settings_RectMode referenced in function _Main_Menu_Update
+mainmenu.obj : error LNK2019: unresolved external symbol __imp__CP_Settings_TextSize referenced in function _Main_Menu_Update
+mainmenu.obj : error LNK2019: unresolved external symbol __imp__CP_Font_DrawText referenced in function _Main_Menu_Update
+C:\Users\User\Desktop\GAM100\GAM100\Debug\GAM100.exe : fatal error LNK1120: 20 unresolved externals

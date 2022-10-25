@@ -24,7 +24,6 @@
     <ClCompile Include="..\Src\mainmenu.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Inc\game.h" />
     <ClInclude Include="..\Src\game.h" />
     <ClInclude Include="..\Src\mainmenu.h" />
   </ItemGroup>

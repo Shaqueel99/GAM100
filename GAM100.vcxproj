@@ -22,10 +22,25 @@
     <ClCompile Include="..\Src\game.c" />
     <ClCompile Include="..\Src\main.c" />
     <ClCompile Include="..\Src\mainmenu.c" />
+    <ClCompile Include="Src\game.c" />
+    <ClCompile Include="Src\main.c" />
+    <ClCompile Include="Src\mainmenu.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Src\game.h" />
     <ClInclude Include="..\Src\mainmenu.h" />
+    <ClInclude Include="Inc\game.h" />
+    <ClInclude Include="Inc\mainmenu.h" />
+    <ClInclude Include="Src\game.h" />
+    <ClInclude Include="Src\mainmenu.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="GAM100.filters.txt" />
+    <Text Include="GAM100.vcxproj.filters.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
+    <None Include=".gitattributes" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

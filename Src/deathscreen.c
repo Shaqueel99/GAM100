@@ -1,14 +1,14 @@
-#include "game.h"
+#include "../Inc/game.h"
 #include "cprocessing.h"
 #include <stdlib.h>
 
-void Main_Menu_Init()
+void Death_Screen_Init()
 {
 	CP_System_SetWindowSize(960,540);
     
 }
 
-void Main_Menu_Update()
+void Death_Screen_Update()
 {
     CP_Color myColor = CP_Color_Create(0, 0, 0, 255);
     // Set the circle color to red
@@ -37,7 +37,7 @@ void Main_Menu_Update()
 
 }
 
-void Main_Menu_Exit()
+void Death_Screen_Exit()
 {
 
 }

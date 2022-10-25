@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "cprocessing.h"
-#include "mainmenu.h"
+#include "../Inc/deathscreen.h"
 
 #define TRUE 1
 #define FALSE 0
 
-int gIsPaused;
+int gIsPaused; 
 
 /* Feel free to declare your own variables here */
 CP_Color black, blue, purple, green,red;
@@ -34,7 +34,7 @@ int iscirclecollided(float current_positionx, float current_positiony, float val
     float finaldistance = distancex + distancey;
     float distance = sqrt(finaldistance);
     if (finaldistance < (radius * 100.0)) {
-        CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
+        CP_Engine_SetNextGameStateForced(Death_Screen_Init, Death_Screen_Update, Death_Screen_Exit);
     }
 }
 void game_init(void)

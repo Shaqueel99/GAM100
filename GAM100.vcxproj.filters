@@ -13,6 +13,7 @@
     <ClInclude Include="Inc\game.h" />
     <ClInclude Include="Inc\mainmenu.h" />
     <ClInclude Include="Inc\deathscreen.h" />
+    <ClInclude Include="Inc\utils.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

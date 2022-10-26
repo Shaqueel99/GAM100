@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "cprocessing.h"
 #include "../Inc/deathscreen.h"
+#include "utils.h"
 
 #define TRUE 1
 #define FALSE 0

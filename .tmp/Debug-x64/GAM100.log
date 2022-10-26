@@ -1,5 +1,29 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (C:\Users\Admin\source\repos\GAM100\.tmp\Debug-x64\) contains files shared from another project (Game of Life.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  katlong.c
+  game.c
+C:\Users\Admin\source\repos\GAM100\Src\game.c(36,26): warning C4013: 'sqrt' undefined; assuming extern returning int
+C:\Users\Admin\source\repos\GAM100\Src\game.c(36,1): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(46,43): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(46,59): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(67,55): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(67,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(68,54): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(68,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(69,62): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(69,90): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(74,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(75,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(76,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(77,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(81,76): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(98,46): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(98,73): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(99,52): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(99,85): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(130,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(145,68): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(150,70): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(155,70): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(40): warning C4716: 'iscirclecollided': must return a value
   GAM100.vcxproj -> C:\Users\Admin\source\repos\GAM100\bin\Debug-x64\GAM100.exe
   1 File(s) copied
   1 File(s) copied

@@ -118,7 +118,13 @@ void game_update(void)
       
         
     }
-
+    
+    
+    if (CP_Input_KeyTriggered(KEY_B)) {
+        char this = 'a';
+        char that = 'r';
+        write_leaderboard(this, that); //this is used to test write_leaderboard function
+    }
     
 
    

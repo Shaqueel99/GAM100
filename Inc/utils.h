@@ -8,7 +8,7 @@ void write_leaderboard(char name, char score);
 
 //for benjamin
 //---insert function declaration here
-//for ben
+//for benjamin
 
 
 //for shaqeel

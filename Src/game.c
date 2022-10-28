@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "cprocessing.h"
 #include "../Inc/deathscreen.h"
 #include "utils.h"
@@ -7,7 +8,7 @@
 #define FALSE 0
 
 int gIsPaused; 
-
+int spawn;
 /* Feel free to declare your own variables here */
 CP_Color black, blue, purple, green,red;
 float windows_length, windows_height, radius=20.0f;
@@ -17,11 +18,14 @@ float windows_length, windows_height, radius=20.0f;
 CP_Vector current_position, left_position, mid_position, right_position;
 float currentElapsedTime=0, totalElapsedTime=0;
 float value_y, value_x_left, value_x_mid, value_x_right;
-
+float coin_y;
+int points;
 struct obstacles {
     int boulder;
     int boulder_spawn;
     float value_y;
+    int coins;
+    int coin_spawn;
 };
 
 struct obstacles first, second, third;
@@ -35,11 +39,26 @@ int iscirclecollided(float current_positionx, float current_positiony, float val
     float finaldistance = distancex + distancey;
     float distance = sqrt(finaldistance);
     if (finaldistance < (radius * 100.0)) {
+        totalElapsedTime = 0;
         CP_Engine_SetNextGameStateForced(Death_Screen_Init, Death_Screen_Update, Death_Screen_Exit);
     }
 }
+int iscoincollided(float current_positionx, float current_positiony, float value_x, float value_y) {
+    float distancex = current_positionx - value_x;
+    distancex = distancex * distancex;
+    float distancey = current_positiony - value_y;
+    distancey = distancey * distancey;
+    float finaldistance = distancex + distancey;
+    float distance = sqrt(finaldistance);
+    if (finaldistance < (radius * 100.0)) {
+        points += 1;
+        spawn = 0;
+    }
+
+}
 void game_init(void)
 {
+    spawn = 1;
     windows_length = 960.0f;
     windows_height = 540.0f;
     radius = 20.0f;
@@ -78,14 +97,16 @@ void game_init(void)
     
 
 
-    first.value_y = second.value_y = third.value_y = -windows_height / 12.0;
+    first.value_y = second.value_y = third.value_y = coin_y= -windows_height / 12.0;
 
     first.boulder = 0;
+    first.coins = 0;
     first.boulder_spawn = 0;
+    first.coin_spawn = 0;
     second.boulder = 0;
     second.boulder_spawn = 0;
     third.boulder = 0;
-    third.boulder_spawn = 0;
+  
 }
 
 void game_update(void)
@@ -118,7 +139,13 @@ void game_update(void)
       
         
     }
-
+    
+    
+    if (CP_Input_KeyTriggered(KEY_B)) {
+        char this = 'a';
+        char that = 'r';
+        write_leaderboard(this, that); //this is used to test write_leaderboard function
+    }
     
 
    
@@ -144,6 +171,7 @@ void game_update(void)
     first.value_y += (first.boulder_spawn == TRUE) ? 5.0f : 0.0f;
     CP_Graphics_DrawCircle(value_x_mid, first.value_y, radius * 4.0);
 
+
     second.boulder = (totalElapsedTime > 7.0 && second.boulder != 2) ? second.boulder + 1: second.boulder;
     second.boulder_spawn = (second.boulder == 1) ? TRUE : second.boulder_spawn;
     second.value_y += (second.boulder_spawn == TRUE) ? 5.0f : 0.0f;
@@ -153,11 +181,31 @@ void game_update(void)
     third.boulder_spawn = (third.boulder == 1) ? TRUE : third.boulder_spawn;
     third.value_y += (third.boulder_spawn == TRUE) ? 5.0f : 0.0f;
     CP_Graphics_DrawCircle(value_x_right, third.value_y, radius * 4.0);
+
+    first.coins = (totalElapsedTime > 1.0 && first.coins != 2) ? first.coins + 1 : first.coins;
+    first.coin_spawn = (first.coins == 1) ? TRUE : first.coin_spawn;
+    coin_y += (first.coin_spawn == TRUE) ? 9.0f : 0.0f;
+    if (spawn == 1) {
+        CP_Graphics_DrawCircle(value_x_mid, coin_y, radius * 1.0);
+    }
+
+
+    CP_Settings_TextSize(20.0f);
+
    
+    CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
+    char buffer[16] = { 0 };
+    
+    sprintf_s(buffer, _countof(buffer), "%d", points);
+    CP_Font_DrawText(buffer, 80, 20);
+    CP_Font_DrawText("Points:", 10, 20);
+  
     iscirclecollided(current_position.x, current_position.y, value_x_mid, first.value_y); //placeholders obv
     iscirclecollided(current_position.x, current_position.y, value_x_left, second.value_y);
     iscirclecollided(current_position.x, current_position.y, value_x_right, third.value_y);
-   
+    if (spawn == 1) {
+        iscoincollided(current_position.x, current_position.y, value_x_mid, coin_y);
+    }
 }
 
 void game_exit(void)

@@ -3,29 +3,41 @@
 #include "cprocessing.h"
 #include <stdlib.h>
 
+// Global Variable
 // Default window_size settings (540 x 960)
 int width = 540;
 int height = 960;
+ 
+// Private Variable
 static selection;
 static main;
 static return_true_false;
+static CP_Image logo;
+static float totalElapsedTime;
+static float fade_in_time;
+static float toggle_time;
 
 void Main_Menu_Init()
 {
+	// Initial Value
 	// Change main to 0 to display startups
-	main = 1; 
+	main = 0; 
 	return_true_false = 0;
 	selection = 0;
+	totalElapsedTime = 0;
+	fade_in_time = 2;
+	toggle_time = 0;
 	CP_System_SetWindowSize(width, height);
 }
 
 void Main_Menu_Update()
 {
 	// Create basic color and reset background
+	CP_Color green = CP_Color_Create(144, 238, 144, 255);
 	CP_Color Blue = CP_Color_Create(0, 0, 255, 255);
 	CP_Color White = CP_Color_Create(255, 255, 255, 255);
 	CP_Color Black = CP_Color_Create(0, 0, 0, 255);
-	CP_Graphics_ClearBackground(Black);
+	CP_Graphics_ClearBackground(green);
 
 	// Mouse Position
 	float click_x = (float)CP_Input_GetMouseWorldX();
@@ -49,7 +61,20 @@ void Main_Menu_Update()
 
 	// Startup Screen (Digipen display & team logo)
 	if (main == 0) {
+		float currentElapsedTime = CP_System_GetDt();
+		int alpha = 255 * totalElapsedTime / fade_in_time;
+		// Fade in and out
+		if (toggle_time == 0) totalElapsedTime += currentElapsedTime;
+		if (toggle_time == 1) totalElapsedTime -= currentElapsedTime;
 
+		// Drawing the School Logo
+		logo = CP_Image_Load("Assets/DigiPen_BLACK.png");
+		CP_Settings_ImageMode(CP_POSITION_CENTER);
+		CP_Settings_ImageWrapMode(CP_IMAGE_WRAP_CLAMP);
+		CP_Image_Draw(logo, width / 2, height / 2, width * 0.9, height * 0.4, alpha);
+
+		if (totalElapsedTime > fade_in_time) toggle_time = 1;
+		if (totalElapsedTime < 0) main = 1;
 	}
 	// Main Menu (Logic)
 	if (main == 1) {
@@ -74,6 +99,16 @@ void Main_Menu_Update()
 			CP_Graphics_DrawRect(credit_x, credit_y, rectangle_width, rectangle_height);
 			CP_Graphics_DrawRect(option_x, option_y, square_side, rectangle_height);
 			CP_Graphics_DrawRect(quit_x, quit_y, rectangle_width, rectangle_height);
+
+			// Temporary Placeholder Text (Possible to replace with image instead?)
+			CP_Settings_Fill(Blue);
+			CP_Font_DrawText("Start", start_x + rectangle_width * 0.3, start_y + rectangle_height * 0.6);
+			CP_Font_DrawText("LB", leaderboard_x + square_side * 0.2, leaderboard_y + rectangle_height * 0.6);
+			CP_Font_DrawText("Credit", credit_x + rectangle_width * 0.3, credit_y + rectangle_height * 0.6);
+			CP_Font_DrawText("Set", option_x + square_side * 0.2, option_y + rectangle_height * 0.6);
+			CP_Font_DrawText("Quit", quit_x + rectangle_width * 0.3, quit_y + rectangle_height * 0.6);
+			CP_Settings_TextSize(50.0f);
+			CP_Settings_Fill(White);
 		}
 
 		// Begin Game
@@ -86,15 +121,21 @@ void Main_Menu_Update()
 			CP_Graphics_DrawRect(width * 0.2, height * 0.4, width * 0.6, height * 0.5);
 		}
 
-		// Option
+		// Credit
 		if (selection == 3) {
-			CP_Graphics_DrawRect(width * 0.2, height * 0.4, width * 0.6, height * 0.5);
-			// Switch statement to let user choose resolution
+			CP_Graphics_DrawRect(width * 0.2, height * 0.4, width * 0.6, height * 0.5);			
 		}
 
-		// Credit
+		// Option
 		if (selection == 4) {
-			CP_Graphics_DrawRect(width * 0.2, height * 0.4, width * 0.6, height * 0.5);
+			CP_Settings_Fill(White);
+			CP_Graphics_DrawRect(width * 0.2, height * 0.4, width * 0.6, height * 0.3);
+			CP_Graphics_DrawRect(width * 0.2, height * 0.8, width * 0.6, height * 0.1);
+			CP_Settings_Fill(Blue);
+			CP_Font_DrawText("Display Setting", start_x + rectangle_width * 0.1, start_y + rectangle_height * 0.5);
+			CP_Font_DrawText("Back", start_x + width * 0.2 + rectangle_width * 0.1, start_y + height * 0.4 + rectangle_height * 0.5);
+			CP_Settings_TextSize(50.0f);	
+			// Switch statement to let user choose resolution
 		}
 
 		// Exit
@@ -106,5 +147,5 @@ void Main_Menu_Update()
 
 void Main_Menu_Exit()
 {
-
+	CP_Image_Free(&logo);
 }

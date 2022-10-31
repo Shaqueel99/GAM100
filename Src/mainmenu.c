@@ -4,8 +4,8 @@
 #include <stdlib.h>
 
 // Global Variable
-// Default window_size settings (540 x 960)
-int width = 540;
+// Default window_size settings (640 x 960)
+int width = 640;
 int height = 960;
  
 // Private Variable
@@ -16,17 +16,21 @@ static CP_Image logo;
 static float totalElapsedTime;
 static float fade_in_time;
 static float toggle_time;
+static int display_option;
+static float scale_multiplier;
 
 void Main_Menu_Init()
 {
 	// Initial Value
 	// Change main to 0 to display startups
-	main = 0; 
+	main = 1; 
+	scale_multiplier = 1.0;
 	return_true_false = 0;
 	selection = 0;
 	totalElapsedTime = 0;
 	fade_in_time = 2;
 	toggle_time = 0;
+	display_option = 0;
 	CP_System_SetWindowSize(width, height);
 }
 
@@ -43,7 +47,7 @@ void Main_Menu_Update()
 	float click_x = (float)CP_Input_GetMouseWorldX();
 	float click_y = (float)CP_Input_GetMouseWorldY();
 	
-	// UI Positioning
+	// UI Positioning (Main Menu)
 	float start_x = (float)width * 0.2; 
 	float start_y = (float)height * 0.4;
 	float leaderboard_x = (float)width * 0.7;
@@ -58,6 +62,21 @@ void Main_Menu_Update()
 	float rectangle_width = (float)width * 0.4;
 	float rectangle_height = (float)height * 0.1;
 	float square_side = (float)height * 0.1;
+
+	// UI Positioning (Option)
+	float text_Display_x =  (float)width * 0.5;
+	float text_Display_y = (float)height * 0.45;
+
+	// Initial X & Y value to draw rectangle
+	float displayPOS_left_arrow_x = (float)width * 0.15;
+	float displayPOS_center_x = (float)width * 0.25;
+	float displayPOS_right_arrow_x = (float)width * 0.75;
+	float displayPOS_y = (float)height * 0.55;
+
+	// Space to draw out the rectangle
+	float displayDraw_side_x = (float)width * 0.1;
+	float displayDraw_center_x = (float)width * 0.5;
+	float displayDraw_y = (float)height * 0.1;
 
 	// Startup Screen (Digipen display & team logo)
 	if (main == 0) {
@@ -102,19 +121,18 @@ void Main_Menu_Update()
 
 			// Temporary Placeholder Text (Possible to replace with image instead?)
 			CP_Settings_Fill(Blue);
-			CP_Font_DrawText("Start", start_x + rectangle_width * 0.3, start_y + rectangle_height * 0.6);
-			CP_Font_DrawText("LB", leaderboard_x + square_side * 0.2, leaderboard_y + rectangle_height * 0.6);
-			CP_Font_DrawText("Credit", credit_x + rectangle_width * 0.3, credit_y + rectangle_height * 0.6);
-			CP_Font_DrawText("Set", option_x + square_side * 0.2, option_y + rectangle_height * 0.6);
-			CP_Font_DrawText("Quit", quit_x + rectangle_width * 0.3, quit_y + rectangle_height * 0.6);
-			CP_Settings_TextSize(50.0f);
+			CP_Font_DrawText("Start", start_x + rectangle_width * 0.5, start_y + rectangle_height * 0.5);
+			CP_Font_DrawText("LB", leaderboard_x + square_side * 0.5, leaderboard_y + rectangle_height * 0.5);
+			CP_Font_DrawText("Credit", credit_x + rectangle_width * 0.5, credit_y + rectangle_height * 0.5);
+			CP_Font_DrawText("Set", option_x + square_side * 0.5, option_y + rectangle_height * 0.5);
+			CP_Font_DrawText("Quit", quit_x + rectangle_width * 0.5, quit_y + rectangle_height * 0.5);
+			CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_CENTER, CP_TEXT_ALIGN_V_MIDDLE);
+			CP_Settings_TextSize(50.0f * scale_multiplier);
 			CP_Settings_Fill(White);
 		}
 
 		// Begin Game
-		if (selection == 1) {
-			CP_Engine_SetNextGameState(game_init, game_update, game_exit);
-		}
+		if (selection == 1) CP_Engine_SetNextGameState(game_init, game_update, game_exit);
 
 		// Leaderboard
 		if (selection == 2) {
@@ -129,19 +147,61 @@ void Main_Menu_Update()
 		// Option
 		if (selection == 4) {
 			CP_Settings_Fill(White);
-			CP_Graphics_DrawRect(width * 0.2, height * 0.4, width * 0.6, height * 0.3);
-			CP_Graphics_DrawRect(width * 0.2, height * 0.8, width * 0.6, height * 0.1);
+			CP_Graphics_DrawRect(width * 0.1, height * 0.4, width * 0.8, height * 0.1);
 			CP_Settings_Fill(Blue);
-			CP_Font_DrawText("Display Setting", start_x + rectangle_width * 0.1, start_y + rectangle_height * 0.5);
-			CP_Font_DrawText("Back", start_x + width * 0.2 + rectangle_width * 0.1, start_y + height * 0.4 + rectangle_height * 0.5);
-			CP_Settings_TextSize(50.0f);	
+			CP_Settings_TextSize(50.0f * scale_multiplier);
+			CP_Font_DrawText("Display Setting", text_Display_x, text_Display_y);
+			CP_Settings_Fill(White);
+			CP_Graphics_DrawRect(displayPOS_left_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y);
+			CP_Graphics_DrawRect(displayPOS_center_x, displayPOS_y, displayDraw_center_x, displayDraw_y);
+			CP_Graphics_DrawRect(displayPOS_right_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y);
+
+			// Click to swap resolution
+			if (CP_Input_MouseClicked(MOUSE_BUTTON_LEFT)) {
+				return_true_false = optionClicked(displayPOS_left_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y, click_x, click_y);
+				if (return_true_false == 1 && display_option == 0) display_option = 2;
+				else if (return_true_false == 1 && display_option == 1) display_option = 0;
+				else if (return_true_false == 1 && display_option == 2) display_option = 1;
+				return_true_false = optionClicked(displayPOS_right_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y, click_x, click_y);
+				if (return_true_false == 1 && display_option == 0) display_option = 1;
+				else if (return_true_false == 1 && display_option == 1) display_option = 2;
+				else if (return_true_false == 1 && display_option == 2) display_option = 0;
+			}
+
 			// Switch statement to let user choose resolution
+			/* To be added (Click to confirm) */
+			CP_Settings_Fill(Blue);
+			CP_Settings_TextSize(40.0f * scale_multiplier);
+			switch (display_option) {
+			case 0:
+				// iPhone 4S size
+				CP_Font_DrawText("640 x 960", width * 0.5, height * 0.6);
+				width = 640;
+				height = 960;
+				scale_multiplier = 1.0;
+				CP_System_SetWindowSize(width, height);
+				break;			
+			case 1:
+				// iPad Size
+				CP_Font_DrawText("1024 x 768", width * 0.5, height * 0.6);
+				width = 1024;
+				height = 768;
+				scale_multiplier = 0.8;
+				CP_System_SetWindowSize(width, height);
+				break;
+			case 2:
+				// iPhone Size				
+				CP_Font_DrawText("320 x 480", width * 0.5, height * 0.6);
+				width = 320;
+				height = 480;
+				scale_multiplier = 0.5;
+				CP_System_SetWindowSize(width, height);
+				break;
+			}
 		}
 
 		// Exit
-		if (selection == 5) {
-			CP_Engine_Terminate();
-		}
+		if (selection == 5) CP_Engine_Terminate();
 	}
 }
 

@@ -6,6 +6,8 @@
     <ClCompile Include="Src\mainmenu.c" />
     <ClCompile Include="Src\deathscreen.c" />
     <ClCompile Include="Src\katlong.c" />
+    <ClCompile Include="Src\leaderboard.c" />
+    <ClCompile Include="Src\shaqeel.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\game.h" />
@@ -14,6 +16,7 @@
     <ClInclude Include="Inc\mainmenu.h" />
     <ClInclude Include="Inc\deathscreen.h" />
     <ClInclude Include="Inc\utils.h" />
+    <ClInclude Include="Inc\leaderboard.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

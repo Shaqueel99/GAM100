@@ -1,6 +1,7 @@
 #include "../Inc/game.h"
 #include "utils.h"
 #include "cprocessing.h"
+#include "credits.h"
 #include <stdlib.h>
 
 // Global Variable
@@ -110,6 +111,8 @@ void Main_Menu_Update()
 			if (return_true_false == 1) selection = 5;
 		}
 
+		if (CP_Input_KeyTriggered(KEY_ESCAPE)) selection = 0;
+
 		//UI Drawing (Box) + Text
 		if (selection == 0) {
 			CP_Settings_Fill(White);
@@ -141,7 +144,7 @@ void Main_Menu_Update()
 
 		// Credit
 		if (selection == 3) {
-			CP_Graphics_DrawRect(width * 0.2, height * 0.4, width * 0.6, height * 0.5);			
+			CP_Engine_SetNextGameStateForced(Credits_Init, Credits_Update, Credits_Exit);
 		}
 
 		// Option

@@ -7,7 +7,11 @@ void write_leaderboard(char name, char score);
 
 
 //for benjamin
-//---insert function declaration here
+float retainTime(float*);
+
+int areaClick(float, float, float, float, float, float);
+
+void setResSize(float*, float*);
 //for ben
 
 

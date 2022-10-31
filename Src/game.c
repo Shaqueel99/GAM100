@@ -251,7 +251,7 @@ void game_update(void)
                 CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
             }
         }
-
+    }
 
 }
 

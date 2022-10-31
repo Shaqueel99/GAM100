@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\ben.c" />
+    <ClCompile Include="Src\credits.c" />
     <ClCompile Include="Src\katlong.c" />
     <ClCompile Include="Src\deathscreen.c" />
     <ClCompile Include="Src\game.c" />
@@ -26,8 +28,10 @@
     <ClCompile Include="Src\main.c" />
     <ClCompile Include="Src\mainmenu.c" />
     <ClCompile Include="Src\shaqeel.c" />
+    <ClCompile Include="Src\zhiyu.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Inc\credits.h" />
     <ClInclude Include="Inc\deathscreen.h" />
     <ClInclude Include="Inc\game.h" />
     <ClInclude Include="Inc\leaderboard.h" />

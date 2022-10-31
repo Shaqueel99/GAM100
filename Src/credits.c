@@ -1,4 +1,5 @@
 #include "../Inc/game.h"
+#include "mainmenu.h"
 #include "cprocessing.h"
 #include <stdlib.h>
 
@@ -55,7 +56,7 @@ void Credits_Update()
     // draw a rectangle at the center of the screen, half the size of the screen
     CP_Settings_Fill(innerBox);
     CP_Graphics_DrawRect(rectCenterX, rectCenterY, rectWidth, rectHeight);
-    
+
 
     CP_Settings_TextSize(50.0f);
     CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_CENTER, CP_TEXT_ALIGN_V_MIDDLE);
@@ -76,6 +77,10 @@ void Credits_Update()
     CP_Font_DrawText("Gerald Yeo", rectCenterX, gerald.y);
 
     CP_Font_DrawText("Claude Comair", rectCenterX, claude.y);
+
+    if (CP_Input_KeyTriggered(KEY_ESCAPE)) {
+        CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
+    }
 }
 
 void Credits_Exit()

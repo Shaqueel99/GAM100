@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "cprocessing.h"
 #include "../Inc/deathscreen.h"
+#include "leaderboard.h"
 #include "utils.h"
 
 #define TRUE 1
@@ -105,7 +106,20 @@ void game_update(void)
     }
     else if (CP_Input_KeyTriggered(KEY_D)) {
         if (current_position.x == mid_position.x || current_position.x == left_position.x) { current_position.x += 20;   movingright = TRUE;  movingleft = FALSE; }
- }
+      
+        
+    }
+    
+    
+    if (CP_Input_KeyTriggered(KEY_B)) {
+        char this = 'a';
+        char that = 'r';
+        write_leaderboard(this, that); //this is used to test write_leaderboard function
+    }
+
+    if (CP_Input_KeyTriggered(KEY_L)) {
+        CP_Engine_SetNextGameState(Leaderboard_Init, Leaderboard_Update, Leaderboard_Exit);
+    }
     
 
     

@@ -26,7 +26,7 @@ extern int points;
 
 
 //for zhiyu
-//---insert function declaration here
+int optionClicked(float area_center_x, float area_center_y, float area_width, float area_height, float click_x, float click_y);
 //for zhiyu
 
 

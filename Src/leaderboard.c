@@ -1,6 +1,7 @@
 #include "cprocessing.h"
 #include "leaderboard.h"
 #include "utils.h"
+#include "game.h"
 
 
 CP_Color black, blue, purple, green, red;
@@ -59,7 +60,9 @@ void Leaderboard_Update(void)
 	CP_Font_DrawText(p1_score, windows_width / 2.0f + windows_width / 16.0f, windows_height / 8.0f * 2.0f);
 	CP_Font_DrawText(p2_score, windows_width / 2.0f + windows_width / 16.0f, windows_height / 8.0f * 3.0f);
 	CP_Font_DrawText(p3_score, windows_width / 2.0f + windows_width / 16.0f, windows_height / 8.0f * 4.0f);
-
+	if (CP_Input_KeyTriggered(KEY_L)) {
+		CP_Engine_SetNextGameStateForced(game_init, game_update, game_exit);
+	}
 }
 
 void Leaderboard_Exit(void)

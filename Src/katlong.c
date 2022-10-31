@@ -15,7 +15,7 @@ int read_leaderboard(char name1[], char score1[], char name2[], char score2[], c
 		fclose(leaderboard);
 		return 1;
 	}
-	if (sscanf_s(input, "Name: %3s, Score: %3s\n", name1, 4, score1, 4) == 0) {
+	if (sscanf_s(input, "Name: %3s  Score: %3s\n", name1, 4, score1, 4) == 0) {
 		fclose(leaderboard);
 		return 1;
 	}
@@ -24,7 +24,7 @@ int read_leaderboard(char name1[], char score1[], char name2[], char score2[], c
 		fclose(leaderboard);
 		return 1;
 	}
-	if (sscanf_s(input, "Name: %3s, Score: %3s\n", name2, 4, score2, 4) == 0) {
+	if (sscanf_s(input, "Name: %3s  Score: %3s\n", name2, 4, score2, 4) == 0) {
 		fclose(leaderboard);
 		return 1;
 	}
@@ -33,7 +33,7 @@ int read_leaderboard(char name1[], char score1[], char name2[], char score2[], c
 		fclose(leaderboard);
 		return 1;
 	}
-	if (sscanf_s(input, "Name: %3s, Score: %3s\n", name3, 4, score3, 4) == 0) {
+	if (sscanf_s(input, "Name: %3s  Score: %3s\n", name3, 4, score3, 4) == 0) {
 		fclose(leaderboard);
 		return 1;
 	}
@@ -46,7 +46,7 @@ void write_leaderboard(char name[], char score) {//name and score is input from 
 	FILE* leaderboard;
 	char new_stats[256];
 	 //placeholder for score
-	sprintf_s(new_stats, 256, "Name: %s, Score: %c\n", name, score);
+	sprintf_s(new_stats, 256, "Name: %s  Score: %c\n", name, score);
 	fopen_s(&leaderboard, "..\\..\\Assets\\leaderboard.txt", "a"); //append option always writes data at the end of file, file created if dont exist
 	if (leaderboard != NULL) {
 		fwrite(new_stats, sizeof(char), strlen(new_stats), leaderboard);

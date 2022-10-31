@@ -1,1 +1,4 @@
-Name: a, Score: b
+Name: kit, Score: 1
+Name: kat, Score: 4
+Name: lon, Score: 6
+Name: p, Score: q

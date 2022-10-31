@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "cprocessing.h"
 #include "../Inc/deathscreen.h"
+#include "leaderboard.h"
 #include "utils.h"
 
 #define TRUE 1
@@ -124,6 +125,10 @@ void game_update(void)
         char this = 'a';
         char that = 'r';
         write_leaderboard(this, that); //this is used to test write_leaderboard function
+    }
+
+    if (CP_Input_KeyTriggered(KEY_L)) {
+        CP_Engine_SetNextGameState(Leaderboard_Init, Leaderboard_Update, Leaderboard_Exit);
     }
     
 

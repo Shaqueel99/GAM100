@@ -8,6 +8,9 @@
     <ClCompile Include="Src\katlong.c" />
     <ClCompile Include="Src\leaderboard.c" />
     <ClCompile Include="Src\shaqeel.c" />
+    <ClCompile Include="Src\ben.c" />
+    <ClCompile Include="Src\credits.c" />
+    <ClCompile Include="Src\zhiyu.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\game.h" />
@@ -17,6 +20,7 @@
     <ClInclude Include="Inc\deathscreen.h" />
     <ClInclude Include="Inc\utils.h" />
     <ClInclude Include="Inc\leaderboard.h" />
+    <ClInclude Include="Inc\credits.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

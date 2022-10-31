@@ -12,6 +12,7 @@ struct stats {
 } p1, p2, p3;
 */
 
+extern int width, height;
 char p1_name[4], p2_name[4], p3_name[4]; //3 digit name, last letter is null character
 char p1_score[4], p2_score[4], p3_score[4];
 float windows_width, windows_height;
@@ -26,8 +27,8 @@ void Leaderboard_Init(void)
 	red = CP_Color_Create(255, 0, 0, 255);
 
 
-	windows_width = 960.0f;
-	windows_height = 540.0f;
+	windows_width = width;
+	windows_height = height;
 
 
 	CP_System_SetWindowSize(windows_width, windows_height);

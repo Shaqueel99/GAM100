@@ -10,6 +10,7 @@
 #define TRUE 1
 #define FALSE 0
 
+extern int width, height;
 int gIsPaused; 
 int spawn;
 int c;
@@ -30,6 +31,7 @@ float b2mmWidth, b2mmHeight, b2mmX, b2mmY;
 
 float coin_y;
 int points;
+
 struct obstacles {
     int boulder;
     int boulder_spawn;
@@ -45,8 +47,9 @@ void game_init(void)
 {
     
     spawn = 1;
-    windows_length = 960.0f;
-    windows_height = 540.0f;
+    // Window_length 960.0f & Window_height 540.0f
+    windows_length = width;
+    windows_height = height;
     radius = 20.0f;
     CP_System_SetWindowSize(windows_length, windows_height);
 
@@ -88,9 +91,9 @@ position_right_y = windows_height / 4.0 * 3.0;
 
 
     
-    left_position = CP_Vector_Set(windows_length / 6.0, windows_height / 4.0 * 3.0);
-    mid_position = CP_Vector_Set(windows_length / 2.0, windows_height / 4.0 * 3.0);
-    right_position = CP_Vector_Set(windows_length / 6.0 * 5.0, windows_height / 4.0 * 3.0);
+    left_position = CP_Vector_Set(width / 6.0, height / 4.0 * 3.0);
+    mid_position = CP_Vector_Set(width / 2.0, height / 4.0 * 3.0);
+    right_position = CP_Vector_Set(width / 6.0 * 5.0, height / 4.0 * 3.0);
 
 
     current_position = mid_position;

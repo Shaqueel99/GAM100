@@ -31,6 +31,8 @@ float b2mmWidth, b2mmHeight, b2mmX, b2mmY;
 
 float coin_y;
 int points;
+int difficulty = 0;
+int random = 0;
 
 struct obstacles {
     int boulder;
@@ -164,6 +166,73 @@ void game_update(void)
         //Spawing Boulders
         currentElapsedTime = CP_System_GetDt();
         totalElapsedTime += currentElapsedTime;
+
+
+
+
+        if (totalElapsedTime > 10.0) {
+            totalElapsedTime = 0.0;
+            ++difficulty;
+        }
+
+        if (0 == difficulty) {
+            if (CP_Random_RangeInt(0, 1) == 0) {
+                //launch first easy segment
+            }
+            else {
+                //launch second easy segment instead
+            }
+            //random range is set to 0 to 1
+            // if range == 0, launch first easy segment
+            // if range == 1, launch second easy segment instead
+        }
+        else if (1 == difficulty) {
+            if (CP_Random_RangeInt(0, 1) == 0) {
+                //launch first medium segment
+            }
+            else {
+                //launch second medium segment instead
+            }
+            //random range is set to 0 to 1
+            // if range == 0, launch first medium segment
+            // if range == 1, launch second medium segment instead
+        }
+        else if (2 == difficulty/*skip 3 because hard segment is 20seconds long*/) {
+            random = CP_Random_RangeInt(0, 2);
+            //random range is set to 0, 1 or 2
+            if (0 == random) {
+                //launch first hard segment
+            }
+            else if (1 == random) {
+                //launch second hard segment instead
+            }
+            else {
+                //launch third hard segment instead
+            }
+            // if range == 0, launch first hard segment
+            // if range == 1, launch second hard segment instead
+            // if range == 2, launch third hard segment instead
+        }
+        else if (0 == difficulty % 2) {
+            random = CP_Random_RangeInt(0, 2);
+            //random range is set to 0, 1 or 2
+            if (0 == random) {
+                //launch first hard segment
+            }
+            else if (1 == random) {
+                //launch second hard segment instead
+            }
+            else {
+                //launch third hard segment instead
+            }
+            // if range == 0, launch first hard segment
+            // if range == 1, launch second hard segment instead
+            // if range == 2, launch third hard segment instead
+        }
+
+
+
+
         first.boulder = (totalElapsedTime > 3.0 && first.boulder != 2) ? first.boulder + 1 : first.boulder;
         first.boulder_spawn = (first.boulder == 1) ? TRUE : first.boulder_spawn;
         first.value_y += (first.boulder_spawn == TRUE) ? 5.0f : 0.0f;

@@ -14,8 +14,10 @@ extern int width, height;
 int gIsPaused; 
 int spawn;
 int c;
+int selection;
+int checker;
 /* Feel free to declare your own variables here */
-CP_Color black, blue, purple, green,red, white;
+CP_Color black, blue, purple, green,red, white, pause;
 float windows_length, windows_height, radius=20.0f;
 //float position_left, position_mid, position_right;
 
@@ -42,7 +44,7 @@ struct obstacles {
     int coin_spawn;
 };
 
-struct obstacles first, second, third;
+struct obstacles first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, ten;
 int movingleft = 0, movingright = 0;
 
 void game_init(void)
@@ -66,21 +68,22 @@ void game_init(void)
     green = CP_Color_Create(144, 238, 144, 255);
     red = CP_Color_Create(255, 0, 0, 255);
     white = CP_Color_Create(255, 255, 255, 255);
+    pause = CP_Color_Create(0, 0, 0, 100);
 
-    resumeWidth = windows_length / 4;
-    resumeHeight = windows_height / 7.7f;
-    resumeX = CP_System_GetDisplayWidth() / 6.0f;
-    resumeY = CP_System_GetDisplayHeight() / 6.0f;
+    resumeWidth = width * 0.35;
+    resumeHeight = height * 0.1;
+    resumeX = CP_System_GetWindowWidth() * 0.3f;
+    resumeY = CP_System_GetWindowHeight() * 0.45f;
 
-    restartWidth = windows_length / 4;
-    restartHeight = windows_height / 7.7f;
-    restartX = CP_System_GetDisplayWidth() / 3.0f;
-    restartY = CP_System_GetDisplayHeight() / 6.0f;
+    restartWidth = width * 0.35;
+    restartHeight = height * 0.1;
+    restartX = CP_System_GetWindowWidth() * 0.7f;
+    restartY = CP_System_GetWindowHeight() * 0.45f;
 
-    b2mmWidth = windows_length / 3;
-    b2mmHeight = windows_height / 7.7f;
-    b2mmX = CP_System_GetDisplayWidth() / 4.0f;
-    b2mmY = CP_System_GetDisplayHeight() / 3.0f;
+    b2mmWidth = width * 0.5;
+    b2mmHeight = height * 0.1;
+    b2mmX = CP_System_GetWindowWidth() * 0.5f;
+    b2mmY = CP_System_GetWindowHeight() * 0.6f;
 
     /*
 position_left_x = windows_length / 6.0;
@@ -93,9 +96,9 @@ position_right_y = windows_height / 4.0 * 3.0;
 
 
     
-    left_position = CP_Vector_Set(width / 6.0, height / 4.0 * 3.0);
+    left_position = CP_Vector_Set(width * 0.16, height / 4.0 * 3.0);
     mid_position = CP_Vector_Set(width / 2.0, height / 4.0 * 3.0);
-    right_position = CP_Vector_Set(width / 6.0 * 5.0, height / 4.0 * 3.0);
+    right_position = CP_Vector_Set(width * 0.83, height / 4.0 * 3.0);
 
 
     current_position = mid_position;
@@ -108,6 +111,8 @@ position_right_y = windows_height / 4.0 * 3.0;
 
 
     first.value_y = second.value_y = third.value_y = coin_y= -windows_height / 12.0;
+    fourth.value_y = fifth.value_y = sixth.value_y = seventh.value_y = -height / 12.0;
+    eighth.value_y = ninth.value_y = ten.value_y = -height / 12.0;
 
     first.boulder = 0;
     first.coins = 0;
@@ -117,7 +122,23 @@ position_right_y = windows_height / 4.0 * 3.0;
     second.boulder_spawn = 0;
     third.boulder = 0;
     third.boulder_spawn = 0;
+    fourth.boulder = 0;
+    fourth.boulder_spawn = 0;
+    fifth.boulder = 0;
+    fifth.boulder_spawn = 0;
+    sixth.boulder = 0;
+    sixth.boulder_spawn = 0;
+    seventh.boulder = 0;
+    seventh.boulder_spawn = 0;
+    eighth.boulder = 0;
+    eighth.boulder_spawn = 0;
+    ninth.boulder = 0;
+    ninth.boulder_spawn = 0;
+    ten.boulder = 0;
+    ten.boulder_spawn = 0;
 
+    selection = 0;
+    checker = -1;
 }
 
 void game_update(void)
@@ -132,33 +153,33 @@ void game_update(void)
         CP_Graphics_DrawLine(windows_length / 3.0 * 2.0, 0.0, windows_length / 3.0 * 2.0, windows_height);
 
         //Movement
-        if(movingleft==TRUE){ 
-            if(current_position.x != left_position.x && current_position.x!=mid_position.x ){ current_position.x -= 20; }
-        if(current_position.x == left_position.x && current_position.x == mid_position.x){ movingleft = FALSE; }
+        if (movingleft == TRUE) {
+            if (current_position.x != left_position.x && current_position.x != mid_position.x) { current_position.x -= 25; }
+            if (current_position.x <= left_position.x || current_position.x == mid_position.x) { movingleft = FALSE; }
         }
         if (movingright == TRUE) {
-            if (current_position.x != right_position.x && current_position.x != mid_position.x) { current_position.x += 20; }
-            if (current_position.x == right_position.x && current_position.x == mid_position.x) { movingright = FALSE; }
+            if (current_position.x != right_position.x && current_position.x != mid_position.x) { current_position.x += 25; }
+            if (current_position.x >= right_position.x || current_position.x == mid_position.x) { movingright = FALSE; }
         }
         if (CP_Input_KeyTriggered(KEY_A)) {
-            
-            if (current_position.x == mid_position.x || current_position.x == right_position.x) { current_position.x -= 20;   movingleft = TRUE;  movingright = FALSE;}
+
+            if (current_position.x == mid_position.x || current_position.x >= right_position.x) { current_position.x -= 25;   movingleft = TRUE;  movingright = FALSE; }
         }
         else if (CP_Input_KeyTriggered(KEY_D)) {
-            if (current_position.x == mid_position.x || current_position.x == left_position.x) { current_position.x += 20;   movingright = TRUE;  movingleft = FALSE; }
-        
-            
+            if (current_position.x == mid_position.x || current_position.x <= left_position.x) { current_position.x += 25;   movingright = TRUE;  movingleft = FALSE; }
+
+
         }
-        
-        
-    
+
+
+
 
         if (CP_Input_KeyTriggered(KEY_L)) {
             CP_Engine_SetNextGameState(Leaderboard_Init, Leaderboard_Update, Leaderboard_Exit);
         }
-        
 
-        
+
+
         //Displaying player
         CP_Graphics_DrawCircle(current_position.x, current_position.y, radius * 2.0);
         CP_Graphics_DrawTriangleAdvanced(current_position.x, current_position.y - radius, current_position.x - radius / 2.0f, current_position.y, current_position.x + radius / 2.0f, current_position.y, 0.0f);
@@ -170,28 +191,402 @@ void game_update(void)
 
 
 
-        if (totalElapsedTime > 10.0) {
+        if (totalElapsedTime > 20.0) {
             totalElapsedTime = 0.0;
             ++difficulty;
         }
 
+
+
         if (0 == difficulty) {
-            if (CP_Random_RangeInt(0, 1) == 0) {
+ 
+            checker = CP_Random_RangeInt(0, 1);
+            selection = (checker == 0 && selection == 0) ? selection + 1 : selection;
+            selection = (checker == 1 && selection == 0) ? selection - 1 : selection;
+            if (selection == 1) {
                 //launch first easy segment
+
+                first.boulder = (totalElapsedTime > 2.0 && first.boulder != 2) ? first.boulder + 1 : first.boulder;
+                first.boulder_spawn = (first.boulder == 1) ? TRUE : first.boulder_spawn;
+                first.value_y += (first.boulder_spawn == TRUE) ? 6.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_mid, first.value_y, radius * 4.0);
+
+                second.boulder = (totalElapsedTime > 3.0 && second.boulder != 2) ? second.boulder + 1 : second.boulder;
+                second.boulder_spawn = (second.boulder == 1) ? TRUE : second.boulder_spawn;
+                second.value_y += (second.boulder_spawn == TRUE) ? 6.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_left, second.value_y, radius * 4.0);
+
+                third.boulder = (totalElapsedTime > 3.5 && third.boulder != 2) ? third.boulder + 1 : third.boulder;
+                third.boulder_spawn = (third.boulder == 1) ? TRUE : third.boulder_spawn;
+                third.value_y += (third.boulder_spawn == TRUE) ? 5.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_mid, third.value_y, radius * 4.0);
+
+                fourth.boulder = (totalElapsedTime > 4.0 && fourth.boulder != 2) ? fourth.boulder + 1 : fourth.boulder;
+                fourth.boulder_spawn = (fourth.boulder == 1) ? TRUE : fourth.boulder_spawn;
+                fourth.value_y += (fourth.boulder_spawn == TRUE) ? 5.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_right, fourth.value_y, radius * 4.0);
+
+                fifth.boulder = (totalElapsedTime > 7.0 && fifth.boulder != 2) ? fifth.boulder + 1 : fifth.boulder;
+                fifth.boulder_spawn = (fifth.boulder == 1) ? TRUE : fifth.boulder_spawn;
+                fifth.value_y += (fifth.boulder_spawn == TRUE) ? 6.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_right, fifth.value_y, radius * 4.0);
+
+                sixth.boulder = (totalElapsedTime > 8.0 && sixth.boulder != 2) ? sixth.boulder + 1 : sixth.boulder;
+                sixth.boulder_spawn = (sixth.boulder == 1) ? TRUE : sixth.boulder_spawn;
+                sixth.value_y += (sixth.boulder_spawn == TRUE) ? 10.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_left, sixth.value_y, radius * 4.0);
+
+                seventh.boulder = (totalElapsedTime > 10.0 && seventh.boulder != 2) ? seventh.boulder + 1 : seventh.boulder;
+                seventh.boulder_spawn = (seventh.boulder == 1) ? TRUE : seventh.boulder_spawn;
+                seventh.value_y += (seventh.boulder_spawn == TRUE) ? 11.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_mid, seventh.value_y, radius * 4.0);
+
+                eighth.boulder = (totalElapsedTime > 13.0 && eighth.boulder != 2) ? eighth.boulder + 1 : eighth.boulder;
+                eighth.boulder_spawn = (eighth.boulder == 1) ? TRUE : eighth.boulder_spawn;
+                eighth.value_y += (eighth.boulder_spawn == TRUE) ? 11.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_left, eighth.value_y, radius * 4.0);
+
+                ninth.boulder = (totalElapsedTime > 15.0 && ninth.boulder != 2) ? ninth.boulder + 1 : ninth.boulder;
+                ninth.boulder_spawn = (ninth.boulder == 1) ? TRUE : ninth.boulder_spawn;
+                ninth.value_y += (ninth.boulder_spawn == TRUE) ? 14.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_right, ninth.value_y, radius * 4.0);
+
+                ten.boulder = (totalElapsedTime > 16.0 && ten.boulder != 2) ? ten.boulder + 1 : ten.boulder;
+                ten.boulder_spawn = (ten.boulder == 1) ? TRUE : ten.boulder_spawn;
+                ten.value_y += (ten.boulder_spawn == TRUE) ? 12.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0);
+
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, second.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, sixth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, ninth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
             }
             else {
                 //launch second easy segment instead
+
+                first.boulder = (totalElapsedTime > 2.0 && first.boulder != 2) ? first.boulder + 1 : first.boulder;
+                first.boulder_spawn = (first.boulder == 1) ? TRUE : first.boulder_spawn;
+                first.value_y += (first.boulder_spawn == TRUE) ? 8.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_left, first.value_y, radius * 4.0);
+
+                second.boulder = (totalElapsedTime > 3.0 && second.boulder != 2) ? second.boulder + 1 : second.boulder;
+                second.boulder_spawn = (second.boulder == 1) ? TRUE : second.boulder_spawn;
+                second.value_y += (second.boulder_spawn == TRUE) ? 10.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_right, second.value_y, radius * 4.0);
+
+                third.boulder = (totalElapsedTime > 4.0 && third.boulder != 2) ? third.boulder + 1 : third.boulder;
+                third.boulder_spawn = (third.boulder == 1) ? TRUE : third.boulder_spawn;
+                third.value_y += (third.boulder_spawn == TRUE) ? 15.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_mid, third.value_y, radius * 4.0);
+
+                fourth.boulder = (totalElapsedTime > 5.5 && fourth.boulder != 2) ? fourth.boulder + 1 : fourth.boulder;
+                fourth.boulder_spawn = (fourth.boulder == 1) ? TRUE : fourth.boulder_spawn;
+                fourth.value_y += (fourth.boulder_spawn == TRUE) ? 13.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_left, fourth.value_y, radius * 4.0);
+
+                fifth.boulder = (totalElapsedTime > 8.5 && fifth.boulder != 2) ? fifth.boulder + 1 : fifth.boulder;
+                fifth.boulder_spawn = (fifth.boulder == 1) ? TRUE : fifth.boulder_spawn;
+                fifth.value_y += (fifth.boulder_spawn == TRUE) ? 13.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_right, fifth.value_y, radius * 4.0);
+
+                sixth.boulder = (totalElapsedTime > 10.0 && sixth.boulder != 2) ? sixth.boulder + 1 : sixth.boulder;
+                sixth.boulder_spawn = (sixth.boulder == 1) ? TRUE : sixth.boulder_spawn;
+                sixth.value_y += (sixth.boulder_spawn == TRUE) ? 10.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_mid, sixth.value_y, radius * 4.0);
+
+                seventh.boulder = (totalElapsedTime > 12.0 && seventh.boulder != 2) ? seventh.boulder + 1 : seventh.boulder;
+                seventh.boulder_spawn = (seventh.boulder == 1) ? TRUE : seventh.boulder_spawn;
+                seventh.value_y += (seventh.boulder_spawn == TRUE) ? 7.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_mid, seventh.value_y, radius * 4.0);
+
+                eighth.boulder = (totalElapsedTime > 14.0 && eighth.boulder != 2) ? eighth.boulder + 1 : eighth.boulder;
+                eighth.boulder_spawn = (eighth.boulder == 1) ? TRUE : eighth.boulder_spawn;
+                eighth.value_y += (eighth.boulder_spawn == TRUE) ? 11.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_left, eighth.value_y, radius * 4.0);
+
+                ninth.boulder = (totalElapsedTime > 15.0 && ninth.boulder != 2) ? ninth.boulder + 1 : ninth.boulder;
+                ninth.boulder_spawn = (ninth.boulder == 1) ? TRUE : ninth.boulder_spawn;
+                ninth.value_y += (ninth.boulder_spawn == TRUE) ? 9.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_right, ninth.value_y, radius * 4.0);
+
+                ten.boulder = (totalElapsedTime > 16.0 && ten.boulder != 2) ? ten.boulder + 1 : ten.boulder;
+                ten.boulder_spawn = (ten.boulder == 1) ? TRUE : ten.boulder_spawn;
+                ten.value_y += (ten.boulder_spawn == TRUE) ? 12.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0);
+
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fourth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, ninth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
             }
             //random range is set to 0 to 1
             // if range == 0, launch first easy segment
             // if range == 1, launch second easy segment instead
         }
-        else if (1 == difficulty) {
-            if (CP_Random_RangeInt(0, 1) == 0) {
+
+
+        if (1 == difficulty) {
+
+        checker = CP_Random_RangeInt(0, 1);
+        selection = (checker == 0 && selection == 0) ? selection + 1 : selection;
+        selection = (checker == 1 && selection == 0) ? selection - 1 : selection;
+            if (selection == 1) {
                 //launch first medium segment
+                first.boulder = (totalElapsedTime > 2.5 && first.boulder != 2) ? first.boulder + 1 : first.boulder;
+                first.boulder_spawn = (first.boulder == 1) ? TRUE : first.boulder_spawn;
+                first.value_y += (first.boulder_spawn == TRUE) ? 6.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_left, first.value_y, radius * 4.0);
+
+                second.boulder = (totalElapsedTime > 3.3 && second.boulder != 2) ? second.boulder + 1 : second.boulder;
+                second.boulder_spawn = (second.boulder == 1) ? TRUE : second.boulder_spawn;
+                second.value_y += (second.boulder_spawn == TRUE) ? 6.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_right, second.value_y, radius * 4.0);
+
+                third.boulder = (totalElapsedTime > 3.8 && third.boulder != 2) ? third.boulder + 1 : third.boulder;
+                third.boulder_spawn = (third.boulder == 1) ? TRUE : third.boulder_spawn;
+                third.value_y += (third.boulder_spawn == TRUE) ? 6.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_mid, third.value_y, radius * 4.0);
+
+                fourth.boulder = (totalElapsedTime > 6.0 && fourth.boulder != 2) ? fourth.boulder + 1 : fourth.boulder;
+                fourth.boulder_spawn = (fourth.boulder == 1) ? TRUE : fourth.boulder_spawn;
+                fourth.value_y += (fourth.boulder_spawn == TRUE) ? 13.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_right, fourth.value_y, radius * 4.0);
+
+                fifth.boulder = (totalElapsedTime > 8.0 && fifth.boulder != 2) ? fifth.boulder + 1 : fifth.boulder;
+                fifth.boulder_spawn = (fifth.boulder == 1) ? TRUE : fifth.boulder_spawn;
+                fifth.value_y += (fifth.boulder_spawn == TRUE) ? 11.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_left, fifth.value_y, radius * 4.0);
+
+                sixth.boulder = (totalElapsedTime > 8.0 && sixth.boulder != 2) ? sixth.boulder + 1 : sixth.boulder;
+                sixth.boulder_spawn = (sixth.boulder == 1) ? TRUE : sixth.boulder_spawn;
+                sixth.value_y += (sixth.boulder_spawn == TRUE) ? 11.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_mid, sixth.value_y, radius * 4.0);
+
+                seventh.boulder = (totalElapsedTime > 11.0 && seventh.boulder != 2) ? seventh.boulder + 1 : seventh.boulder;
+                seventh.boulder_spawn = (seventh.boulder == 1) ? TRUE : seventh.boulder_spawn;
+                seventh.value_y += (seventh.boulder_spawn == TRUE) ? 8.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_mid, seventh.value_y, radius * 4.0);
+
+                eighth.boulder = (totalElapsedTime > 13.0 && eighth.boulder != 2) ? eighth.boulder + 1 : eighth.boulder;
+                eighth.boulder_spawn = (eighth.boulder == 1) ? TRUE : eighth.boulder_spawn;
+                eighth.value_y += (eighth.boulder_spawn == TRUE) ? 10.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_right, eighth.value_y, radius * 4.0);
+
+                ninth.boulder = (totalElapsedTime > 15.0 && ninth.boulder != 2) ? ninth.boulder + 1 : ninth.boulder;
+                ninth.boulder_spawn = (ninth.boulder == 1) ? TRUE : ninth.boulder_spawn;
+                ninth.value_y += (ninth.boulder_spawn == TRUE) ? 14.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_left, ninth.value_y, radius * 4.0);
+
+                ten.boulder = (totalElapsedTime > 16.0 && ten.boulder != 2) ? ten.boulder + 1 : ten.boulder;
+                ten.boulder_spawn = (ten.boulder == 1) ? TRUE : ten.boulder_spawn;
+                ten.value_y += (ten.boulder_spawn == TRUE) ? 12.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0);
+
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left , first.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fifth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, eighth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, ninth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
             }
             else {
                 //launch second medium segment instead
+                first.boulder = (totalElapsedTime > 2.8 && first.boulder != 2) ? first.boulder + 1 : first.boulder;
+                first.boulder_spawn = (first.boulder == 1) ? TRUE : first.boulder_spawn;
+                first.value_y += (first.boulder_spawn == TRUE) ? 16.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_left, first.value_y, radius * 4.0);
+
+                second.boulder = (totalElapsedTime > 3.6 && second.boulder != 2) ? second.boulder + 1 : second.boulder;
+                second.boulder_spawn = (second.boulder == 1) ? TRUE : second.boulder_spawn;
+                second.value_y += (second.boulder_spawn == TRUE) ? 14.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_right, second.value_y, radius * 4.0);
+
+                third.boulder = (totalElapsedTime > 3.6 && third.boulder != 2) ? third.boulder + 1 : third.boulder;
+                third.boulder_spawn = (third.boulder == 1) ? TRUE : third.boulder_spawn;
+                third.value_y += (third.boulder_spawn == TRUE) ? 14.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_mid, third.value_y, radius * 4.0);
+
+                fourth.boulder = (totalElapsedTime > 6.2 && fourth.boulder != 2) ? fourth.boulder + 1 : fourth.boulder;
+                fourth.boulder_spawn = (fourth.boulder == 1) ? TRUE : fourth.boulder_spawn;
+                fourth.value_y += (fourth.boulder_spawn == TRUE) ? 13.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_right, fourth.value_y, radius * 4.0);
+
+                fifth.boulder = (totalElapsedTime > 7.0 && fifth.boulder != 2) ? fifth.boulder + 1 : fifth.boulder;
+                fifth.boulder_spawn = (fifth.boulder == 1) ? TRUE : fifth.boulder_spawn;
+                fifth.value_y += (fifth.boulder_spawn == TRUE) ? 17.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_left, fifth.value_y, radius * 4.0);
+
+                sixth.boulder = (totalElapsedTime > 7.8 && sixth.boulder != 2) ? sixth.boulder + 1 : sixth.boulder;
+                sixth.boulder_spawn = (sixth.boulder == 1) ? TRUE : sixth.boulder_spawn;
+                sixth.value_y += (sixth.boulder_spawn == TRUE) ? 14.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_mid, sixth.value_y, radius * 4.0);
+
+                seventh.boulder = (totalElapsedTime > 11.0 && seventh.boulder != 2) ? seventh.boulder + 1 : seventh.boulder;
+                seventh.boulder_spawn = (seventh.boulder == 1) ? TRUE : seventh.boulder_spawn;
+                seventh.value_y += (seventh.boulder_spawn == TRUE) ? 8.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_right, seventh.value_y, radius * 4.0);
+
+                eighth.boulder = (totalElapsedTime > 13.0 && eighth.boulder != 2) ? eighth.boulder + 1 : eighth.boulder;
+                eighth.boulder_spawn = (eighth.boulder == 1) ? TRUE : eighth.boulder_spawn;
+                eighth.value_y += (eighth.boulder_spawn == TRUE) ? 10.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_left, eighth.value_y, radius * 4.0);
+
+                ninth.boulder = (totalElapsedTime > 15.0 && ninth.boulder != 2) ? ninth.boulder + 1 : ninth.boulder;
+                ninth.boulder_spawn = (ninth.boulder == 1) ? TRUE : ninth.boulder_spawn;
+                ninth.value_y += (ninth.boulder_spawn == TRUE) ? 14.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_mid, ninth.value_y, radius * 4.0);
+
+                ten.boulder = (totalElapsedTime > 16.0 && ten.boulder != 2) ? ten.boulder + 1 : ten.boulder;
+                ten.boulder_spawn = (ten.boulder == 1) ? TRUE : ten.boulder_spawn;
+                ten.value_y += (ten.boulder_spawn == TRUE) ? 12.0f : 0.0f;
+                CP_Graphics_DrawCircle(value_x_right, ten.value_y, radius * 4.0);
+
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fifth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, seventh.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ninth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, ten.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
             }
             //random range is set to 0 to 1
             // if range == 0, launch first medium segment
@@ -232,7 +627,7 @@ void game_update(void)
 
 
 
-
+        /*
         first.boulder = (totalElapsedTime > 3.0 && first.boulder != 2) ? first.boulder + 1 : first.boulder;
         first.boulder_spawn = (first.boulder == 1) ? TRUE : first.boulder_spawn;
         first.value_y += (first.boulder_spawn == TRUE) ? 5.0f : 0.0f;
@@ -248,11 +643,13 @@ void game_update(void)
         third.boulder_spawn = (third.boulder == 1) ? TRUE : third.boulder_spawn;
         third.value_y += (third.boulder_spawn == TRUE) ? 5.0f : 0.0f;
         CP_Graphics_DrawCircle(value_x_right, third.value_y, radius * 4.0);
+        */
+
 
         first.coins = (totalElapsedTime > 1.0 && first.coins != 2) ? first.coins + 1 : first.coins;
         first.coin_spawn = (first.coins == 1) ? TRUE : first.coin_spawn;
         coin_y += (first.coin_spawn == TRUE) ? 9.0f : 0.0f;
-        if (spawn == 1) {CP_Graphics_DrawCircle(value_x_mid, coin_y, radius * 1.0);}
+        if (spawn == 1) { CP_Graphics_DrawCircle(value_x_mid, coin_y, radius * 1.0); }
 
         //Displaying Points
         CP_Settings_TextSize(20.0f);
@@ -261,18 +658,25 @@ void game_update(void)
         sprintf_s(buffer, _countof(buffer), "%d", points);
         CP_Font_DrawText(buffer, 80, 20);
         CP_Font_DrawText("Points:", 10, 20);
-        
-    
-    
-        if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.value_y, radius) == 1) { totalElapsedTime = 0; 
-        score += points;};
-        if (iscirclecollided(current_position.x, current_position.y, value_x_left, second.value_y, radius) == 1) { totalElapsedTime = 0; 
-        score += points; };
-        if (iscirclecollided(current_position.x, current_position.y, value_x_right, third.value_y, radius) == 1) { totalElapsedTime = 0; 
-        score += points;  };
+
+
+        /*
+        if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.value_y, radius) == 1) {
+            totalElapsedTime = 0;
+            score += points;
+        };
+        if (iscirclecollided(current_position.x, current_position.y, value_x_left, second.value_y, radius) == 1) {
+            totalElapsedTime = 0;
+            score += points;
+        };
+        if (iscirclecollided(current_position.x, current_position.y, value_x_right, third.value_y, radius) == 1) {
+            totalElapsedTime = 0;
+            score += points;
+        };
+        */
 
         if (spawn == 1) {
-            if (iscoincollided(current_position.x, current_position.y, value_x_mid, coin_y, radius) == 1) {points += 1; spawn = 0;}
+            if (iscoincollided(current_position.x, current_position.y, value_x_mid, coin_y, radius) == 1) { points += 1; spawn = 0; }
         }
     }
 
@@ -283,15 +687,14 @@ void game_update(void)
     if (gIsPaused == TRUE) {
         float retainedTime = retainTime(&totalElapsedTime);
 
-        CP_Color black = CP_Color_Create(0, 0, 0, 255);
-        // Set the circle color to red
-        CP_Settings_Fill(black);
+        //CP_Graphics_ClearBackground(green);
 
-        CP_Graphics_ClearBackground(green);
+        CP_Settings_Fill(pause);
+        CP_Graphics_DrawRect(CP_System_GetWindowWidth() * 0.5, CP_System_GetWindowHeight() * 0.5, width, height);
 
         // set the rectangle drawing mode to CENTER
         CP_Settings_RectMode(CP_POSITION_CENTER);
-
+        CP_Settings_Fill(blue);
         // draw a rectangle at the center of the screen, half the size of the screen
         CP_Settings_TextSize(60.0f);
         CP_Graphics_DrawRect(resumeX, resumeY, resumeWidth, resumeHeight); // Resume Button
@@ -299,12 +702,12 @@ void game_update(void)
         CP_Settings_Fill(white);
         CP_Font_DrawText("Resume", resumeX, resumeY);
 
-        CP_Settings_Fill(black);
+        CP_Settings_Fill(blue);
         CP_Graphics_DrawRect(restartX, restartY, restartWidth, restartHeight); //Restart Button
         CP_Settings_Fill(white);
         CP_Font_DrawText("Restart", restartX, restartY);
 
-        CP_Settings_Fill(black);
+        CP_Settings_Fill(blue);
         CP_Graphics_DrawRect(b2mmX, b2mmY, b2mmWidth, b2mmHeight);
         CP_Settings_Fill(white);
         CP_Font_DrawText("Main Menu", b2mmX, b2mmY);
@@ -317,6 +720,7 @@ void game_update(void)
                 gIsPaused = FALSE;
                 totalElapsedTime = 0;
                 currentElapsedTime = 0;
+                difficulty = 0;
                 CP_Engine_SetNextGameStateForced(game_init, game_update, game_update);
             }
             else if (areaClick(b2mmX, b2mmY, b2mmWidth, b2mmHeight, CP_Input_GetMouseX(), CP_Input_GetMouseY())) {
@@ -324,7 +728,6 @@ void game_update(void)
             }
         }
     }
-
 }
 
 void game_exit(void)

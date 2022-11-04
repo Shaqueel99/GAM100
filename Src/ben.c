@@ -1,5 +1,13 @@
 #include "cprocessing.h"
 
+#define TRUE 1
+#define FALSE 0
+
+extern int height, width;
+
+
+
+
 float retainTime(float* p) {
 	float temp = *p;
 	return temp;
@@ -22,6 +30,11 @@ int areaClick(float area_center_x, float area_center_y, float area_width, float 
 	}
 }
 
-void setResSize(float *width, float *height) {
-	CP_System_SetWindowSize(*width, *height);
+
+int isRectCollided() {
+
+}
+
+void segment6() {
+
 }

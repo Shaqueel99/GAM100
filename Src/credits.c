@@ -26,7 +26,7 @@ void Credits_Init()
     rectCenterX = CP_System_GetWindowWidth() / 2.0f;
     rectCenterY = CP_System_GetWindowHeight() / 2.0f;
     rectWidth = CP_System_GetWindowWidth() / 1.5f; 
-    rectHeight = CP_System_GetWindowHeight() / 1.7f;
+    rectHeight = CP_System_GetWindowHeight() / 1.3f;
 
     team.y = height / 5.3f;
     kitkat.y = height * 0.25;

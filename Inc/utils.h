@@ -11,7 +11,7 @@ float retainTime(float*);
 
 int areaClick(float, float, float, float, float, float);
 
-void setResSize(float*, float*);
+int segment5();
 //for ben
 
 

@@ -194,6 +194,38 @@ void game_update(void)
         if (totalElapsedTime > 20.0) {
             totalElapsedTime = 0.0;
             ++difficulty;
+
+            //resets all parameters
+            first.value_y = second.value_y = third.value_y = -windows_height / 12.0;
+            fourth.value_y = fifth.value_y = sixth.value_y = seventh.value_y = -height / 12.0;
+            eighth.value_y = ninth.value_y = ten.value_y = -height / 12.0;
+
+            first.boulder = 0;
+            first.coins = 0;
+            first.boulder_spawn = 0;
+            first.coin_spawn = 0;
+            second.boulder = 0;
+            second.boulder_spawn = 0;
+            third.boulder = 0;
+            third.boulder_spawn = 0;
+            fourth.boulder = 0;
+            fourth.boulder_spawn = 0;
+            fifth.boulder = 0;
+            fifth.boulder_spawn = 0;
+            sixth.boulder = 0;
+            sixth.boulder_spawn = 0;
+            seventh.boulder = 0;
+            seventh.boulder_spawn = 0;
+            eighth.boulder = 0;
+            eighth.boulder_spawn = 0;
+            ninth.boulder = 0;
+            ninth.boulder_spawn = 0;
+            ten.boulder = 0;
+            ten.boulder_spawn = 0;
+
+            selection = 0;
+            checker = -1;
+
         }
 
 
@@ -297,7 +329,7 @@ void game_update(void)
                     score += points;
                 };
             }
-            else {
+            else if (selection == -1) {
                 //launch second easy segment instead
 
                 first.boulder = (totalElapsedTime > 2.0 && first.boulder != 2) ? first.boulder + 1 : first.boulder;
@@ -495,7 +527,7 @@ void game_update(void)
                     score += points;
                 };
             }
-            else {
+            else if (selection == -1) {
                 //launch second medium segment instead
                 first.boulder = (totalElapsedTime > 2.8 && first.boulder != 2) ? first.boulder + 1 : first.boulder;
                 first.boulder_spawn = (first.boulder == 1) ? TRUE : first.boulder_spawn;

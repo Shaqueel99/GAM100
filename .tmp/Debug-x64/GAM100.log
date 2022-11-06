@@ -1,80 +1,83 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\.tmp\Debug-x64\) contains files shared from another project (Game of Life.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (C:\Users\Admin\source\repos\GAM100\.tmp\Debug-x64\) contains files shared from another project (Game of Life.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   game.c
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(55,27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(56,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(58,43): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(58,59): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(73,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(74,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(78,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(79,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(83,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(84,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(99,47): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(99,67): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(100,45): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(100,65): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(101,48): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(101,68): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(106,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(107,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(108,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(109,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(113,84): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(114,86): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(115,66): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(152,50): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(152,77): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(153,56): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(153,89): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(184,84): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(212,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(217,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(222,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(227,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(232,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(237,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(242,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(247,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(252,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(257,78): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(306,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(311,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(316,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(321,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(326,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(331,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(336,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(341,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(346,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(351,78): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(410,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(415,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(420,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(425,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(430,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(435,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(440,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(445,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(450,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(455,78): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(503,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(508,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(513,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(518,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(523,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(528,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(533,84): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(538,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(543,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(548,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(652,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(693,62): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(693,97): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(693,104): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(693,112): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
-C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\Src\game.c(715,35): warning C4087: 'CP_Input_MouseClicked': declared with 'void' parameter list
-  GAM100.vcxproj -> C:\Users\lokew\OneDrive\Desktop\Digipen Resources\Trimester 1\GAM100\GAM100\bin\Debug-x64\GAM100.exe
+C:\Users\Admin\source\repos\GAM100\Src\game.c(55,27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(56,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(58,43): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(58,59): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(73,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(74,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(78,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(79,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(83,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(84,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(99,47): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(99,67): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(100,45): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(100,65): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(101,48): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(101,68): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(106,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(107,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(108,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(109,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(113,84): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(114,86): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(115,66): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(152,50): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(152,77): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(153,56): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(153,89): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(184,84): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(199,84): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(200,94): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(201,74): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(244,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(249,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(254,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(259,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(264,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(269,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(274,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(279,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(284,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(289,78): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(338,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(343,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(348,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(353,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(358,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(363,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(368,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(373,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(378,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(383,78): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(442,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(447,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(452,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(457,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(462,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(467,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(472,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(477,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(482,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(487,78): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(535,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(540,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(545,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(550,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(555,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(560,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(565,84): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(570,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(575,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(580,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(684,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(725,62): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(725,97): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(725,104): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(725,112): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+C:\Users\Admin\source\repos\GAM100\Src\game.c(747,35): warning C4087: 'CP_Input_MouseClicked': declared with 'void' parameter list
+  GAM100.vcxproj -> C:\Users\Admin\source\repos\GAM100\bin\Debug-x64\GAM100.exe
   1 File(s) copied
   1 File(s) copied
   3 File(s) copied

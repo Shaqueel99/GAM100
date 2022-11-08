@@ -11,6 +11,7 @@
 #define FALSE 0
 
 extern int width, height;
+extern float speed_scale;
 int gIsPaused; 
 int spawn;
 int c;
@@ -154,19 +155,19 @@ void game_update(void)
 
         //Movement
         if (movingleft == TRUE) {
-            if (current_position.x != left_position.x && current_position.x != mid_position.x) { current_position.x -= 25; }
+            if (current_position.x != left_position.x && current_position.x != mid_position.x) { current_position.x -= (25 * speed_scale); }
             if (current_position.x <= left_position.x || current_position.x == mid_position.x) { movingleft = FALSE; }
         }
         if (movingright == TRUE) {
-            if (current_position.x != right_position.x && current_position.x != mid_position.x) { current_position.x += 25; }
+            if (current_position.x != right_position.x && current_position.x != mid_position.x) { current_position.x += (25 * speed_scale); }
             if (current_position.x >= right_position.x || current_position.x == mid_position.x) { movingright = FALSE; }
         }
         if (CP_Input_KeyTriggered(KEY_A)) {
 
-            if (current_position.x == mid_position.x || current_position.x >= right_position.x) { current_position.x -= 25;   movingleft = TRUE;  movingright = FALSE; }
+            if (current_position.x == mid_position.x || current_position.x >= right_position.x) { current_position.x -= (25 * speed_scale);   movingleft = TRUE;  movingright = FALSE; }
         }
         else if (CP_Input_KeyTriggered(KEY_D)) {
-            if (current_position.x == mid_position.x || current_position.x <= left_position.x) { current_position.x += 25;   movingright = TRUE;  movingleft = FALSE; }
+            if (current_position.x == mid_position.x || current_position.x <= left_position.x) { current_position.x += (25 * speed_scale);   movingright = TRUE;  movingleft = FALSE; }
 
 
         }

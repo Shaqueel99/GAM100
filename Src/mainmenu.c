@@ -8,30 +8,34 @@
 // Default window_size settings (640 x 960)
 int width = 640;
 int height = 960;
+float font_scale;
+float speed_scale;
  
 // Private Variable
-static selection;
-static main;
-static return_true_false;
+static int selection;
+static int main;
+static int return_true_false;
 static CP_Image logo;
 static float totalElapsedTime;
 static float fade_in_time;
 static float toggle_time;
 static int display_option;
-static float scale_multiplier;
+
+// Initial Value that will change
+// Change main to 0 to display startups
+main = 1;
+font_scale = 1.0;
+speed_scale = 1.0;
+return_true_false = 0;
+display_option = 0;
 
 void Main_Menu_Init()
 {
 	// Initial Value
-	// Change main to 0 to display startups
-	main = 1; 
-	scale_multiplier = 1.0;
-	return_true_false = 0;
 	selection = 0;
 	totalElapsedTime = 0;
 	fade_in_time = 2;
 	toggle_time = 0;
-	display_option = 0;
 	CP_System_SetWindowSize(width, height);
 }
 
@@ -49,7 +53,7 @@ void Main_Menu_Update()
 	float click_y = (float)CP_Input_GetMouseWorldY();
 	
 	// UI Positioning (Main Menu)
-	float start_x = (float)width * 0.2; 
+	float start_x = (float)width * 0.2;
 	float start_y = (float)height * 0.4;
 	float leaderboard_x = (float)width * 0.7;
 	float leaderboard_y = (float)height * 0.4;
@@ -88,6 +92,7 @@ void Main_Menu_Update()
 		if (toggle_time == 1) totalElapsedTime -= currentElapsedTime;
 
 		// Drawing the School Logo
+		CP_Graphics_ClearBackground(Black);
 		logo = CP_Image_Load("Assets/DigiPen_BLACK.png");
 		CP_Settings_ImageMode(CP_POSITION_CENTER);
 		CP_Settings_ImageWrapMode(CP_IMAGE_WRAP_CLAMP);
@@ -115,12 +120,15 @@ void Main_Menu_Update()
 
 		//UI Drawing (Box) + Text
 		if (selection == 0) {
+			CP_Graphics_ClearBackground(green);
 			CP_Settings_Fill(White);
 			CP_Graphics_DrawRect(start_x, start_y, rectangle_width, rectangle_height);
 			CP_Graphics_DrawRect(leaderboard_x, leaderboard_y, square_side, rectangle_height);
 			CP_Graphics_DrawRect(credit_x, credit_y, rectangle_width, rectangle_height);
 			CP_Graphics_DrawRect(option_x, option_y, square_side, rectangle_height);
 			CP_Graphics_DrawRect(quit_x, quit_y, rectangle_width, rectangle_height);
+
+
 
 			// Temporary Placeholder Text (Possible to replace with image instead?)
 			CP_Settings_Fill(Blue);
@@ -130,7 +138,7 @@ void Main_Menu_Update()
 			CP_Font_DrawText("Set", option_x + square_side * 0.5, option_y + rectangle_height * 0.5);
 			CP_Font_DrawText("Quit", quit_x + rectangle_width * 0.5, quit_y + rectangle_height * 0.5);
 			CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_CENTER, CP_TEXT_ALIGN_V_MIDDLE);
-			CP_Settings_TextSize(50.0f * scale_multiplier);
+			CP_Settings_TextSize(50.0f * font_scale);
 			CP_Settings_Fill(White);
 		}
 
@@ -152,7 +160,7 @@ void Main_Menu_Update()
 			CP_Settings_Fill(White);
 			CP_Graphics_DrawRect(width * 0.1, height * 0.4, width * 0.8, height * 0.1);
 			CP_Settings_Fill(Blue);
-			CP_Settings_TextSize(50.0f * scale_multiplier);
+			CP_Settings_TextSize(50.0f * font_scale);
 			CP_Font_DrawText("Display Setting", text_Display_x, text_Display_y);
 			CP_Settings_Fill(White);
 			CP_Graphics_DrawRect(displayPOS_left_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y);
@@ -174,14 +182,15 @@ void Main_Menu_Update()
 			// Switch statement to let user choose resolution
 			/* To be added (Click to confirm) */
 			CP_Settings_Fill(Blue);
-			CP_Settings_TextSize(40.0f * scale_multiplier);
+			CP_Settings_TextSize(40.0f * font_scale);
 			switch (display_option) {
 			case 0:
 				// iPhone 4S size
 				CP_Font_DrawText("640 x 960", width * 0.5, height * 0.6);
 				width = 640;
 				height = 960;
-				scale_multiplier = 1.0;
+				font_scale = 1.0;
+				speed_scale = 1.0;
 				CP_System_SetWindowSize(width, height);
 				break;			
 			case 1:
@@ -189,7 +198,8 @@ void Main_Menu_Update()
 				CP_Font_DrawText("1024 x 768", width * 0.5, height * 0.6);
 				width = 1024;
 				height = 768;
-				scale_multiplier = 0.8;
+				font_scale = 0.8;
+				speed_scale = 1.6;
 				CP_System_SetWindowSize(width, height);
 				break;
 			case 2:
@@ -197,7 +207,8 @@ void Main_Menu_Update()
 				CP_Font_DrawText("320 x 480", width * 0.5, height * 0.6);
 				width = 320;
 				height = 480;
-				scale_multiplier = 0.5;
+				font_scale = 0.5;
+				speed_scale = 0.5;
 				CP_System_SetWindowSize(width, height);
 				break;
 			}

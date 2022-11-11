@@ -114,6 +114,8 @@ position_right_y = windows_height / 4.0 * 3.0;
     first.value_y = second.value_y = third.value_y = coin_y= pts_boost_y = invul_y = -windows_height / 12.0;
     fourth.value_y = fifth.value_y = sixth.value_y = seventh.value_y = -height / 12.0;
     eighth.value_y = ninth.value_y = ten.value_y = -height / 12.0;
+    eleven.value_y = twelve.value_y = thirt.value_y = fourt.value_y = fifte.value_y = -height / 12.0;
+    sixte.value_y = sevente.value_y = eighte.value_y = ninete.value_y = -height / 12.0;
     rect1.value_y = rect2.value_y = rect3.value_y = -height / 3.0;
 
     first.boulder = 0;
@@ -212,6 +214,8 @@ void game_update(void)
             first.value_y = second.value_y = third.value_y = -windows_height / 12.0;
             fourth.value_y = fifth.value_y = sixth.value_y = seventh.value_y = -height / 12.0;
             eighth.value_y = ninth.value_y = ten.value_y = -height / 12.0;
+            eleven.value_y = twelve.value_y = thirt.value_y = fourt.value_y = fifte.value_y = -height / 12.0;
+            sixte.value_y = sevente.value_y = eighte.value_y = ninete.value_y = -height / 12.0;
 
             rect1.value_y = rect2.value_y = rect3.value_y = -height / 4.0;
 
@@ -760,7 +764,7 @@ void game_update(void)
         CP_Font_DrawText(buffer, width/10, 20);
         CP_Font_DrawText("Points:", width/25,20);
         
-
+        /*
         if (invulnerable == 0) { //detects obstacle collision only when invulnerable flag is off
             if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.value_y, radius,0) == 1) {
                 totalElapsedTime = 0;
@@ -775,6 +779,7 @@ void game_update(void)
                 score += points;
             };
         }
+        */
 
         if (spawn == 1) {
             if (iscirclecollided(current_position.x, current_position.y, value_x_mid, coin_y, radius,1) == 2) {points += 1 * multiplier; spawn = 0;}

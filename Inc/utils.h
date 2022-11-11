@@ -3,6 +3,14 @@
 
 //for katlong
 void write_leaderboard(char name[], char score);
+
+struct obstacles {
+	int boulder;
+	int boulder_spawn;
+	float value_y;
+	int coins;
+	int coin_spawn;
+};
 //for katlong
 
 
@@ -11,7 +19,21 @@ float retainTime(float*);
 
 int areaClick(float, float, float, float, float, float);
 
-int segment5();
+struct rectObstacle {
+	float value_y;
+	int rect;
+	int rectSpawn;
+	float width;
+	float height;
+};
+
+struct rectObstacle rect1, rect2, rect3;
+
+int isRectCollided(float, float, float, float, float, float, float);
+
+void spawnCheck(struct obstacles*, float, float, float);
+
+void spawnRect(struct rectObstacle*, float, float, float);
 //for ben
 
 

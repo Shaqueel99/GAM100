@@ -37,15 +37,10 @@ int points;
 int difficulty = 0;
 int random = 0;
 
-struct obstacles {
-    int boulder;
-    int boulder_spawn;
-    float value_y;
-    int coins;
-    int coin_spawn;
-};
+
 
 struct obstacles first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, ten;
+struct obstacles eleven, twelve, thirt, fourt, fifte, sixte, sevente, eighte, ninete, twoZero;
 int movingleft = 0, movingright = 0;
 
 void game_init(void)
@@ -114,6 +109,7 @@ position_right_y = windows_height / 4.0 * 3.0;
     first.value_y = second.value_y = third.value_y = coin_y= -windows_height / 12.0;
     fourth.value_y = fifth.value_y = sixth.value_y = seventh.value_y = -height / 12.0;
     eighth.value_y = ninth.value_y = ten.value_y = -height / 12.0;
+    rect1.value_y = rect2.value_y = rect3.value_y = -height / 3.0;
 
     first.boulder = 0;
     first.coins = 0;
@@ -137,6 +133,13 @@ position_right_y = windows_height / 4.0 * 3.0;
     ninth.boulder_spawn = 0;
     ten.boulder = 0;
     ten.boulder_spawn = 0;
+
+    rect1.rect = 0;
+    rect1.rectSpawn = 0;
+    rect2.rect = 0;
+    rect2.rectSpawn = 0;
+    rect3.rect = 0;
+    rect3.rectSpawn = 0;
 
     selection = 0;
     checker = -1;
@@ -201,6 +204,8 @@ void game_update(void)
             fourth.value_y = fifth.value_y = sixth.value_y = seventh.value_y = -height / 12.0;
             eighth.value_y = ninth.value_y = ten.value_y = -height / 12.0;
 
+            rect1.value_y = rect2.value_y = rect3.value_y = -height / 4.0;
+
             first.boulder = 0;
             first.coins = 0;
             first.boulder_spawn = 0;
@@ -224,6 +229,13 @@ void game_update(void)
             ten.boulder = 0;
             ten.boulder_spawn = 0;
 
+            rect1.rect = 0;
+            rect1.rectSpawn = 0;
+            rect2.rect = 0;
+            rect2.rectSpawn = 0;
+            rect3.rect = 0;
+            rect3.rectSpawn = 0;
+
             selection = 0;
             checker = -1;
 
@@ -238,55 +250,36 @@ void game_update(void)
             selection = (checker == 1 && selection == 0) ? selection - 1 : selection;
             if (selection == 1) {
                 //launch first easy segment
-
-                first.boulder = (totalElapsedTime > 2.0 && first.boulder != 2) ? first.boulder + 1 : first.boulder;
-                first.boulder_spawn = (first.boulder == 1) ? TRUE : first.boulder_spawn;
-                first.value_y += (first.boulder_spawn == TRUE) ? 6.0f : 0.0f;
+                //spawncheck arguments in order
+                // (boulderNum, time to appear, totalElapsedTime, SPEED)
+                spawnCheck(&first, 2.0, totalElapsedTime, 6.0);
                 CP_Graphics_DrawCircle(value_x_mid, first.value_y, radius * 4.0);
 
-                second.boulder = (totalElapsedTime > 3.0 && second.boulder != 2) ? second.boulder + 1 : second.boulder;
-                second.boulder_spawn = (second.boulder == 1) ? TRUE : second.boulder_spawn;
-                second.value_y += (second.boulder_spawn == TRUE) ? 6.0f : 0.0f;
+                spawnCheck(&second, 3.0, totalElapsedTime, 6.0);
                 CP_Graphics_DrawCircle(value_x_left, second.value_y, radius * 4.0);
 
-                third.boulder = (totalElapsedTime > 3.5 && third.boulder != 2) ? third.boulder + 1 : third.boulder;
-                third.boulder_spawn = (third.boulder == 1) ? TRUE : third.boulder_spawn;
-                third.value_y += (third.boulder_spawn == TRUE) ? 5.0f : 0.0f;
+                spawnCheck(&third, 3.5, totalElapsedTime, 5.0);
                 CP_Graphics_DrawCircle(value_x_mid, third.value_y, radius * 4.0);
 
-                fourth.boulder = (totalElapsedTime > 4.0 && fourth.boulder != 2) ? fourth.boulder + 1 : fourth.boulder;
-                fourth.boulder_spawn = (fourth.boulder == 1) ? TRUE : fourth.boulder_spawn;
-                fourth.value_y += (fourth.boulder_spawn == TRUE) ? 5.0f : 0.0f;
+                spawnCheck(&fourth, 4.0, totalElapsedTime, 5.0);
                 CP_Graphics_DrawCircle(value_x_right, fourth.value_y, radius * 4.0);
 
-                fifth.boulder = (totalElapsedTime > 7.0 && fifth.boulder != 2) ? fifth.boulder + 1 : fifth.boulder;
-                fifth.boulder_spawn = (fifth.boulder == 1) ? TRUE : fifth.boulder_spawn;
-                fifth.value_y += (fifth.boulder_spawn == TRUE) ? 6.0f : 0.0f;
+                spawnCheck(&fifth, 7.0, totalElapsedTime, 6.0);
                 CP_Graphics_DrawCircle(value_x_right, fifth.value_y, radius * 4.0);
 
-                sixth.boulder = (totalElapsedTime > 8.0 && sixth.boulder != 2) ? sixth.boulder + 1 : sixth.boulder;
-                sixth.boulder_spawn = (sixth.boulder == 1) ? TRUE : sixth.boulder_spawn;
-                sixth.value_y += (sixth.boulder_spawn == TRUE) ? 10.0f : 0.0f;
+                spawnCheck(&sixth, 8.0, totalElapsedTime, 10.0);
                 CP_Graphics_DrawCircle(value_x_left, sixth.value_y, radius * 4.0);
 
-                seventh.boulder = (totalElapsedTime > 10.0 && seventh.boulder != 2) ? seventh.boulder + 1 : seventh.boulder;
-                seventh.boulder_spawn = (seventh.boulder == 1) ? TRUE : seventh.boulder_spawn;
-                seventh.value_y += (seventh.boulder_spawn == TRUE) ? 11.0f : 0.0f;
+                spawnCheck(&seventh, 10.0, totalElapsedTime, 11.0);
                 CP_Graphics_DrawCircle(value_x_mid, seventh.value_y, radius * 4.0);
 
-                eighth.boulder = (totalElapsedTime > 13.0 && eighth.boulder != 2) ? eighth.boulder + 1 : eighth.boulder;
-                eighth.boulder_spawn = (eighth.boulder == 1) ? TRUE : eighth.boulder_spawn;
-                eighth.value_y += (eighth.boulder_spawn == TRUE) ? 11.0f : 0.0f;
+                spawnCheck(&eighth, 13.0, totalElapsedTime, 11.0);
                 CP_Graphics_DrawCircle(value_x_left, eighth.value_y, radius * 4.0);
 
-                ninth.boulder = (totalElapsedTime > 15.0 && ninth.boulder != 2) ? ninth.boulder + 1 : ninth.boulder;
-                ninth.boulder_spawn = (ninth.boulder == 1) ? TRUE : ninth.boulder_spawn;
-                ninth.value_y += (ninth.boulder_spawn == TRUE) ? 14.0f : 0.0f;
+                spawnCheck(&ninth, 15.0, totalElapsedTime, 14.0);
                 CP_Graphics_DrawCircle(value_x_right, ninth.value_y, radius * 4.0);
 
-                ten.boulder = (totalElapsedTime > 16.0 && ten.boulder != 2) ? ten.boulder + 1 : ten.boulder;
-                ten.boulder_spawn = (ten.boulder == 1) ? TRUE : ten.boulder_spawn;
-                ten.value_y += (ten.boulder_spawn == TRUE) ? 12.0f : 0.0f;
+                spawnCheck(&ten, 16.0, totalElapsedTime, 12.0);
                 CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0);
 
                 if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.value_y, radius) == 1) {
@@ -332,55 +325,43 @@ void game_update(void)
             }
             else if (selection == -1) {
                 //launch second easy segment instead
-
+                /*
                 first.boulder = (totalElapsedTime > 2.0 && first.boulder != 2) ? first.boulder + 1 : first.boulder;
                 first.boulder_spawn = (first.boulder == 1) ? TRUE : first.boulder_spawn;
                 first.value_y += (first.boulder_spawn == TRUE) ? 8.0f : 0.0f;
+                */
+                spawnCheck(&first, 2.0, totalElapsedTime, 8.0);
                 CP_Graphics_DrawCircle(value_x_left, first.value_y, radius * 4.0);
 
-                second.boulder = (totalElapsedTime > 3.0 && second.boulder != 2) ? second.boulder + 1 : second.boulder;
-                second.boulder_spawn = (second.boulder == 1) ? TRUE : second.boulder_spawn;
-                second.value_y += (second.boulder_spawn == TRUE) ? 10.0f : 0.0f;
+                spawnCheck(&second, 3.0, totalElapsedTime, 10.0);
                 CP_Graphics_DrawCircle(value_x_right, second.value_y, radius * 4.0);
 
-                third.boulder = (totalElapsedTime > 4.0 && third.boulder != 2) ? third.boulder + 1 : third.boulder;
-                third.boulder_spawn = (third.boulder == 1) ? TRUE : third.boulder_spawn;
-                third.value_y += (third.boulder_spawn == TRUE) ? 15.0f : 0.0f;
+                spawnCheck(&third, 4.0, totalElapsedTime, 15.0);
                 CP_Graphics_DrawCircle(value_x_mid, third.value_y, radius * 4.0);
 
-                fourth.boulder = (totalElapsedTime > 5.5 && fourth.boulder != 2) ? fourth.boulder + 1 : fourth.boulder;
-                fourth.boulder_spawn = (fourth.boulder == 1) ? TRUE : fourth.boulder_spawn;
-                fourth.value_y += (fourth.boulder_spawn == TRUE) ? 13.0f : 0.0f;
+                CP_Settings_RectMode(CP_POSITION_CENTER);
+                spawnRect(&rect1, 5.5, totalElapsedTime, 15.0);
+                CP_Graphics_DrawRect(value_x_right, rect1.value_y, width * 0.15, height * 0.6);
+
+                spawnCheck(&fourth, 5.5, totalElapsedTime, 13.0);
                 CP_Graphics_DrawCircle(value_x_left, fourth.value_y, radius * 4.0);
 
-                fifth.boulder = (totalElapsedTime > 8.5 && fifth.boulder != 2) ? fifth.boulder + 1 : fifth.boulder;
-                fifth.boulder_spawn = (fifth.boulder == 1) ? TRUE : fifth.boulder_spawn;
-                fifth.value_y += (fifth.boulder_spawn == TRUE) ? 13.0f : 0.0f;
+                spawnCheck(&fifth, 8.5, totalElapsedTime, 13.0);
                 CP_Graphics_DrawCircle(value_x_right, fifth.value_y, radius * 4.0);
 
-                sixth.boulder = (totalElapsedTime > 10.0 && sixth.boulder != 2) ? sixth.boulder + 1 : sixth.boulder;
-                sixth.boulder_spawn = (sixth.boulder == 1) ? TRUE : sixth.boulder_spawn;
-                sixth.value_y += (sixth.boulder_spawn == TRUE) ? 10.0f : 0.0f;
+                spawnCheck(&sixth, 10.0, totalElapsedTime, 10.0);
                 CP_Graphics_DrawCircle(value_x_mid, sixth.value_y, radius * 4.0);
 
-                seventh.boulder = (totalElapsedTime > 12.0 && seventh.boulder != 2) ? seventh.boulder + 1 : seventh.boulder;
-                seventh.boulder_spawn = (seventh.boulder == 1) ? TRUE : seventh.boulder_spawn;
-                seventh.value_y += (seventh.boulder_spawn == TRUE) ? 7.0f : 0.0f;
+                spawnCheck(&seventh, 12.0, totalElapsedTime, 7.0);
                 CP_Graphics_DrawCircle(value_x_mid, seventh.value_y, radius * 4.0);
 
-                eighth.boulder = (totalElapsedTime > 14.0 && eighth.boulder != 2) ? eighth.boulder + 1 : eighth.boulder;
-                eighth.boulder_spawn = (eighth.boulder == 1) ? TRUE : eighth.boulder_spawn;
-                eighth.value_y += (eighth.boulder_spawn == TRUE) ? 11.0f : 0.0f;
+                spawnCheck(&eighth, 14.0, totalElapsedTime, 11.0);
                 CP_Graphics_DrawCircle(value_x_left, eighth.value_y, radius * 4.0);
 
-                ninth.boulder = (totalElapsedTime > 15.0 && ninth.boulder != 2) ? ninth.boulder + 1 : ninth.boulder;
-                ninth.boulder_spawn = (ninth.boulder == 1) ? TRUE : ninth.boulder_spawn;
-                ninth.value_y += (ninth.boulder_spawn == TRUE) ? 9.0f : 0.0f;
+                spawnCheck(&ninth, 15.0, totalElapsedTime, 9.0);
                 CP_Graphics_DrawCircle(value_x_right, ninth.value_y, radius * 4.0);
 
-                ten.boulder = (totalElapsedTime > 16.0 && ten.boulder != 2) ? ten.boulder + 1 : ten.boulder;
-                ten.boulder_spawn = (ten.boulder == 1) ? TRUE : ten.boulder_spawn;
-                ten.value_y += (ten.boulder_spawn == TRUE) ? 12.0f : 0.0f;
+                spawnCheck(&ten, 16.0, totalElapsedTime, 12.0);
                 CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0);
 
                 if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius) == 1) {
@@ -423,6 +404,10 @@ void game_update(void)
                     totalElapsedTime = 0;
                     score += points;
                 };
+                if (isRectCollided(current_position.x, current_position.y, radius, value_x_right, rect1.value_y, width * 0.15, height * 0.6) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                }
             }
             //random range is set to 0 to 1
             // if range == 0, launch first easy segment
@@ -437,54 +422,34 @@ void game_update(void)
         selection = (checker == 1 && selection == 0) ? selection - 1 : selection;
             if (selection == 1) {
                 //launch first medium segment
-                first.boulder = (totalElapsedTime > 2.5 && first.boulder != 2) ? first.boulder + 1 : first.boulder;
-                first.boulder_spawn = (first.boulder == 1) ? TRUE : first.boulder_spawn;
-                first.value_y += (first.boulder_spawn == TRUE) ? 6.0f : 0.0f;
+                spawnCheck(&first, 2.5, totalElapsedTime, 8.5);
                 CP_Graphics_DrawCircle(value_x_left, first.value_y, radius * 4.0);
 
-                second.boulder = (totalElapsedTime > 3.3 && second.boulder != 2) ? second.boulder + 1 : second.boulder;
-                second.boulder_spawn = (second.boulder == 1) ? TRUE : second.boulder_spawn;
-                second.value_y += (second.boulder_spawn == TRUE) ? 6.0f : 0.0f;
+                spawnCheck(&second, 3.3, totalElapsedTime, 9.0);
                 CP_Graphics_DrawCircle(value_x_right, second.value_y, radius * 4.0);
 
-                third.boulder = (totalElapsedTime > 3.8 && third.boulder != 2) ? third.boulder + 1 : third.boulder;
-                third.boulder_spawn = (third.boulder == 1) ? TRUE : third.boulder_spawn;
-                third.value_y += (third.boulder_spawn == TRUE) ? 6.0f : 0.0f;
+                spawnCheck(&third, 3.8, totalElapsedTime, 9.0);
                 CP_Graphics_DrawCircle(value_x_mid, third.value_y, radius * 4.0);
 
-                fourth.boulder = (totalElapsedTime > 6.0 && fourth.boulder != 2) ? fourth.boulder + 1 : fourth.boulder;
-                fourth.boulder_spawn = (fourth.boulder == 1) ? TRUE : fourth.boulder_spawn;
-                fourth.value_y += (fourth.boulder_spawn == TRUE) ? 13.0f : 0.0f;
+                spawnCheck(&fourth, 6.0, totalElapsedTime, 10.0);
                 CP_Graphics_DrawCircle(value_x_right, fourth.value_y, radius * 4.0);
 
-                fifth.boulder = (totalElapsedTime > 8.0 && fifth.boulder != 2) ? fifth.boulder + 1 : fifth.boulder;
-                fifth.boulder_spawn = (fifth.boulder == 1) ? TRUE : fifth.boulder_spawn;
-                fifth.value_y += (fifth.boulder_spawn == TRUE) ? 11.0f : 0.0f;
+                spawnCheck(&fifth, 8.0, totalElapsedTime, 11.0);
                 CP_Graphics_DrawCircle(value_x_left, fifth.value_y, radius * 4.0);
 
-                sixth.boulder = (totalElapsedTime > 8.0 && sixth.boulder != 2) ? sixth.boulder + 1 : sixth.boulder;
-                sixth.boulder_spawn = (sixth.boulder == 1) ? TRUE : sixth.boulder_spawn;
-                sixth.value_y += (sixth.boulder_spawn == TRUE) ? 11.0f : 0.0f;
+                spawnCheck(&sixth, 8.0, totalElapsedTime, 11.0);
                 CP_Graphics_DrawCircle(value_x_mid, sixth.value_y, radius * 4.0);
 
-                seventh.boulder = (totalElapsedTime > 11.0 && seventh.boulder != 2) ? seventh.boulder + 1 : seventh.boulder;
-                seventh.boulder_spawn = (seventh.boulder == 1) ? TRUE : seventh.boulder_spawn;
-                seventh.value_y += (seventh.boulder_spawn == TRUE) ? 8.0f : 0.0f;
+                spawnCheck(&seventh, 11.0, totalElapsedTime, 8.0);
                 CP_Graphics_DrawCircle(value_x_mid, seventh.value_y, radius * 4.0);
 
-                eighth.boulder = (totalElapsedTime > 13.0 && eighth.boulder != 2) ? eighth.boulder + 1 : eighth.boulder;
-                eighth.boulder_spawn = (eighth.boulder == 1) ? TRUE : eighth.boulder_spawn;
-                eighth.value_y += (eighth.boulder_spawn == TRUE) ? 10.0f : 0.0f;
+                spawnCheck(&eighth, 13.0, totalElapsedTime, 10.0);
                 CP_Graphics_DrawCircle(value_x_right, eighth.value_y, radius * 4.0);
 
-                ninth.boulder = (totalElapsedTime > 15.0 && ninth.boulder != 2) ? ninth.boulder + 1 : ninth.boulder;
-                ninth.boulder_spawn = (ninth.boulder == 1) ? TRUE : ninth.boulder_spawn;
-                ninth.value_y += (ninth.boulder_spawn == TRUE) ? 14.0f : 0.0f;
+                spawnCheck(&ninth, 15.0, totalElapsedTime, 14.0);
                 CP_Graphics_DrawCircle(value_x_left, ninth.value_y, radius * 4.0);
 
-                ten.boulder = (totalElapsedTime > 16.0 && ten.boulder != 2) ? ten.boulder + 1 : ten.boulder;
-                ten.boulder_spawn = (ten.boulder == 1) ? TRUE : ten.boulder_spawn;
-                ten.value_y += (ten.boulder_spawn == TRUE) ? 12.0f : 0.0f;
+                spawnCheck(&ten, 16.0, totalElapsedTime, 12.0);
                 CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0);
 
                 if (iscirclecollided(current_position.x, current_position.y, value_x_left , first.value_y, radius) == 1) {
@@ -530,54 +495,34 @@ void game_update(void)
             }
             else if (selection == -1) {
                 //launch second medium segment instead
-                first.boulder = (totalElapsedTime > 2.8 && first.boulder != 2) ? first.boulder + 1 : first.boulder;
-                first.boulder_spawn = (first.boulder == 1) ? TRUE : first.boulder_spawn;
-                first.value_y += (first.boulder_spawn == TRUE) ? 16.0f : 0.0f;
+                spawnCheck(&first, 2.8, totalElapsedTime, 16.0);
                 CP_Graphics_DrawCircle(value_x_left, first.value_y, radius * 4.0);
 
-                second.boulder = (totalElapsedTime > 3.6 && second.boulder != 2) ? second.boulder + 1 : second.boulder;
-                second.boulder_spawn = (second.boulder == 1) ? TRUE : second.boulder_spawn;
-                second.value_y += (second.boulder_spawn == TRUE) ? 14.0f : 0.0f;
+                spawnCheck(&second, 3.6, totalElapsedTime, 14.0);
                 CP_Graphics_DrawCircle(value_x_right, second.value_y, radius * 4.0);
 
-                third.boulder = (totalElapsedTime > 3.6 && third.boulder != 2) ? third.boulder + 1 : third.boulder;
-                third.boulder_spawn = (third.boulder == 1) ? TRUE : third.boulder_spawn;
-                third.value_y += (third.boulder_spawn == TRUE) ? 14.0f : 0.0f;
+                spawnCheck(&third, 3.6, totalElapsedTime, 14.0);
                 CP_Graphics_DrawCircle(value_x_mid, third.value_y, radius * 4.0);
 
-                fourth.boulder = (totalElapsedTime > 6.2 && fourth.boulder != 2) ? fourth.boulder + 1 : fourth.boulder;
-                fourth.boulder_spawn = (fourth.boulder == 1) ? TRUE : fourth.boulder_spawn;
-                fourth.value_y += (fourth.boulder_spawn == TRUE) ? 13.0f : 0.0f;
+                spawnCheck(&fourth, 6.2, totalElapsedTime, 13.0);
                 CP_Graphics_DrawCircle(value_x_right, fourth.value_y, radius * 4.0);
 
-                fifth.boulder = (totalElapsedTime > 7.0 && fifth.boulder != 2) ? fifth.boulder + 1 : fifth.boulder;
-                fifth.boulder_spawn = (fifth.boulder == 1) ? TRUE : fifth.boulder_spawn;
-                fifth.value_y += (fifth.boulder_spawn == TRUE) ? 17.0f : 0.0f;
+                spawnCheck(&fifth, 7.0, totalElapsedTime, 17.0);
                 CP_Graphics_DrawCircle(value_x_left, fifth.value_y, radius * 4.0);
 
-                sixth.boulder = (totalElapsedTime > 7.8 && sixth.boulder != 2) ? sixth.boulder + 1 : sixth.boulder;
-                sixth.boulder_spawn = (sixth.boulder == 1) ? TRUE : sixth.boulder_spawn;
-                sixth.value_y += (sixth.boulder_spawn == TRUE) ? 14.0f : 0.0f;
+                spawnCheck(&sixth, 7.8, totalElapsedTime, 14.0);
                 CP_Graphics_DrawCircle(value_x_mid, sixth.value_y, radius * 4.0);
 
-                seventh.boulder = (totalElapsedTime > 11.0 && seventh.boulder != 2) ? seventh.boulder + 1 : seventh.boulder;
-                seventh.boulder_spawn = (seventh.boulder == 1) ? TRUE : seventh.boulder_spawn;
-                seventh.value_y += (seventh.boulder_spawn == TRUE) ? 8.0f : 0.0f;
+                spawnCheck(&seventh, 11.0, totalElapsedTime, 8.0);
                 CP_Graphics_DrawCircle(value_x_right, seventh.value_y, radius * 4.0);
 
-                eighth.boulder = (totalElapsedTime > 13.0 && eighth.boulder != 2) ? eighth.boulder + 1 : eighth.boulder;
-                eighth.boulder_spawn = (eighth.boulder == 1) ? TRUE : eighth.boulder_spawn;
-                eighth.value_y += (eighth.boulder_spawn == TRUE) ? 10.0f : 0.0f;
+                spawnCheck(&eighth, 13.0, totalElapsedTime, 10.0);
                 CP_Graphics_DrawCircle(value_x_left, eighth.value_y, radius * 4.0);
 
-                ninth.boulder = (totalElapsedTime > 15.0 && ninth.boulder != 2) ? ninth.boulder + 1 : ninth.boulder;
-                ninth.boulder_spawn = (ninth.boulder == 1) ? TRUE : ninth.boulder_spawn;
-                ninth.value_y += (ninth.boulder_spawn == TRUE) ? 14.0f : 0.0f;
+                spawnCheck(&ninth, 15.0, totalElapsedTime, 14.0);
                 CP_Graphics_DrawCircle(value_x_mid, ninth.value_y, radius * 4.0);
 
-                ten.boulder = (totalElapsedTime > 16.0 && ten.boulder != 2) ? ten.boulder + 1 : ten.boulder;
-                ten.boulder_spawn = (ten.boulder == 1) ? TRUE : ten.boulder_spawn;
-                ten.value_y += (ten.boulder_spawn == TRUE) ? 12.0f : 0.0f;
+                spawnCheck(&ten, 16.0, totalElapsedTime, 12.0);
                 CP_Graphics_DrawCircle(value_x_right, ten.value_y, radius * 4.0);
 
                 if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius) == 1) {
@@ -625,14 +570,88 @@ void game_update(void)
             // if range == 0, launch first medium segment
             // if range == 1, launch second medium segment instead
         }
-        else if (2 == difficulty/*skip 3 because hard segment is 20seconds long*/) {
-            random = CP_Random_RangeInt(0, 2);
+        else if (2 == difficulty /*skip 3 because hard segment is 20seconds long*/) {
+        checker = CP_Random_RangeInt(0, 1);
+        selection = (checker == 0 && selection == 0) ? selection + 1 : selection;
+        selection = (checker == 1 && selection == 0) ? selection - 1 : selection;
             //random range is set to 0, 1 or 2
-            if (0 == random) {
+            if (1 == selection) {
                 //launch first hard segment
+                
+                spawnCheck(&first, 1.5, totalElapsedTime, 20.0);
+                CP_Graphics_DrawCircle(value_x_left, first.value_y, radius * 4.0);
+
+                spawnCheck(&second, 1.5, totalElapsedTime, 20.0);
+                CP_Graphics_DrawCircle(value_x_right, second.value_y, radius * 4.0);
+
+                spawnCheck(&third, 2.0, totalElapsedTime, 20.0);
+                CP_Graphics_DrawCircle(value_x_mid, third.value_y, radius * 4.0);
+
+                spawnCheck(&fourth, 3.7, totalElapsedTime, 20.0);
+                CP_Graphics_DrawCircle(value_x_left, fourth.value_y, radius * 4.0);
+
+                spawnCheck(&fifth, 3.7, totalElapsedTime, 20.0);
+                CP_Graphics_DrawCircle(value_x_right, fifth.value_y, radius * 4.0);
+
+                spawnCheck(&sixth, 4.5, totalElapsedTime, 20.0);
+                CP_Graphics_DrawCircle(value_x_left, sixth.value_y, radius * 4.0);
+
+                spawnCheck(&seventh, 4.5, totalElapsedTime, 20.0);
+                CP_Graphics_DrawCircle(value_x_mid, seventh.value_y, radius * 4.0);
+
+                spawnCheck(&eighth, 6.0, totalElapsedTime, 20.0);
+                CP_Graphics_DrawCircle(value_x_right, eighth.value_y, radius * 4.0);
+
+                spawnCheck(&ninth, 6.5, totalElapsedTime, 20.0);
+                CP_Graphics_DrawCircle(value_x_mid, ninth.value_y, radius * 4.0);
+
+                spawnCheck(&ten, 7.0, totalElapsedTime, 20.0);
+                CP_Graphics_DrawCircle(value_x_left, ten.value_y, radius * 4.0);
+
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fourth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, sixth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ninth.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, ten.value_y, radius) == 1) {
+                    totalElapsedTime = 0;
+                    score += points;
+                };
             }
-            else if (1 == random) {
+            else if (selection == -1) {
                 //launch second hard segment instead
+
             }
             else {
                 //launch third hard segment instead
@@ -641,17 +660,45 @@ void game_update(void)
             // if range == 1, launch second hard segment instead
             // if range == 2, launch third hard segment instead
         }
-        else if (0 == difficulty % 2) {
-            random = CP_Random_RangeInt(0, 2);
+        else if (difficulty > 2) {
+            checker = CP_Random_RangeInt(0, 2);
+            selection = (checker == 0 && selection == 0) ? selection + 1 : selection;
+            selection = (checker == 1 && selection == 0) ? selection - 1 : selection;
+            selection = (checker == 2 && selection == 0) ? selection + 2 : selection;
             //random range is set to 0, 1 or 2
-            if (0 == random) {
+            if (1 == selection) {
                 //launch first hard segment
+                CP_Settings_Fill(red);
+                spawnCheck(&first, 1.5, totalElapsedTime, 20.5);
+                CP_Graphics_DrawCircle(value_x_left, first.value_y, radius * 4.0);
             }
-            else if (1 == random) {
+            else if (selection == -1) {
                 //launch second hard segment instead
+                
+                spawnCheck(&first, 1.5, totalElapsedTime, 20.5);
+                CP_Graphics_DrawCircle(value_x_left, first.value_y, radius * 4.0);
+
+                spawnCheck(&second, 2.5, totalElapsedTime, 20.5);
+                CP_Graphics_DrawCircle(value_x_mid, second.value_y, radius * 4.0);
+
+                spawnCheck(&third, 2.5, totalElapsedTime, 20.5);
+                CP_Graphics_DrawCircle(value_x_right, third.value_y, radius * 4.0);
+
+                spawnCheck(&fourth, 4.5, totalElapsedTime, 21.5);
+                CP_Graphics_DrawCircle(value_x_left, fourth.value_y, radius * 4.0);
+
+                spawnCheck(&fifth, 4.5, totalElapsedTime, 21.5);
+                CP_Graphics_DrawCircle(value_x_right, fifth.value_y, radius * 4.0);
+
+                spawnCheck(&sixth, 5.5, totalElapsedTime, 21.5);
+                CP_Graphics_DrawCircle(value_x_mid, sixth.value_y, radius * 4.0);
+                
             }
-            else {
+            else if(selection == 2) {
                 //launch third hard segment instead
+                CP_Settings_Fill(blue);
+                spawnCheck(&first, 3.0, totalElapsedTime, 24.0);
+                CP_Graphics_DrawCircle(value_x_mid, first.value_y, radius * 6.0);
             }
             // if range == 0, launch first hard segment
             // if range == 1, launch second hard segment instead
@@ -759,6 +806,14 @@ void game_update(void)
             else if (areaClick(b2mmX, b2mmY, b2mmWidth, b2mmHeight, CP_Input_GetMouseX(), CP_Input_GetMouseY())) {
                 CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
             }
+        }
+
+        if (CP_Input_KeyTriggered(KEY_R)) {
+            gIsPaused = FALSE;
+            totalElapsedTime = 0;
+            currentElapsedTime = 0;
+            difficulty = 0;
+            CP_Engine_SetNextGameStateForced(game_init, game_update, game_update);
         }
     }
 }

@@ -40,18 +40,6 @@ int current_pts_increase, invulnerable;
 float pts_increase_timer, invulnerable_timer;
 int multiplier;
 
-struct obstacles {
-    int boulder;
-    int boulder_spawn;
-    float value_y;
-    int coins;
-    int coin_spawn;
-    int pts_boost;
-    int pts_boost_spawn;
-    int invul;
-    int invul_spawn;
-};
-
 
 struct obstacles first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, ten;
 struct obstacles eleven, twelve, thirt, fourt, fifte, sixte, sevente, eighte, ninete, twoZero;
@@ -302,44 +290,44 @@ void game_update(void)
 
                 spawnCheck(&ten, 16.0, totalElapsedTime, 12.0);
                 CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0);
-
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.value_y, radius) == 1) {
+                // ADD IF INVULNERABLE == 1
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, second.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, second.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, sixth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, sixth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, ninth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, ninth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
@@ -385,43 +373,43 @@ void game_update(void)
                 spawnCheck(&ten, 16.0, totalElapsedTime, 12.0);
                 CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0);
 
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fourth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fourth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, ninth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, ninth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
@@ -473,43 +461,43 @@ void game_update(void)
                 spawnCheck(&ten, 16.0, totalElapsedTime, 12.0);
                 CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0);
 
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left , first.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left , first.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fifth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fifth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, eighth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, eighth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, ninth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, ninth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
@@ -546,43 +534,43 @@ void game_update(void)
                 spawnCheck(&ten, 16.0, totalElapsedTime, 12.0);
                 CP_Graphics_DrawCircle(value_x_right, ten.value_y, radius * 4.0);
 
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fifth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fifth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, seventh.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, seventh.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ninth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ninth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, ten.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, ten.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
@@ -629,43 +617,43 @@ void game_update(void)
                 spawnCheck(&ten, 7.0, totalElapsedTime, 20.0);
                 CP_Graphics_DrawCircle(value_x_left, ten.value_y, radius * 4.0);
 
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fourth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fourth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, sixth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, sixth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ninth.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ninth.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, ten.value_y, radius) == 1) {
+                if (iscirclecollided(current_position.x, current_position.y, value_x_left, ten.value_y, radius, 0) == 1) {
                     totalElapsedTime = 0;
                     score += points;
                 };

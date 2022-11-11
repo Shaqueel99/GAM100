@@ -5,11 +5,15 @@
 void write_leaderboard(char name[], char score);
 
 struct obstacles {
-	int boulder;
-	int boulder_spawn;
-	float value_y;
-	int coins;
-	int coin_spawn;
+    int boulder;
+    int boulder_spawn;
+    float value_y;
+    int coins;
+    int coin_spawn;
+    int pts_boost;
+    int pts_boost_spawn;
+    int invul;
+    int invul_spawn;
 };
 void read_leaderboard(char name[], int score[],int order);
 int sort_leaderboard(int scorek,int scorem,int pos);

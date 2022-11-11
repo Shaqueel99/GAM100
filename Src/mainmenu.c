@@ -110,7 +110,7 @@ void Main_Menu_Update()
 			return_true_false = optionClicked(leaderboard_x, leaderboard_y, square_side, rectangle_height, click_x, click_y);
 			if (return_true_false == 1) selection = 2;
 			return_true_false = optionClicked(credit_x, credit_y, rectangle_width, rectangle_height, click_x, click_y);
-			if (return_true_false == 1) { selection = 3; CP_Sound_PlayAdvanced(mySound, 1.0f, 2.0f, FALSE, CP_SOUND_GROUP_2); }
+			if (return_true_false == 1) { selection = 3;}
 			
 			return_true_false = optionClicked(option_x, option_y, square_side, rectangle_height, click_x, click_y);
 			
@@ -226,6 +226,6 @@ void Main_Menu_Update()
 
 void Main_Menu_Exit()
 {
-	CP_Sound_Free(&mySound);
+	//CP_Sound_Free(&mySound);
 	CP_Image_Free(&logo);
 }

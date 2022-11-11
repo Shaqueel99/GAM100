@@ -1,9 +1,10 @@
 #include "cprocessing.h"
 #include <stdio.h>
 #include "leaderboard.h"
+int p = 0;
 
 
-int read_leaderboard(char name1[], char score1[], char name2[], char score2[], char name3[], char score3[]) {
+int read_leaderboard(char name[], int score[], int order) {
 	FILE* leaderboard;
 	char input[256];
 	fopen_s(&leaderboard, "..\\..\\Assets\\leaderboard.txt", "r"); //read data from txt, file must exist
@@ -15,28 +16,15 @@ int read_leaderboard(char name1[], char score1[], char name2[], char score2[], c
 		fclose(leaderboard);
 		return 1;
 	}
-	if (sscanf_s(input, "Name: %3s  Score: %3s\n", name1, 4, score1, 4) == 0) {
+	for (p = 0; p < order; p++) {
+		fgets(input, 256, leaderboard);
+	}
+	if (sscanf_s(input, "Name: %3s  Score: %d\n", name, 4, score) == 0) {
 		fclose(leaderboard);
 		return 1;
 	}
 
-	if (fgets(input, 256, leaderboard) == NULL) {
-		fclose(leaderboard);
-		return 1;
-	}
-	if (sscanf_s(input, "Name: %3s  Score: %3s\n", name2, 4, score2, 4) == 0) {
-		fclose(leaderboard);
-		return 1;
-	}
 	
-	if (fgets(input, 256, leaderboard) == NULL) {
-		fclose(leaderboard);
-		return 1;
-	}
-	if (sscanf_s(input, "Name: %3s  Score: %3s\n", name3, 4, score3, 4) == 0) {
-		fclose(leaderboard);
-		return 1;
-	}
 	
 	fclose(leaderboard);
 	return 0;
@@ -57,19 +45,18 @@ void write_leaderboard(char name[], char score) {//name and score is input from 
 
 
 
-/*
-void sort_leaderboard(char name_1[], char score_1[], char name_2[], char score_2[], char name_3[], char score_3[]) {
-	//length is all 4, 3 char + 1 null character
-	int score_first, score_second, score_third;
-	sscanf_s(score_1, "%d", &score_first);
-	sscanf_s(score_2, "%d", &score_second);
-	sscanf_s(score_3, "%d", &score_third);
 
-	if (score_second > score_first) {
-		;
+int sort_leaderboard(int scorek,int scorem,int pos) {
+	int temp = 0;
+	if (scorek < scorem) {
+		return pos;
 	}
+
+		
+	
+			
+
 }
-*/
 
 
 
@@ -78,6 +65,3 @@ void sort_leaderboard(char name_1[], char score_1[], char name_2[], char score_2
 
 
 
-//swap left and right hand value
-
-//sort top 10 leaderboard value

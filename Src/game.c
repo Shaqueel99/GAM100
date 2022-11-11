@@ -13,7 +13,7 @@
 extern int width, height;
 extern float speed_scale;
 int gIsPaused; 
-int spawn;
+int spawn, spawn_ptsboost, spawn_invul;
 int c;
 int selection;
 int checker;
@@ -32,11 +32,25 @@ float resumeWidth, resumeHeight, resumeX, resumeY;
 float restartWidth, restartHeight, restartX, restartY;
 float b2mmWidth, b2mmHeight, b2mmX, b2mmY;
 
-float coin_y;
+float coin_y, pts_boost_y, invul_y;
 int points;
 int difficulty = 0;
 int random = 0;
+int current_pts_increase, invulnerable;
+float pts_increase_timer, invulnerable_timer;
+int multiplier;
 
+struct obstacles {
+    int boulder;
+    int boulder_spawn;
+    float value_y;
+    int coins;
+    int coin_spawn;
+    int pts_boost;
+    int pts_boost_spawn;
+    int invul;
+    int invul_spawn;
+};
 
 
 struct obstacles first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, ten;
@@ -45,8 +59,10 @@ int movingleft = 0, movingright = 0;
 
 void game_init(void)
 {
-    
-    spawn = 1;
+    multiplier = 1; //default pts multiplier is 1
+    current_pts_increase = 0, invulnerable = 0;
+    pts_increase_timer = invulnerable_timer = 0.0f;
+    spawn = 1, spawn_ptsboost = 1, spawn_invul = 1;
     // Window_length 960.0f & Window_height 540.0f
     windows_length = width;
     windows_height = height;
@@ -99,6 +115,7 @@ position_right_y = windows_height / 4.0 * 3.0;
 
     current_position = mid_position;
 
+    // Boulder spawn postion
     value_y = -windows_height / 8.0;
     value_x_left = windows_length / 6.0;
     value_x_mid = windows_length / 2.0;
@@ -106,15 +123,19 @@ position_right_y = windows_height / 4.0 * 3.0;
 
 
 
-    first.value_y = second.value_y = third.value_y = coin_y= -windows_height / 12.0;
+    first.value_y = second.value_y = third.value_y = coin_y= pts_boost_y = invul_y = -windows_height / 12.0;
     fourth.value_y = fifth.value_y = sixth.value_y = seventh.value_y = -height / 12.0;
     eighth.value_y = ninth.value_y = ten.value_y = -height / 12.0;
     rect1.value_y = rect2.value_y = rect3.value_y = -height / 3.0;
 
     first.boulder = 0;
     first.coins = 0;
+    first.pts_boost = 0;
+    first.invul = 0;
     first.boulder_spawn = 0;
     first.coin_spawn = 0;
+    first.pts_boost_spawn = 0;
+    first.invul_spawn = 0;
     second.boulder = 0;
     second.boulder_spawn = 0;
     third.boulder = 0;
@@ -731,33 +752,70 @@ void game_update(void)
         coin_y += (first.coin_spawn == TRUE) ? 9.0f : 0.0f;
         if (spawn == 1) { CP_Graphics_DrawCircle(value_x_mid, coin_y, radius * 1.0); }
 
+        CP_Settings_Fill(blue);
+        first.pts_boost = (totalElapsedTime > 0.5 && first.pts_boost != 2) ? first.pts_boost + 1 : first.pts_boost;
+        first.pts_boost_spawn = (first.pts_boost == 1) ? TRUE : first.pts_boost_spawn;
+        pts_boost_y += (first.pts_boost_spawn == TRUE) ? 9.0f : 0.0f;
+        if (spawn_ptsboost == 1) { CP_Graphics_DrawCircle(value_x_mid, pts_boost_y, radius * 1.0); }
+
+        CP_Settings_Fill(red);
+        first.invul = (totalElapsedTime > 0.0 && first.invul != 2) ? first.invul + 1 : first.invul;
+        first.invul_spawn = (first.invul == 1) ? TRUE : first.invul_spawn;
+        invul_y += (first.invul_spawn == TRUE) ? 9.0f : 0.0f;
+        if (spawn_invul == 1) { CP_Graphics_DrawCircle(value_x_mid, invul_y, radius * 1.0); }
+
         //Displaying Points
         CP_Settings_TextSize(20.0f);
         CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
         char buffer[16] = { 0 };
         sprintf_s(buffer, _countof(buffer), "%d", points);
-        CP_Font_DrawText(buffer, 80, 20);
-        CP_Font_DrawText("Points:", 10, 20);
+        CP_Font_DrawText(buffer, width/10, 20);
+        CP_Font_DrawText("Points:", width/25,20);
+        
 
-
-        /*
-        if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.value_y, radius) == 1) {
-            totalElapsedTime = 0;
-            score += points;
-        };
-        if (iscirclecollided(current_position.x, current_position.y, value_x_left, second.value_y, radius) == 1) {
-            totalElapsedTime = 0;
-            score += points;
-        };
-        if (iscirclecollided(current_position.x, current_position.y, value_x_right, third.value_y, radius) == 1) {
-            totalElapsedTime = 0;
-            score += points;
-        };
-        */
+        if (invulnerable == 0) { //detects obstacle collision only when invulnerable flag is off
+            if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.value_y, radius,0) == 1) {
+                totalElapsedTime = 0;
+                score += points;
+            };
+            if (iscirclecollided(current_position.x, current_position.y, value_x_left, second.value_y, radius,0) == 1) {
+                totalElapsedTime = 0;
+                score += points;
+            };
+            if (iscirclecollided(current_position.x, current_position.y, value_x_right, third.value_y, radius,0) == 1) {
+                totalElapsedTime = 0;
+                score += points;
+            };
+        }
 
         if (spawn == 1) {
-            if (iscoincollided(current_position.x, current_position.y, value_x_mid, coin_y, radius) == 1) { points += 1; spawn = 0; }
+            if (iscirclecollided(current_position.x, current_position.y, value_x_mid, coin_y, radius,1) == 2) {points += 1 * multiplier; spawn = 0;}
         }
+        if(spawn_ptsboost == 1) {
+            if (iscirclecollided(current_position.x, current_position.y, value_x_mid, pts_boost_y, radius,1) == 2) { current_pts_increase = 1; spawn_ptsboost = 0; }
+        }
+        if (spawn_invul == 1) {
+            if (iscirclecollided(current_position.x, current_position.y, value_x_mid, invul_y, radius,1) == 2) { invulnerable = 1; spawn_invul = 0; }
+        }
+
+        if (current_pts_increase == 1) { //system to increase multiplier during point boost buff
+            pts_increase_timer += currentElapsedTime;
+            multiplier = 3;
+            if (pts_increase_timer >= 10.0f) {
+                current_pts_increase = 0; //turns off the point boost flag
+                pts_increase_timer = 0.0f; //resets timer
+                multiplier = 1; //resets multiplier back to 1
+            }
+        }
+
+        if (invulnerable == 1) { //system to make player invulnerable during buff
+            invulnerable_timer += currentElapsedTime;
+            if (invulnerable_timer >= 10.0f) {
+                invulnerable = 0; //turns off invulnerable flag
+                invulnerable_timer = 0.0f; //resets timer
+            }
+        }
+
     }
 
     if (CP_Input_KeyTriggered(KEY_ESCAPE)) {

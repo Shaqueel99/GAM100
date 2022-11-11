@@ -105,12 +105,15 @@ void Main_Menu_Update()
 	if (main == 1) {
 		if (CP_Input_MouseClicked(MOUSE_BUTTON_LEFT) && selection == 0) {
 			return_true_false = optionClicked(start_x, start_y, rectangle_width, rectangle_height, click_x, click_y);
+
 			if (return_true_false == 1) selection = 1;
 			return_true_false = optionClicked(leaderboard_x, leaderboard_y, square_side, rectangle_height, click_x, click_y);
 			if (return_true_false == 1) selection = 2;
 			return_true_false = optionClicked(credit_x, credit_y, rectangle_width, rectangle_height, click_x, click_y);
-			if (return_true_false == 1) selection = 3;
+			if (return_true_false == 1) { selection = 3; CP_Sound_PlayAdvanced(mySound, 1.0f, 2.0f, FALSE, CP_SOUND_GROUP_2); }
+			
 			return_true_false = optionClicked(option_x, option_y, square_side, rectangle_height, click_x, click_y);
+			
 			if (return_true_false == 1) selection = 4;
 			return_true_false = optionClicked(quit_x, quit_y, rectangle_width, rectangle_height, click_x, click_y);
 			if (return_true_false == 1) selection = 5;
@@ -143,7 +146,9 @@ void Main_Menu_Update()
 		}
 
 		// Begin Game
-		if (selection == 1) CP_Engine_SetNextGameState(game_init, game_update, game_exit);
+		if (selection == 1) {
+			CP_Engine_SetNextGameState(game_init, game_update, game_exit);
+		}
 
 		// Leaderboard
 		if (selection == 2) {
@@ -221,5 +226,6 @@ void Main_Menu_Update()
 
 void Main_Menu_Exit()
 {
+	CP_Sound_Free(&mySound);
 	CP_Image_Free(&logo);
 }

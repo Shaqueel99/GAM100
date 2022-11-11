@@ -11,6 +11,8 @@ struct obstacles {
 	int coins;
 	int coin_spawn;
 };
+void read_leaderboard(char name[], int score[],int order);
+int sort_leaderboard(int scorek,int scorem,int pos);
 //for katlong
 
 
@@ -38,9 +40,9 @@ void spawnRect(struct rectObstacle*, float, float, float);
 
 
 //for shaqeel
-int iscoincollided(float current_positionx, float current_positiony, float value_x, float value_y,float radius);
-int iscirclecollided(float current_positionx, float current_positiony, float value_x, float value_y,float radius);
-int nametype(char *playername[]);
+
+int iscirclecollided(float current_positionx, float current_positiony, float value_x, float value_y,float radius,int isgood);
+int nametype(char playername[]);
 int IsAreaClicked(float area_center_x, float area_center_y, float area_width, float area_height, float click_x, float click_y);
 extern char score;
 extern int points;

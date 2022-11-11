@@ -4,10 +4,13 @@
 #include "utils.h"
 char playername[3];
 int i = 0;
-
+float windows_length, windows_height;
+extern int width, height;
 void Death_Screen_Init()
-{
-	CP_System_SetWindowSize(960,540);
+{   
+    windows_length = width;
+    windows_height = height;
+    CP_System_SetWindowSize(windows_length, windows_height);
     
 }
 
@@ -27,14 +30,14 @@ void Death_Screen_Update()
 
 
 
-    CP_Settings_TextSize(100.0f);
-    CP_Font_DrawText("YOU WENT EXTINCT!", CP_System_GetWindowWidth() / 10.0f, CP_System_GetWindowHeight() / 3.0f);
-    CP_Settings_TextSize(50.0f);
-    CP_Font_DrawText("Press Enter to play again", CP_System_GetWindowWidth() / 3.5f, CP_System_GetWindowHeight() / 2.0f);
+    CP_Settings_TextSize(width/10);
+    CP_Font_DrawText("YOU WENT EXTINCT!", CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 3.0f);
+    CP_Settings_TextSize(width/20);
+    CP_Font_DrawText("Press Enter to play again", CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 2.0f);
     if (CP_Input_KeyTriggered(KEY_ENTER)) {
         CP_Engine_SetNextGameStateForced(game_init, game_update, game_exit);
     }
-    CP_Settings_TextSize(40.0f);
+    CP_Settings_TextSize(width/25);
     CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
     char buffer[16] = { 0 };
     if (i >= 0 && i <= 2) {
@@ -54,9 +57,9 @@ void Death_Screen_Update()
     // draw a rectangle at the center of the screen, half the size of the screen
     CP_Graphics_DrawRect(CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 1.10f,
     CP_System_GetWindowWidth() / 5.0f, CP_System_GetWindowHeight() / 10.0f);
-    CP_Settings_TextSize(20.0f);
+    CP_Settings_TextSize(width/30);
     CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
-    CP_Font_DrawText("Submit Score", CP_System_GetWindowWidth() / 2.25f , CP_System_GetWindowHeight() / 1.10f + 8);
+    CP_Font_DrawText("Submit Score", CP_System_GetWindowWidth() / 2.0f , CP_System_GetWindowHeight() / 1.10f + 8);
 
 
     float mouseposx = CP_Input_GetMouseX();

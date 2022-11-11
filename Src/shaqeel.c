@@ -2,33 +2,28 @@
 #include <stdio.h>
 #include <utils.h>
 #include "../Inc/deathscreen.h"
-int iscirclecollided(float current_positionx, float current_positiony, float value_x, float value_y,float radius) {
+#include <math.h> //for use of sqrt
+int iscirclecollided(float current_positionx, float current_positiony, float value_x, float value_y,float radius,int isgood) {
     float distancex = current_positionx - value_x;
     
     distancex = distancex * distancex;
     float distancey = current_positiony - value_y;
     distancey = distancey * distancey;
     float finaldistance = distancex + distancey;
-    float distance = sqrt(finaldistance);
-    if (finaldistance < (radius * 100.0)) {
+    float distance = (float)sqrt(finaldistance);
+    if (finaldistance < (radius * 100.0) && isgood == 0) {
         CP_Engine_SetNextGameStateForced(Death_Screen_Init, Death_Screen_Update, Death_Screen_Exit);
         return 1;  
     }
-}
-int iscoincollided(float current_positionx, float current_positiony, float value_x, float value_y,float radius) {
-    float distancex = current_positionx - value_x;
-    distancex = distancex * distancex;
-    float distancey = current_positiony - value_y;
-    distancey = distancey * distancey;
-    float finaldistance = distancex + distancey;
-    float distance = sqrt(finaldistance);
-    if (finaldistance < (radius * 100.0)) {
-        return 1;
+    else if (finaldistance < (radius * 100.0) && isgood == 1) {
+        return 2;
     }
-   
+    return 0; //to avoid 'not all control paths return value' warning
 }
 
-int nametype(char *playername[]) {
+
+
+int nametype(char playername[]) {
     
     if (CP_Input_KeyTriggered(KEY_A)) { *playername = 'A'; return 3; }
     if (CP_Input_KeyTriggered(KEY_B)) { *playername = 'B'; return 3; }
@@ -57,7 +52,7 @@ int nametype(char *playername[]) {
     if (CP_Input_KeyTriggered(KEY_Y)) { *playername = 'Y'; return 3; }
     if (CP_Input_KeyTriggered(KEY_Z)) { *playername = 'Z'; return 3; }
   
-   
+    return 0; //to avoid 'not all control paths return value' warning
 
 }
 int IsAreaClicked(float area_center_x, float area_center_y, float area_width, float area_height, float click_x, float click_y)

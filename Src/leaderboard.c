@@ -2,24 +2,24 @@
 #include "leaderboard.h"
 #include "utils.h"
 #include "game.h"
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 CP_Color black, blue, purple, green, red;
-/*
-struct stats {
-	char name[3];
-	int score;
-} p1, p2, p3;
-*/
+
+FILE* leaderboard;
+char input[256];
 
 extern int width, height;
-char p1_name[4], p2_name[4], p3_name[4]; //3 digit name, last letter is null character
-char p1_score[4], p2_score[4], p3_score[4];
+char p_name[999][4];//3 digit name, last letter is null character
+int p_score[999][4];
 float windows_width, windows_height;
-
+int j = 0; 
 void Leaderboard_Init(void)
 {
-
+	
+	fopen_s(&leaderboard, "..\\..\\Assets\\leaderboard.txt", "r");
 	black = CP_Color_Create(0, 0, 0, 255);
 	blue = CP_Color_Create(0, 255, 255, 255);
 	purple = CP_Color_Create(76, 0, 153, 255);
@@ -29,15 +29,46 @@ void Leaderboard_Init(void)
 
 	windows_width = width;
 	windows_height = height;
+	if (leaderboard == NULL) {
+		return 1;
+	}
 
 
 	CP_System_SetWindowSize(windows_width, windows_height);
-	//while (read_leaderboard(p1_name, p1_score) == 0);
-	read_leaderboard(p1_name, p1_score, p2_name, p2_score, p3_name, p3_score);
+
+	while (fgets(input, 256, leaderboard) != NULL) {
+		
+		read_leaderboard(p_name[j], p_score[j], j);
+		j++;
+	}
+	if (fgets(input, 256, leaderboard) == NULL) {
+	
+		fclose(leaderboard);
+		return 1;
+	}
+	
+	int temp=0;
+	
 }
 
 void Leaderboard_Update(void)
 {
+	int temp = 0;
+	for (int s = 0; s < sizeof(p_score) / sizeof(p_score[0]); s++) {
+		if (*p_score[s] != 0) {
+			if (sort_leaderboard(*p_score[s], *p_score[s + 1], s) == s) {
+				int  tempscore = *p_score[s];
+				char *tempname[4];  
+				
+				strcpy_s(tempname, 4, p_name[s]);
+			    strcpy_s(p_name[s],4,p_name[s + 1]);
+				*p_score[s] = *p_score[s + 1];
+				*p_score[s + 1] = tempscore;
+				strcpy_s(p_name[s + 1],4, tempname);
+			}
+		}
+	}
+
 	CP_Graphics_ClearBackground(purple);
 
 	CP_Settings_Stroke(black);
@@ -53,14 +84,18 @@ void Leaderboard_Update(void)
 
 	CP_Settings_TextSize(40.0f);
 	CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_RIGHT, CP_TEXT_ALIGN_V_MIDDLE);
-	CP_Font_DrawText(p1_name, windows_width / 2.0f - windows_width / 16.0f, windows_height / 8.0f * 2.0f);
-	CP_Font_DrawText(p2_name, windows_width / 2.0f - windows_width / 16.0f, windows_height / 8.0f * 3.0f);
-	CP_Font_DrawText(p3_name, windows_width / 2.0f - windows_width / 16.0f, windows_height / 8.0f * 4.0f);
-
+	
+	for (int s = 0; s < sizeof(p_name) / sizeof(p_name[0]); s++) {
+		CP_Font_DrawText(p_name[s], windows_width / 2.0f - windows_width / 16.0f, windows_height / 8.0f * (2.0f+s));
+	}
 	CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_LEFT, CP_TEXT_ALIGN_V_MIDDLE);
-	CP_Font_DrawText(p1_score, windows_width / 2.0f + windows_width / 16.0f, windows_height / 8.0f * 2.0f);
-	CP_Font_DrawText(p2_score, windows_width / 2.0f + windows_width / 16.0f, windows_height / 8.0f * 3.0f);
-	CP_Font_DrawText(p3_score, windows_width / 2.0f + windows_width / 16.0f, windows_height / 8.0f * 4.0f);
+	for (int s = 0; s < sizeof(p_score) / sizeof(p_score[0]); s++) {
+		char buffer[16] = { 0};
+		sprintf_s(buffer, _countof(buffer), "%d", *p_score[s]);
+		if (*p_score[s] != 0) {
+			CP_Font_DrawText(buffer, windows_width / 2.0f + windows_width / 16.0f, windows_height / 8.0f * (2.0f + s));
+		}
+	}
 	if (CP_Input_KeyTriggered(KEY_L)) {
 		CP_Engine_SetNextGameStateForced(game_init, game_update, game_exit);
 	}

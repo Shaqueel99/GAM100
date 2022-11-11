@@ -780,7 +780,10 @@ void game_update(void)
             };
         }
         */
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
         if (spawn == 1) {
             if (iscirclecollided(current_position.x, current_position.y, value_x_mid, coin_y, radius,1) == 2) {points += 1 * multiplier; spawn = 0;}
         }
@@ -790,7 +793,7 @@ void game_update(void)
         if (spawn_invul == 1) {
             if (iscirclecollided(current_position.x, current_position.y, value_x_mid, invul_y, radius,1) == 2) { invulnerable = 1; spawn_invul = 0; }
         }
-
+        
         if (current_pts_increase == 1) { //system to increase multiplier during point boost buff
             pts_increase_timer += currentElapsedTime;
             multiplier = 3;

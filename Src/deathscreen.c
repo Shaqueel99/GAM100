@@ -36,6 +36,7 @@ void Death_Screen_Update()
     CP_Font_DrawText("Press Enter to play again", CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 2.0f);
     if (CP_Input_KeyTriggered(KEY_ENTER)) {
         CP_Engine_SetNextGameStateForced(game_init, game_update, game_exit);
+        score = '0'; points = 0;
     }
     CP_Settings_TextSize(width/25);
     CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
@@ -74,7 +75,7 @@ void Death_Screen_Update()
         if (IsAreaClicked(area_center_x, area_center_y, area_width, area_height, mouseposx, mouseposy) == 1){
             
             write_leaderboard(playername, score);
-            score = '0'; points = 0;
+           
         };
     }
 

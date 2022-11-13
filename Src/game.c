@@ -40,6 +40,11 @@ int current_pts_increase, invulnerable;
 float pts_increase_timer, invulnerable_timer;
 int multiplier;
 
+int health;
+int health_toggle;
+int just_got_hit;
+float just_got_hit_timer;
+
 
 struct obstacles first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, ten;
 struct obstacles eleven, twelve, thirt, fourt, fifte, sixte, sevente, eighte, ninete, twoZero;
@@ -50,21 +55,26 @@ CP_Sound runsound = NULL;
 
 void game_init(void)
 
-{  
+{
    
-   shiftsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoShifttrim.wav");
-   runsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinorunningtrim.wav");
-   CP_Sound_PlayAdvanced(runsound, 0.5f, 0.6f, TRUE, CP_SOUND_GROUP_2);
-   int startsnd=CP_Random_RangeInt(1, 2);
-   if (startsnd == 1) {
-       Startsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoStart2.wav");
-       CP_Sound_PlayAdvanced(Startsound, 0.7f, 1.0f, FALSE, CP_SOUND_GROUP_2);
-   }
-   else {
-       Startsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoStart1.wav");
-       CP_Sound_PlayAdvanced(Startsound, 0.7f, 1.0f, FALSE, CP_SOUND_GROUP_2);
-   }
-  
+    shiftsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoShifttrim.wav");
+    runsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinorunningtrim.wav");
+    CP_Sound_PlayAdvanced(runsound, 0.5f, 0.6f, TRUE, CP_SOUND_GROUP_2);
+    int startsnd=CP_Random_RangeInt(1, 2);
+    if (startsnd == 1) {
+        Startsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoStart2.wav");
+        CP_Sound_PlayAdvanced(Startsound, 0.7f, 1.0f, FALSE, CP_SOUND_GROUP_2);
+    }
+    else {
+        Startsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoStart1.wav");
+        CP_Sound_PlayAdvanced(Startsound, 0.7f, 1.0f, FALSE, CP_SOUND_GROUP_2);
+    }
+
+    health = 3;
+    health_toggle = 0;
+    just_got_hit = 0;
+    just_got_hit_timer = 0.0;
+
     multiplier = 1; //default pts multiplier is 1
     current_pts_increase = 0, invulnerable = 0;
     pts_increase_timer = invulnerable_timer = 0.0f;
@@ -315,46 +325,39 @@ void game_update(void)
                 spawnCheck(&ten, 16.0, totalElapsedTime, 12.0);
                 CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0);
                 // ADD IF INVULNERABLE == 1
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, second.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, sixth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, ninth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
+                if (invulnerable == 0 && just_got_hit == 0) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, second.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifth.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, sixth.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, ninth.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                }
+
             }
             else if (selection == -1) {
                 //launch second easy segment instead
@@ -397,49 +400,40 @@ void game_update(void)
                 spawnCheck(&ten, 16.0, totalElapsedTime, 12.0);
                 CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0);
 
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fourth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, ninth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (isRectCollided(current_position.x, current_position.y, radius, value_x_right, rect1.value_y, width * 0.15, height * 0.6) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
+                if (invulnerable == 0 && just_got_hit == 0) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, fourth.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifth.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, ninth.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (isRectCollided(current_position.x, current_position.y, radius, value_x_right, rect1.value_y, width * 0.15, height * 0.6) == 1) {
+                        just_got_hit = 1;
+                    }
                 }
             }
             //random range is set to 0 to 1
@@ -485,46 +479,48 @@ void game_update(void)
                 spawnCheck(&ten, 16.0, totalElapsedTime, 12.0);
                 CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0);
 
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left , first.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fifth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, eighth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, ninth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
+                if (invulnerable == 0 && just_got_hit == 0) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, fifth.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, eighth.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, ninth.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                }
             }
             else if (selection == -1) {
                 //launch second medium segment instead
@@ -558,46 +554,48 @@ void game_update(void)
                 spawnCheck(&ten, 16.0, totalElapsedTime, 12.0);
                 CP_Graphics_DrawCircle(value_x_right, ten.value_y, radius * 4.0);
 
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fifth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, seventh.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ninth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, ten.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
+                if (invulnerable == 0 && just_got_hit == 0) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, fifth.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, seventh.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ninth.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, ten.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                }
             }
             //random range is set to 0 to 1
             // if range == 0, launch first medium segment
@@ -641,46 +639,48 @@ void game_update(void)
                 spawnCheck(&ten, 7.0, totalElapsedTime, 20.0);
                 CP_Graphics_DrawCircle(value_x_left, ten.value_y, radius * 4.0);
 
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, fourth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, sixth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ninth.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
-                if (iscirclecollided(current_position.x, current_position.y, value_x_left, ten.value_y, radius, 0) == 1) {
-                    totalElapsedTime = 0;
-                    score += points;
-                };
+                if (invulnerable == 0 && just_got_hit == 0) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, second.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, fourth.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifth.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, sixth.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, eighth.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ninth.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, ten.value_y, radius, 0) == 1) {
+                        totalElapsedTime = 0;
+                        score += points;
+                    };
+                }
             }
             else if (selection == -1) {
                 //launch second hard segment instead
@@ -783,7 +783,22 @@ void game_update(void)
         sprintf_s(buffer, _countof(buffer), "%d", points);
         CP_Font_DrawText(buffer, width/10, 20);
         CP_Font_DrawText("Points:", width/25,20);
-        
+
+        CP_Settings_Fill(red);
+        CP_Settings_RectMode(CP_POSITION_CENTER);
+        if (health >= 1) { CP_Graphics_DrawRect(windows_length / 20 * 19, windows_height / 20, windows_length / 20, windows_height / 40); }
+        if (health >= 2) { CP_Graphics_DrawRect(windows_length / 20 * 17, windows_height / 20, windows_length / 20, windows_height / 40); }
+        if (health >= 3) { CP_Graphics_DrawRect(windows_length / 20 * 15, windows_height / 20, windows_length / 20, windows_height / 40); }
+
+
+
+        if (health <= 0) {
+            //dies
+            totalElapsedTime = 0;
+            score += points;
+            health_toggle = 0;
+            CP_Engine_SetNextGameStateForced(Death_Screen_Init, Death_Screen_Update, Death_Screen_Exit);
+        }
         /*
         if (invulnerable == 0) { //detects obstacle collision only when invulnerable flag is off
             if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.value_y, radius,0) == 1) {
@@ -823,11 +838,24 @@ void game_update(void)
 
         if (invulnerable == 1) { //system to make player invulnerable during buff
             invulnerable_timer += currentElapsedTime;
-            if (invulnerable_timer >= 10.0f) {
+            if (invulnerable_timer >= 5.0f) {
                 invulnerable = 0; //turns off invulnerable flag
                 invulnerable_timer = 0.0f; //resets timer
             }
         }
+
+        //rmb to add just_got_hit to disable obstacle collision 
+        if (just_got_hit == 1) { //system to make player invulnerable during buff
+            ++health_toggle;
+            just_got_hit_timer += currentElapsedTime;
+            if (just_got_hit_timer >= 1.0f) {
+                health_toggle = 0;
+                just_got_hit = 0; //turns off invulnerable flag
+                just_got_hit_timer = 0.0f; //resets timer
+            }
+        }
+        //deducts health when get hit
+        health = (health_toggle == 1) ? health - 1 : health;
 
     }
 

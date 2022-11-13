@@ -5,6 +5,7 @@
 #include <math.h> //for use of sqrt
 CP_Sound deathsound = NULL;
 CP_Sound eatsound = NULL;
+extern health;
 int iscirclecollided(float current_positionx, float current_positiony, float value_x, float value_y,float radius,int isgood) {
     float distancex = current_positionx - value_x;
     
@@ -22,7 +23,7 @@ int iscirclecollided(float current_positionx, float current_positiony, float val
     }
     if (finaldistance < (radius * 100.0) && isgood == 0) {
         CP_Sound_PlayAdvanced(deathsound, 0.7f, 0.7f, FALSE, CP_SOUND_GROUP_2);
-        CP_Engine_SetNextGameStateForced(Death_Screen_Init, Death_Screen_Update, Death_Screen_Exit);
+        //CP_Engine_SetNextGameStateForced(Death_Screen_Init, Death_Screen_Update, Death_Screen_Exit);
         return 1;  
     }
     else if (finaldistance < (radius * 100.0) && isgood == 1) {

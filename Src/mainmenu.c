@@ -16,6 +16,7 @@ static int selection;
 static int main;
 static int return_true_false;
 static CP_Image logo;
+static CP_Image image_mainmenu, image_start, image_leaderboard, image_credit, image_option, image_quit;
 static float totalElapsedTime;
 static float fade_in_time;
 static float toggle_time;
@@ -56,13 +57,13 @@ void Main_Menu_Update()
 	
 	// UI Positioning (Main Menu)
 	float start_x = (float)width * 0.2f;
-	float start_y = (float)height * 0.4f;
+	float start_y = (float)height * 0.5f;
 	float leaderboard_x = (float)width * 0.7f;
-	float leaderboard_y = (float)height * 0.4f;
+	float leaderboard_y = (float)height * 0.5f;
 	float credit_x = (float)width * 0.2f;
-	float credit_y = (float)height * 0.6f;
+	float credit_y = (float)height * 0.65f;
 	float option_x = (float)width * 0.7f;
-	float option_y = (float)height * 0.6f;
+	float option_y = (float)height * 0.65f;
 	float quit_x = (float)width * 0.3f;
 	float quit_y = (float)height * 0.8f;
 
@@ -83,7 +84,7 @@ void Main_Menu_Update()
 	// Space to draw out the rectangle
 	float displayDraw_side_x = (float)width * 0.1f;
 	float displayDraw_center_x = (float)width * 0.5f;
-	float displayDraw_y = (float)height * 0.1f;
+	float displayDraw_y = (float)height * 0.1f;	
 
 	// Startup Screen (Digipen display & team logo)
 	if (main == 0) {
@@ -124,28 +125,32 @@ void Main_Menu_Update()
 
 		if (CP_Input_KeyTriggered(KEY_ESCAPE)) selection = 0;
 
-		//UI Drawing (Box) + Text
+		//UI Drawing (Image)
+		image_mainmenu = CP_Image_Load("Assets/Main_Menu.png");
+		image_start = CP_Image_Load("Assets/mainmenu_button/start_button.png");
+		image_credit = CP_Image_Load("Assets/mainmenu_button/credit_button.png");
+		image_quit = CP_Image_Load("Assets/mainmenu_button/quit_button.png");
+		image_option = CP_Image_Load("Assets/mainmenu_button/setting_button.png");
+		image_leaderboard = CP_Image_Load("Assets/mainmenu_button/leaderboard_button.png");
+		
+		//UI Drawing (Box)
 		if (selection == 0) {
 			CP_Graphics_ClearBackground(green);
+			CP_Image_Draw(image_mainmenu, width / 2, height / 2, width, height, 255);
 			CP_Settings_Fill(White);
+			CP_Image_Draw(image_start, width * 0.4, height * 0.55, rectangle_width, rectangle_height, 255);
+			CP_Image_Draw(image_credit , width * 0.4, height * 0.7, rectangle_width, rectangle_height, 255);
+			CP_Image_Draw(image_quit, width * 0.5, height * 0.85, rectangle_width, rectangle_height, 255);
+			CP_Image_Draw(image_option, width * 0.775, height * 0.7, square_side, rectangle_height, 255); // Small issue with the scaling 
+			CP_Image_Draw(image_leaderboard, width * 0.775, height * 0.55, square_side, rectangle_height, 255); // Small issue with the scaling 
+
+			/* ~~~~~~~~~~~~~~~~~~~~~~~ For debugging ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			CP_Graphics_DrawRect(start_x, start_y, rectangle_width, rectangle_height);
 			CP_Graphics_DrawRect(leaderboard_x, leaderboard_y, square_side, rectangle_height);
 			CP_Graphics_DrawRect(credit_x, credit_y, rectangle_width, rectangle_height);
 			CP_Graphics_DrawRect(option_x, option_y, square_side, rectangle_height);
-			CP_Graphics_DrawRect(quit_x, quit_y, rectangle_width, rectangle_height);
-
-
-
-			// Temporary Placeholder Text (Possible to replace with image instead?)
-			CP_Settings_Fill(Blue);
-			CP_Font_DrawText("Start", start_x + rectangle_width * 0.5f, start_y + rectangle_height * 0.5f);
-			CP_Font_DrawText("LB", leaderboard_x + square_side * 0.5f, leaderboard_y + rectangle_height * 0.5f);
-			CP_Font_DrawText("Credit", credit_x + rectangle_width * 0.5f, credit_y + rectangle_height * 0.5f);
-			CP_Font_DrawText("Set", option_x + square_side * 0.5f, option_y + rectangle_height * 0.5f);
-			CP_Font_DrawText("Quit", quit_x + rectangle_width * 0.5f, quit_y + rectangle_height * 0.5f);
-			CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_CENTER, CP_TEXT_ALIGN_V_MIDDLE);
-			CP_Settings_TextSize(50.0f * font_scale);
-			CP_Settings_Fill(White);
+			CP_Graphics_DrawRect(quit_x, quit_y, rectangle_width, rectangle_height); 
+			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 		}
 
 		// Begin Game

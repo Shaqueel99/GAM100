@@ -5,28 +5,29 @@
 
 CP_Color background, innerBox, white;
 
-float rectCenterX, rectCenterY, rectWidth, rectHeight;
+
 extern int width, height;
 
 struct names {
     float x;
     float y;
 };
-
+float rectCenterX, rectCenterY, rectWidth, rectHeight;
 struct names kitkat, shaq, ben, zy, ck, dx, gerald, pres, team, instructors, claude;
 
 void Credits_Init()
 {
+    
 	CP_System_SetWindowSize(width, height);
 
     background = CP_Color_Create(0, 246, 155, 255);
     innerBox = CP_Color_Create(0, 0, 0, 100);
     white = CP_Color_Create(255, 255, 255, 255);
     
-    rectCenterX = CP_System_GetWindowWidth() / 2.0f;
-    rectCenterY = CP_System_GetWindowHeight() / 2.0f;
-    rectWidth = CP_System_GetWindowWidth() / 1.5f; 
-    rectHeight = CP_System_GetWindowHeight() / 1.3f;
+    rectCenterX = width / 2.0f;
+    rectCenterY = height / 2.0f;
+    rectWidth = width / 1.5f;
+    rectHeight = height / 1.3f;
 
     team.y = height / 5.3f;
     kitkat.y = height * 0.25;
@@ -39,7 +40,7 @@ void Credits_Init()
     dx.y = height * 0.57;
     gerald.y = height * 0.62;
 
-    pres.y = CP_System_GetWindowHeight() / 1.4f;
+    pres.y = height / 1.4f;
     claude.y = height * 0.76;
 }
 
@@ -85,5 +86,5 @@ void Credits_Update()
 
 void Credits_Exit()
 {
-
+    
 }

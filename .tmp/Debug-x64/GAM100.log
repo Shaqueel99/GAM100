@@ -1,16 +1,6 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (C:\Users\User\Desktop\GAM100\GAM100\.tmp\Debug-x64\) contains files shared from another project (Game of Life.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  deathscreen.c
-C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(11,27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(12,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(13,43): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
-C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(13,59): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
-C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(33,34): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
-C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(35,34): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
-C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(41,34): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
-C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(48,14): warning C4013: 'sprintf_s' undefined; assuming extern returning int
-C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(61,34): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
-C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(70,1): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  shaqeel.c
   GAM100.vcxproj -> C:\Users\User\Desktop\GAM100\GAM100\bin\Debug-x64\GAM100.exe
   1 File(s) copied
   1 File(s) copied
-  18 File(s) copied
+  21 File(s) copied

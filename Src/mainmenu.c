@@ -28,9 +28,11 @@ font_scale = 1.0;
 speed_scale = 1.0;
 return_true_false = 0;
 display_option = 0;
+CP_Sound mySound = NULL;
 
 void Main_Menu_Init()
 {
+	mySound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinomenu2.wav");
 	// Initial Value
 	selection = 0;
 	totalElapsedTime = 0;
@@ -103,12 +105,13 @@ void Main_Menu_Update()
 	}
 	// Main Menu (Logic)
 	if (main == 1) {
-		if (CP_Input_MouseClicked(MOUSE_BUTTON_LEFT) && selection == 0) {
+		if (selection == 0 && CP_Input_MouseClicked(MOUSE_BUTTON_LEFT)) {
+			
 			return_true_false = optionClicked(start_x, start_y, rectangle_width, rectangle_height, click_x, click_y);
 
 			if (return_true_false == 1) selection = 1;
 			return_true_false = optionClicked(leaderboard_x, leaderboard_y, square_side, rectangle_height, click_x, click_y);
-			if (return_true_false == 1) selection = 2;
+			if (return_true_false == 1) selection = 2, CP_Sound_PlayAdvanced(mySound, 1.0f, 1.0f, FALSE, CP_SOUND_GROUP_2);
 			return_true_false = optionClicked(credit_x, credit_y, rectangle_width, rectangle_height, click_x, click_y);
 			if (return_true_false == 1) { selection = 3;}
 			
@@ -147,7 +150,7 @@ void Main_Menu_Update()
 
 		// Begin Game
 		if (selection == 1) {
-			CP_Engine_SetNextGameState(game_init, game_update, game_exit);
+			CP_Engine_SetNextGameStateForced(game_init, game_update, game_exit);
 		}
 
 		// Leaderboard
@@ -171,9 +174,10 @@ void Main_Menu_Update()
 			CP_Graphics_DrawRect(displayPOS_left_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y);
 			CP_Graphics_DrawRect(displayPOS_center_x, displayPOS_y, displayDraw_center_x, displayDraw_y);
 			CP_Graphics_DrawRect(displayPOS_right_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y);
-
+			
 			// Click to swap resolution
 			if (CP_Input_MouseClicked(MOUSE_BUTTON_LEFT)) {
+				CP_Sound_PlayAdvanced(mySound, 1.0f, 1.0f, FALSE, CP_SOUND_GROUP_2);
 				return_true_false = optionClicked(displayPOS_left_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y, click_x, click_y);
 				if (return_true_false == 1 && display_option == 0) display_option = 2;
 				else if (return_true_false == 1 && display_option == 1) display_option = 0;
@@ -226,6 +230,6 @@ void Main_Menu_Update()
 
 void Main_Menu_Exit()
 {
-	//CP_Sound_Free(&mySound);
+	CP_Sound_Free(&mySound);
 	CP_Image_Free(&logo);
 }

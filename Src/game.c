@@ -6,7 +6,7 @@
 #include "leaderboard.h"
 #include "utils.h"
 #include <math.h>
-
+#include "game.h"
 #define TRUE 1
 #define FALSE 0
 
@@ -44,9 +44,27 @@ int multiplier;
 struct obstacles first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, ten;
 struct obstacles eleven, twelve, thirt, fourt, fifte, sixte, sevente, eighte, ninete, twoZero;
 int movingleft = 0, movingright = 0;
+CP_Sound Startsound = NULL;
+CP_Sound shiftsound = NULL;
+CP_Sound runsound = NULL;
 
 void game_init(void)
-{
+
+{  
+   
+   shiftsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoShifttrim.wav");
+   runsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinorunningtrim.wav");
+   CP_Sound_PlayAdvanced(runsound, 0.5f, 0.6f, TRUE, CP_SOUND_GROUP_2);
+   int startsnd=CP_Random_RangeInt(1, 2);
+   if (startsnd == 1) {
+       Startsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoStart2.wav");
+       CP_Sound_PlayAdvanced(Startsound, 0.7f, 1.0f, FALSE, CP_SOUND_GROUP_2);
+   }
+   else {
+       Startsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoStart1.wav");
+       CP_Sound_PlayAdvanced(Startsound, 0.7f, 1.0f, FALSE, CP_SOUND_GROUP_2);
+   }
+  
     multiplier = 1; //default pts multiplier is 1
     current_pts_increase = 0, invulnerable = 0;
     pts_increase_timer = invulnerable_timer = 0.0f;
@@ -168,6 +186,7 @@ void game_update(void)
         CP_Graphics_DrawLine(windows_length / 3.0 * 2.0, 0.0, windows_length / 3.0 * 2.0, windows_height);
 
         //Movement
+        
         if (movingleft == TRUE) {
             if (current_position.x != left_position.x && current_position.x != mid_position.x) { current_position.x -= (25 * speed_scale); }
             if (current_position.x <= left_position.x || current_position.x == mid_position.x) { movingleft = FALSE; }
@@ -177,10 +196,11 @@ void game_update(void)
             if (current_position.x >= right_position.x || current_position.x == mid_position.x) { movingright = FALSE; }
         }
         if (CP_Input_KeyTriggered(KEY_A)) {
-
+            CP_Sound_PlayAdvanced(shiftsound, 0.5f, 1.0f, FALSE, CP_SOUND_GROUP_2);
             if (current_position.x == mid_position.x || current_position.x >= right_position.x) { current_position.x -= (25 * speed_scale);   movingleft = TRUE;  movingright = FALSE; }
         }
         else if (CP_Input_KeyTriggered(KEY_D)) {
+            CP_Sound_PlayAdvanced(shiftsound, 0.5f, 1.0f, FALSE, CP_SOUND_GROUP_2);
             if (current_position.x == mid_position.x || current_position.x <= left_position.x) { current_position.x += (25 * speed_scale);   movingright = TRUE;  movingleft = FALSE; }
 
 
@@ -780,10 +800,7 @@ void game_update(void)
             };
         }
         */
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
         if (spawn == 1) {
             if (iscirclecollided(current_position.x, current_position.y, value_x_mid, coin_y, radius,1) == 2) {points += 1 * multiplier; spawn = 0;}
         }
@@ -846,19 +863,20 @@ void game_update(void)
         CP_Settings_Fill(white);
         CP_Font_DrawText("Main Menu", b2mmX, b2mmY);
 
-        if (CP_Input_MouseClicked(MOUSE_BUTTON_LEFT)) {
+        if (CP_Input_MouseTriggered(MOUSE_BUTTON_LEFT)) {
             if (areaClick(resumeX, resumeY, resumeWidth, resumeHeight, CP_Input_GetMouseX(), CP_Input_GetMouseY())) {
                 gIsPaused = FALSE;
             }
-            else if (areaClick(restartX, restartY, restartWidth, restartHeight, CP_Input_GetMouseX(), CP_Input_GetMouseY())) {
+            if (areaClick(restartX, restartY, restartWidth, restartHeight, CP_Input_GetMouseX(), CP_Input_GetMouseY())) {
                 gIsPaused = FALSE;
                 totalElapsedTime = 0;
                 currentElapsedTime = 0;
                 difficulty = 0;
                 CP_Engine_SetNextGameStateForced(game_init, game_update, game_update);
             }
-            else if (areaClick(b2mmX, b2mmY, b2mmWidth, b2mmHeight, CP_Input_GetMouseX(), CP_Input_GetMouseY())) {
+            if (areaClick(b2mmX, b2mmY, b2mmWidth, b2mmHeight, CP_Input_GetMouseX(), CP_Input_GetMouseY())) {
                 CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
+               
             }
         }
 
@@ -874,5 +892,7 @@ void game_update(void)
 
 void game_exit(void)
 {
-
+    CP_Sound_Free(&shiftsound);
+    CP_Sound_Free(&runsound);
+    CP_Sound_Free(&Startsound);
 }

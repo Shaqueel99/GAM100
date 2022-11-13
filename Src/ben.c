@@ -10,7 +10,7 @@ extern int height, width;
 
 
 
-
+CP_Sound deathsoundrect = NULL;
 float retainTime(float* p) {
 	float temp = *p;
 	return temp;
@@ -37,7 +37,13 @@ int areaClick(float area_center_x, float area_center_y, float area_width, float 
 int isRectCollided(float circle_X, float circle_Y, float radius, float rect_X, float rect_Y, float rectWidth, float rectHeight) {
 	float temp_X = circle_X;
 	float temp_Y = circle_Y;
-
+	int deathsnd = CP_Random_RangeInt(1, 2);
+	if (deathsnd == 1) {
+		deathsoundrect = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinodeath.wav");//kinda sounds like a horse ngl
+	}
+	else {
+		deathsoundrect = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinodamage.wav");
+	}
 	// which side of the rect the circle is coming in from
 	if (circle_X < (rect_X-rectWidth/2)) temp_X = rect_X - rectWidth/2; //assigning the temp to the LEFT side of the rectangle
 	else if (circle_X > (rect_X + rectWidth/2)) temp_X = rect_X + rectWidth/2; // assign to RIGHT side
@@ -53,6 +59,7 @@ int isRectCollided(float circle_X, float circle_Y, float radius, float rect_X, f
 	float radiusSquared = radius * radius;
 
 	if (distTotal <= radiusSquared) {
+		CP_Sound_PlayAdvanced(deathsoundrect, 0.7f, 0.7f, FALSE, CP_SOUND_GROUP_2);
 		CP_Engine_SetNextGameStateForced(Death_Screen_Init, Death_Screen_Update, Death_Screen_Exit);
 		return 1;
 	}

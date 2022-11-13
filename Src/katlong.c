@@ -30,7 +30,7 @@ int read_leaderboard(char name[], int score[], int order) {
 	return 0;
 	
 }
-void write_leaderboard(char name[], char score) {//name and score is input from main game, when user finish game and is writing new result in
+int write_leaderboard(char name[], char score) {//name and score is input from main game, when user finish game and is writing new result in
 	FILE* leaderboard;
 	char new_stats[256];
 	 //placeholder for score
@@ -39,7 +39,9 @@ void write_leaderboard(char name[], char score) {//name and score is input from 
 	if (leaderboard != NULL) {
 		fwrite(new_stats, sizeof(char), strlen(new_stats), leaderboard);
 		fclose(leaderboard);
+	
 	}
+	
 	//ToDO: ensure name can be accepted as a string
 }
 

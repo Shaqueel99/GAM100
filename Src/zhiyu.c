@@ -8,8 +8,8 @@ int optionClicked(float top_right_x, float top_right_y, float width, float heigh
 	float Y1 = top_right_y + height;
 	float X2 = top_right_x;
 	float Y2 = top_right_y;
-	float Xp = click_x; 
-	float Yp = click_y; 
+	float Xp = click_x;
+	float Yp = click_y;
 
 	if (Xp < X1 && Xp > X2 && Yp < Y1 && Yp > Y2) return 1;
 	else return 0;

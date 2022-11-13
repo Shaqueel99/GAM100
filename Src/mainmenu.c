@@ -55,40 +55,40 @@ void Main_Menu_Update()
 	float click_y = (float)CP_Input_GetMouseWorldY();
 	
 	// UI Positioning (Main Menu)
-	float start_x = (float)width * 0.2;
-	float start_y = (float)height * 0.4;
-	float leaderboard_x = (float)width * 0.7;
-	float leaderboard_y = (float)height * 0.4;
-	float credit_x = (float)width * 0.2;
-	float credit_y = (float)height * 0.6;
-	float option_x = (float)width * 0.7;
-	float option_y = (float)height * 0.6;
-	float quit_x = (float)width * 0.3;
-	float quit_y = (float)height * 0.8;
+	float start_x = (float)width * 0.2f;
+	float start_y = (float)height * 0.4f;
+	float leaderboard_x = (float)width * 0.7f;
+	float leaderboard_y = (float)height * 0.4f;
+	float credit_x = (float)width * 0.2f;
+	float credit_y = (float)height * 0.6f;
+	float option_x = (float)width * 0.7f;
+	float option_y = (float)height * 0.6f;
+	float quit_x = (float)width * 0.3f;
+	float quit_y = (float)height * 0.8f;
 
-	float rectangle_width = (float)width * 0.4;
-	float rectangle_height = (float)height * 0.1;
-	float square_side = (float)height * 0.1;
+	float rectangle_width = (float)width * 0.4f;
+	float rectangle_height = (float)height * 0.1f;
+	float square_side = (float)height * 0.1f;
 
 	// UI Positioning (Option)
-	float text_Display_x =  (float)width * 0.5;
-	float text_Display_y = (float)height * 0.45;
+	float text_Display_x =  (float)width * 0.5f;
+	float text_Display_y = (float)height * 0.45f;
 
 	// Initial X & Y value to draw rectangle
-	float displayPOS_left_arrow_x = (float)width * 0.15;
-	float displayPOS_center_x = (float)width * 0.25;
-	float displayPOS_right_arrow_x = (float)width * 0.75;
-	float displayPOS_y = (float)height * 0.55;
+	float displayPOS_left_arrow_x = (float)width * 0.15f;
+	float displayPOS_center_x = (float)width * 0.25f;
+	float displayPOS_right_arrow_x = (float)width * 0.75f;
+	float displayPOS_y = (float)height * 0.55f;
 
 	// Space to draw out the rectangle
-	float displayDraw_side_x = (float)width * 0.1;
-	float displayDraw_center_x = (float)width * 0.5;
-	float displayDraw_y = (float)height * 0.1;
+	float displayDraw_side_x = (float)width * 0.1f;
+	float displayDraw_center_x = (float)width * 0.5f;
+	float displayDraw_y = (float)height * 0.1f;
 
 	// Startup Screen (Digipen display & team logo)
 	if (main == 0) {
 		float currentElapsedTime = CP_System_GetDt();
-		int alpha = 255 * totalElapsedTime / fade_in_time;
+		int alpha = 255 * (int)totalElapsedTime / (int)fade_in_time;
 		// Fade in and out
 		if (toggle_time == 0) totalElapsedTime += currentElapsedTime;
 		if (toggle_time == 1) totalElapsedTime -= currentElapsedTime;
@@ -98,14 +98,14 @@ void Main_Menu_Update()
 		logo = CP_Image_Load("Assets/DigiPen_BLACK.png");
 		CP_Settings_ImageMode(CP_POSITION_CENTER);
 		CP_Settings_ImageWrapMode(CP_IMAGE_WRAP_CLAMP);
-		CP_Image_Draw(logo, width / 2, height / 2, width * 0.9, height * 0.4, alpha);
+		CP_Image_Draw(logo, width / 2.0f, height / 2.0f, width * 0.9f, height * 0.4f, alpha);
 
 		if (totalElapsedTime > fade_in_time) toggle_time = 1;
 		if (totalElapsedTime < 0) main = 1;
 	}
 	// Main Menu (Logic)
 	if (main == 1) {
-		if (selection == 0 && CP_Input_MouseClicked(MOUSE_BUTTON_LEFT)) {
+		if (selection == 0 && CP_Input_MouseClicked()) {
 			
 			return_true_false = optionClicked(start_x, start_y, rectangle_width, rectangle_height, click_x, click_y);
 
@@ -138,11 +138,11 @@ void Main_Menu_Update()
 
 			// Temporary Placeholder Text (Possible to replace with image instead?)
 			CP_Settings_Fill(Blue);
-			CP_Font_DrawText("Start", start_x + rectangle_width * 0.5, start_y + rectangle_height * 0.5);
-			CP_Font_DrawText("LB", leaderboard_x + square_side * 0.5, leaderboard_y + rectangle_height * 0.5);
-			CP_Font_DrawText("Credit", credit_x + rectangle_width * 0.5, credit_y + rectangle_height * 0.5);
-			CP_Font_DrawText("Set", option_x + square_side * 0.5, option_y + rectangle_height * 0.5);
-			CP_Font_DrawText("Quit", quit_x + rectangle_width * 0.5, quit_y + rectangle_height * 0.5);
+			CP_Font_DrawText("Start", start_x + rectangle_width * 0.5f, start_y + rectangle_height * 0.5f);
+			CP_Font_DrawText("LB", leaderboard_x + square_side * 0.5f, leaderboard_y + rectangle_height * 0.5f);
+			CP_Font_DrawText("Credit", credit_x + rectangle_width * 0.5f, credit_y + rectangle_height * 0.5f);
+			CP_Font_DrawText("Set", option_x + square_side * 0.5f, option_y + rectangle_height * 0.5f);
+			CP_Font_DrawText("Quit", quit_x + rectangle_width * 0.5f, quit_y + rectangle_height * 0.5f);
 			CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_CENTER, CP_TEXT_ALIGN_V_MIDDLE);
 			CP_Settings_TextSize(50.0f * font_scale);
 			CP_Settings_Fill(White);
@@ -155,7 +155,7 @@ void Main_Menu_Update()
 
 		// Leaderboard
 		if (selection == 2) {
-			CP_Graphics_DrawRect(width * 0.2, height * 0.4, width * 0.6, height * 0.5);
+			CP_Graphics_DrawRect(width * 0.2f, height * 0.4f, width * 0.6f, height * 0.5f);
 		}
 
 		// Credit
@@ -166,7 +166,7 @@ void Main_Menu_Update()
 		// Option
 		if (selection == 4) {
 			CP_Settings_Fill(White);
-			CP_Graphics_DrawRect(width * 0.1, height * 0.4, width * 0.8, height * 0.1);
+			CP_Graphics_DrawRect(width * 0.1f, height * 0.4f, width * 0.8f, height * 0.1f);
 			CP_Settings_Fill(Blue);
 			CP_Settings_TextSize(50.0f * font_scale);
 			CP_Font_DrawText("Display Setting", text_Display_x, text_Display_y);
@@ -176,7 +176,7 @@ void Main_Menu_Update()
 			CP_Graphics_DrawRect(displayPOS_right_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y);
 			
 			// Click to swap resolution
-			if (CP_Input_MouseClicked(MOUSE_BUTTON_LEFT)) {
+			if (CP_Input_MouseClicked()) {
 				CP_Sound_PlayAdvanced(mySound, 1.0f, 1.0f, FALSE, CP_SOUND_GROUP_2);
 				return_true_false = optionClicked(displayPOS_left_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y, click_x, click_y);
 				if (return_true_false == 1 && display_option == 0) display_option = 2;
@@ -195,7 +195,7 @@ void Main_Menu_Update()
 			switch (display_option) {
 			case 0:
 				// iPhone 4S size
-				CP_Font_DrawText("640 x 960", width * 0.5, height * 0.6);
+				CP_Font_DrawText("640 x 960", width * 0.5f, height * 0.6f);
 				width = 640;
 				height = 960;
 				font_scale = 1.0;
@@ -204,16 +204,16 @@ void Main_Menu_Update()
 				break;			
 			case 1:
 				// iPad Size
-				CP_Font_DrawText("1024 x 768", width * 0.5, height * 0.6);
+				CP_Font_DrawText("1024 x 768", width * 0.5f, height * 0.6f);
 				width = 1024;
 				height = 768;
-				font_scale = 0.8;
-				speed_scale = 1.6;
+				font_scale = 0.8f;
+				speed_scale = 1.6f;
 				CP_System_SetWindowSize(width, height);
 				break;
 			case 2:
 				// iPhone Size				
-				CP_Font_DrawText("320 x 480", width * 0.5, height * 0.6);
+				CP_Font_DrawText("320 x 480", width * 0.5f, height * 0.6f);
 				width = 320;
 				height = 480;
 				font_scale = 0.5;

@@ -30,18 +30,18 @@ void Credits_Init()
     rectHeight = height / 1.3f;
 
     team.y = height / 5.3f;
-    kitkat.y = height * 0.25;
-    zy.y = height * 0.3;
-    shaq.y = height * 0.35;
-    ck.y = height * 0.4;
-    ben.y = height * 0.45;
+    kitkat.y = height * 0.25f;
+    zy.y = height * 0.3f;
+    shaq.y = height * 0.35f;
+    ck.y = height * 0.4f;
+    ben.y = height * 0.45f;
 
     instructors.y = height / 1.9f;
-    dx.y = height * 0.57;
-    gerald.y = height * 0.62;
+    dx.y = height * 0.57f;
+    gerald.y = height * 0.62f;
 
     pres.y = height / 1.4f;
-    claude.y = height * 0.76;
+    claude.y = height * 0.76f;
 }
 
 void Credits_Update()
@@ -78,7 +78,7 @@ void Credits_Update()
     CP_Font_DrawText("Gerald Yeo", rectCenterX, gerald.y);
 
     CP_Font_DrawText("Claude Comair", rectCenterX, claude.y);
-
+    
     if (CP_Input_KeyTriggered(KEY_ESCAPE)) {
         CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
     }

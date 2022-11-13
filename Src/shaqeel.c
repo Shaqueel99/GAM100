@@ -15,7 +15,7 @@ int iscirclecollided(float current_positionx, float current_positiony, float val
     float distance = (float)sqrt(finaldistance);
     
     if (finaldistance < (radius * 100.0) && isgood == 0) {
-        return 1;  
+        return 1;
     }
     else if (finaldistance < (radius * 100.0) && isgood == 1) {
         eatsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinoeattrim1.wav"); 

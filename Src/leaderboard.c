@@ -27,14 +27,14 @@ void Leaderboard_Init(void)
 	red = CP_Color_Create(255, 0, 0, 255);
 
 
-	windows_width = width;
-	windows_height = height;
+	windows_width = (float)width;
+	windows_height = (float)height;
 	if (leaderboard == NULL) {
-		return 1;
+		//return 1; void function cannot return value
 	}
 
 
-	CP_System_SetWindowSize(windows_width, windows_height);
+	CP_System_SetWindowSize((int)windows_width, (int)windows_height);
 
 	while (fgets(input, 256, leaderboard) != NULL) {
 		
@@ -44,7 +44,7 @@ void Leaderboard_Init(void)
 	if (fgets(input, 256, leaderboard) == NULL) {
 	
 		fclose(leaderboard);
-		return 1;
+		//return 1; void function shouldnt return value
 	}
 	
 	int temp=0;
@@ -58,13 +58,13 @@ void Leaderboard_Update(void)
 		if (*p_score[s] != 0) {
 			if (sort_leaderboard(*p_score[s], *p_score[s + 1], s) == s) {
 				int  tempscore = *p_score[s];
-				char *tempname[4];  
-				
+				char* tempname[4];
+
 				strcpy_s(tempname, 4, p_name[s]);
-			    strcpy_s(p_name[s],4,p_name[s + 1]);
+				strcpy_s(p_name[s], 4, p_name[s + 1]);
 				*p_score[s] = *p_score[s + 1];
 				*p_score[s + 1] = tempscore;
-				strcpy_s(p_name[s + 1],4, tempname);
+				strcpy_s(p_name[s + 1], 4, tempname);
 			}
 		}
 	}

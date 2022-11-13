@@ -1,6 +1,7 @@
 #include "../Inc/game.h"
 #include "cprocessing.h"
 #include <stdlib.h>
+#include <stdio.h> //for use of sprintf_s
 #include "utils.h"
 char playername[3];
 int i = 0;
@@ -14,9 +15,9 @@ void Death_Screen_Init()
     deathsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinodeath.wav");
     CP_Sound_PlayAdvanced(deathsound, 0.7f, 1.0f, FALSE, CP_SOUND_GROUP_2);
     submitscore = 1;
-    windows_length = width;
-    windows_height = height;
-    CP_System_SetWindowSize(windows_length, windows_height);
+    windows_length = (float)width;
+    windows_height = (float)height;
+    CP_System_SetWindowSize((int)windows_length, (int)windows_height);
     
 }
 
@@ -36,9 +37,9 @@ void Death_Screen_Update()
 
 
 
-    CP_Settings_TextSize(width/10);
+    CP_Settings_TextSize(width/10.0f);
     CP_Font_DrawText("YOU WENT EXTINCT!", CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 3.0f);
-    CP_Settings_TextSize(width/20);
+    CP_Settings_TextSize(width/20.0f);
     CP_Font_DrawText("Press Enter to play again", CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 1.5f);
     if (CP_Input_KeyTriggered(KEY_ENTER)) {
         CP_Engine_SetNextGameStateForced(game_init, game_update, game_exit);
@@ -51,7 +52,7 @@ void Death_Screen_Update()
     sprintf_s(pointbuffer, _countof(pointbuffer), "%d", points);
     CP_Font_DrawText("Points:", CP_System_GetWindowWidth() / 3.2f, CP_System_GetWindowHeight() / 2.0f);
     CP_Font_DrawText(pointbuffer, CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 2.0f);
-    CP_Settings_TextSize(width / 25);
+    CP_Settings_TextSize(width / 25.0f);
     if (i >= 0 && i <= 2) {
         if (nametype(&playername[i]) == 3) { if (i !=2) { ++i; }}
     }
@@ -69,7 +70,7 @@ void Death_Screen_Update()
         // draw a rectangle at the center of the screen, half the size of the screen
         CP_Graphics_DrawRect(CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 1.10f,
             CP_System_GetWindowWidth() / 5.0f, CP_System_GetWindowHeight() / 10.0f);
-        CP_Settings_TextSize(width / 30);
+        CP_Settings_TextSize(width / 30.0f);
         CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
         CP_Font_DrawText("Submit Score", CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 1.10f + 8);
 
@@ -78,7 +79,7 @@ void Death_Screen_Update()
         float mouseposy = CP_Input_GetMouseY();
         float area_center_x = CP_System_GetWindowWidth() / 2.0f;
         float area_width = CP_System_GetWindowWidth() / 10.0f;
-        float area_center_y = CP_System_GetWindowHeight();
+        float area_center_y = (float)CP_System_GetWindowHeight();
         float area_height = CP_System_GetWindowHeight() / 20.0f;
 
         if (CP_Input_MouseTriggered(MOUSE_BUTTON_LEFT))
@@ -98,7 +99,7 @@ void Death_Screen_Update()
         
         // draw a rectangle at the center of the screen, half the size of the screen
     
-        CP_Settings_TextSize(width / 30);
+        CP_Settings_TextSize(width / 30.0f);
         CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
         CP_Font_DrawText("Score Submitted", CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 1.10f + 8);
     }

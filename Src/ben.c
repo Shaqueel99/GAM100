@@ -55,6 +55,7 @@ int isRectCollided(float circle_X, float circle_Y, float radius, float rect_X, f
 	float distanceX = circle_X - temp_X;
 	float distanceY = circle_Y - temp_Y;
 	float distTotal = (distanceX * distanceX) + (distanceY * distanceY);
+	
 
 	float radiusSquared = radius * radius;
 

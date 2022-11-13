@@ -10,6 +10,7 @@ int submitscore;
 static CP_Sound deathsound = NULL;
 void Death_Screen_Init()
 {
+    CP_Sound_StopAll();
     deathsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinodeath.wav");
     CP_Sound_PlayAdvanced(deathsound, 0.7f, 1.0f, FALSE, CP_SOUND_GROUP_2);
     submitscore = 1;

@@ -1,123 +1,17 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (C:\Users\Admin\source\repos\GAM100\.tmp\Debug-x64\) contains files shared from another project (Game of Life.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  game.c
-C:\Users\Admin\source\repos\GAM100\Src\game.c(84,27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(85,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(87,43): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(87,59): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(102,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(103,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(107,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(108,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(112,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(113,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(128,47): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(128,67): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(129,45): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(129,65): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(130,48): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(130,68): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(136,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(137,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(138,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(139,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(143,108): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(144,86): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(145,66): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(146,101): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(147,87): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(148,66): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(196,50): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(196,77): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(197,56): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(197,89): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(230,84): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(245,84): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(246,94): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(247,74): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(248,109): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(249,95): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(251,74): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(300,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(303,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(306,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(309,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(312,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(315,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(318,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(321,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(324,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(327,78): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(371,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(374,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(377,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(381,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(381,94): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(384,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(387,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(390,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(393,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(396,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(399,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(402,78): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(435,130): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(435,144): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(454,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(456,40): warning C4305: 'function': truncation from 'double' to 'float'
-C:\Users\Admin\source\repos\GAM100\Src\game.c(457,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(459,39): warning C4305: 'function': truncation from 'double' to 'float'
-C:\Users\Admin\source\repos\GAM100\Src\game.c(460,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(463,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(466,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(469,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(472,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(475,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(478,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(481,78): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(528,39): warning C4305: 'function': truncation from 'double' to 'float'
-C:\Users\Admin\source\repos\GAM100\Src\game.c(529,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(531,40): warning C4305: 'function': truncation from 'double' to 'float'
-C:\Users\Admin\source\repos\GAM100\Src\game.c(532,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(534,39): warning C4305: 'function': truncation from 'double' to 'float'
-C:\Users\Admin\source\repos\GAM100\Src\game.c(535,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(537,40): warning C4305: 'function': truncation from 'double' to 'float'
-C:\Users\Admin\source\repos\GAM100\Src\game.c(538,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(541,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(543,39): warning C4305: 'function': truncation from 'double' to 'float'
-C:\Users\Admin\source\repos\GAM100\Src\game.c(544,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(547,84): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(550,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(553,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(556,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(614,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(617,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(620,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(622,40): warning C4305: 'function': truncation from 'double' to 'float'
-C:\Users\Admin\source\repos\GAM100\Src\game.c(623,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(625,39): warning C4305: 'function': truncation from 'double' to 'float'
-C:\Users\Admin\source\repos\GAM100\Src\game.c(626,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(629,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(632,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(635,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(638,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(641,79): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(707,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(713,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(716,81): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(719,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(722,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(725,82): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(728,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(735,80): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(766,83): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(772,97): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(778,90): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(785,42): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(786,45): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(876,62): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(876,97): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(876,104): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
-C:\Users\Admin\source\repos\GAM100\Src\game.c(876,112): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
-  GAM100.vcxproj -> C:\Users\Admin\source\repos\GAM100\bin\Debug-x64\GAM100.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (C:\Users\User\Desktop\GAM100\GAM100\.tmp\Debug-x64\) contains files shared from another project (Game of Life.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  deathscreen.c
+C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(17,27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(18,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(19,43): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(19,59): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(39,34): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(41,34): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(51,14): warning C4013: 'sprintf_s' undefined; assuming extern returning int
+C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(54,36): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(72,40): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(101,40): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(81,5): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  GAM100.vcxproj -> C:\Users\User\Desktop\GAM100\GAM100\bin\Debug-x64\GAM100.exe
   1 File(s) copied
   1 File(s) copied
   21 File(s) copied

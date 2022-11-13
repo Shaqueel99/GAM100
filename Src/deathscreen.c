@@ -7,9 +7,12 @@ int i = 0;
 float windows_length, windows_height;
 extern int width, height;
 int submitscore;
+static CP_Sound deathsound = NULL;
 void Death_Screen_Init()
 {
-     submitscore = 1;
+    deathsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinodeath.wav");
+    CP_Sound_PlayAdvanced(deathsound, 0.7f, 1.0f, FALSE, CP_SOUND_GROUP_2);
+    submitscore = 1;
     windows_length = width;
     windows_height = height;
     CP_System_SetWindowSize(windows_length, windows_height);
@@ -103,5 +106,5 @@ void Death_Screen_Update()
 
 void Death_Screen_Exit()
 {
-
+    CP_Sound_Free(&deathsound);
 }

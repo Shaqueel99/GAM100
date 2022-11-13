@@ -40,23 +40,24 @@ int current_pts_increase, invulnerable;
 float pts_increase_timer, invulnerable_timer;
 int multiplier;
 
-int health;
-int health_toggle;
-int just_got_hit;
-float just_got_hit_timer;
+static int health;
+static int health_toggle;
+static int just_got_hit;
+static float just_got_hit_timer;
 
 
 struct obstacles first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, ten;
 struct obstacles eleven, twelve, thirt, fourt, fifte, sixte, sevente, eighte, ninete, twoZero;
 int movingleft = 0, movingright = 0;
-CP_Sound Startsound = NULL;
-CP_Sound shiftsound = NULL;
-CP_Sound runsound = NULL;
+static CP_Sound Startsound = NULL;
+static CP_Sound shiftsound = NULL;
+static CP_Sound runsound = NULL;
+static CP_Sound damagesound = NULL;
 
 void game_init(void)
 
 {
-   
+    damagesound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinodamage.wav");
     shiftsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoShifttrim.wav");
     runsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinorunningtrim.wav");
     CP_Sound_PlayAdvanced(runsound, 0.5f, 0.6f, TRUE, CP_SOUND_GROUP_2);
@@ -854,8 +855,11 @@ void game_update(void)
                 just_got_hit_timer = 0.0f; //resets timer
             }
         }
-        //deducts health when get hit
-        health = (health_toggle == 1) ? health - 1 : health;
+
+        if (health_toggle == 1) {
+            --health;
+            CP_Sound_PlayAdvanced(damagesound, 0.7f, 1.0f, FALSE, CP_SOUND_GROUP_2);
+        }
 
     }
 
@@ -923,4 +927,5 @@ void game_exit(void)
     CP_Sound_Free(&shiftsound);
     CP_Sound_Free(&runsound);
     CP_Sound_Free(&Startsound);
+    CP_Sound_Free(&damagesound);
 }

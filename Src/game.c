@@ -748,7 +748,7 @@ void game_update(void)
 
         //Displaying Points
         CP_Settings_TextSize(20.0f);
-        CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
+        CP_Settings_Fill(black);
         char buffer[16] = { 0 };
         sprintf_s(buffer, _countof(buffer), "%d", points);
         CP_Font_DrawText(buffer, width/10.0f, 20.0f);
@@ -796,7 +796,7 @@ void game_update(void)
         }
 
         //rmb to add just_got_hit to disable obstacle collision 
-        if (just_got_hit == 1) { //system to make player invulnerable during buff
+        if (just_got_hit == 1) { //system to make player invulnerable right after getting hit
             ++health_toggle;
             just_got_hit_timer += currentElapsedTime;
             if (just_got_hit_timer >= 1.0f) {

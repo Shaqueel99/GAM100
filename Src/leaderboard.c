@@ -29,23 +29,19 @@ void Leaderboard_Init(void)
 
 	windows_width = (float)width;
 	windows_height = (float)height;
-	if (leaderboard == NULL) {
-		//return 1; void function cannot return value
+	if (leaderboard != NULL) {
+		while (fgets(input, 256, leaderboard) != NULL) {
+
+			read_leaderboard(p_name[j], p_score[j], j);
+			j++;
+		}
+		fclose(leaderboard);
 	}
 
 
 	CP_System_SetWindowSize((int)windows_width, (int)windows_height);
 
-	while (fgets(input, 256, leaderboard) != NULL) {
-		
-		read_leaderboard(p_name[j], p_score[j], j);
-		j++;
-	}
-	if (fgets(input, 256, leaderboard) == NULL) {
-	
-		fclose(leaderboard);
-		//return 1; void function shouldnt return value
-	}
+
 	
 	int temp=0;
 	
@@ -58,7 +54,7 @@ void Leaderboard_Update(void)
 		if (*p_score[s] != 0) {
 			if (sort_leaderboard(*p_score[s], *p_score[s + 1], s) == s) {
 				int  tempscore = *p_score[s];
-				char* tempname[4];
+				char tempname[4];
 
 				strcpy_s(tempname, 4, p_name[s]);
 				strcpy_s(p_name[s], 4, p_name[s + 1]);

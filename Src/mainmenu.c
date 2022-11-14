@@ -136,13 +136,13 @@ void Main_Menu_Update()
 		//UI Drawing (Box)
 		if (selection == 0) {
 			CP_Graphics_ClearBackground(green);
-			CP_Image_Draw(image_mainmenu, width / 2, height / 2, width, height, 255);
+			CP_Image_Draw(image_mainmenu, (float)width / 2.0f, height / 2.0f, (float)width, (float)height, 255);
 			CP_Settings_Fill(White);
-			CP_Image_Draw(image_start, width * 0.4, height * 0.55, rectangle_width, rectangle_height, 255);
-			CP_Image_Draw(image_credit , width * 0.4, height * 0.7, rectangle_width, rectangle_height, 255);
-			CP_Image_Draw(image_quit, width * 0.5, height * 0.85, rectangle_width, rectangle_height, 255);
-			CP_Image_Draw(image_option, width * 0.775, height * 0.7, square_side, rectangle_height, 255); // Small issue with the scaling 
-			CP_Image_Draw(image_leaderboard, width * 0.775, height * 0.55, square_side, rectangle_height, 255); // Small issue with the scaling 
+			CP_Image_Draw(image_start, (float)width * 0.4f, (float)height * 0.55f, rectangle_width, rectangle_height, 255);
+			CP_Image_Draw(image_credit , (float)width * 0.4f, (float)height * 0.7f, rectangle_width, rectangle_height, 255);
+			CP_Image_Draw(image_quit, (float)width * 0.5f, (float)height * 0.85f, rectangle_width, rectangle_height, 255);
+			CP_Image_Draw(image_option, (float)width * 0.775f, (float)height * 0.7f, square_side, rectangle_height, 255); // Small issue with the scaling 
+			CP_Image_Draw(image_leaderboard, (float)width * 0.775f, (float)height * 0.55f, square_side, rectangle_height, 255); // Small issue with the scaling 
 
 			/* ~~~~~~~~~~~~~~~~~~~~~~~ For debugging ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			CP_Graphics_DrawRect(start_x, start_y, rectangle_width, rectangle_height);

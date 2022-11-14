@@ -1,5 +1,0 @@
-﻿game.obj : error LNK2019: unresolved external symbol __imp__CP_Color_Create referenced in function _game_update
-game.obj : error LNK2019: unresolved external symbol __imp__CP_Graphics_ClearBackground referenced in function _game_update
-main.obj : error LNK2019: unresolved external symbol __imp__CP_Engine_Run referenced in function _main
-main.obj : error LNK2019: unresolved external symbol __imp__CP_Engine_SetNextGameState referenced in function _main
-C:\Users\Admin\source\repos\Game of Life\Debug\Game of Life.exe : fatal error LNK1120: 4 unresolved externals

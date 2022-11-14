@@ -1,5 +1,6 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (C:\Users\user\Documents\GitHub\GAM100\.tmp\Debug-x64\) contains files shared from another project (Game of Life.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  GAM100.vcxproj -> C:\Users\user\Documents\GitHub\GAM100\bin\Debug-x64\GAM100.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (C:\Users\User\Desktop\GAM100\GAM100\.tmp\Debug-x64\) contains files shared from another project (Game of Life.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  game.c
+  GAM100.vcxproj -> C:\Users\User\Desktop\GAM100\GAM100\bin\Debug-x64\GAM100.exe
   1 File(s) copied
   1 File(s) copied
   28 File(s) copied

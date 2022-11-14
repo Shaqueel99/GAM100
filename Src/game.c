@@ -188,6 +188,7 @@ position_right_y = windows_height / 4.0 * 3.0;
 void game_update(void)
 {
     if (gIsPaused == FALSE) {
+        CP_Sound_ResumeAll();
         //Displaying background
         CP_Color myColor = CP_Color_Create(211, 211, 211, 255);
         CP_Settings_Fill(myColor);
@@ -820,7 +821,7 @@ void game_update(void)
         float retainedTime = retainTime(&totalElapsedTime);
 
         //CP_Graphics_ClearBackground(green);
-
+        CP_Sound_PauseAll();
         CP_Settings_Fill(pause);
         CP_Graphics_DrawRect(CP_System_GetWindowWidth() * 0.5f, CP_System_GetWindowHeight() * 0.5f, (float)width, (float)height);
 

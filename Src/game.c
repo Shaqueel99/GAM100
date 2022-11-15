@@ -59,6 +59,7 @@ static CP_Image image_background, image_boulder, image_dino, image_heart, image_
 void game_init(void)
 
 {
+    playervisible = 255;
     damagesound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinodamage.wav");
     shiftsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoShifttrim.wav");
     runsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinorunningtrim.wav");

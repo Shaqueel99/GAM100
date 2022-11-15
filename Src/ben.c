@@ -61,7 +61,7 @@ int isRectCollided(float circle_X, float circle_Y, float radius, float rect_X, f
 
 	if (distTotal <= radiusSquared) {
 		CP_Sound_PlayAdvanced(deathsoundrect, 0.7f, 0.7f, FALSE, CP_SOUND_GROUP_2);
-		CP_Engine_SetNextGameStateForced(Death_Screen_Init, Death_Screen_Update, Death_Screen_Exit);
+		
 		return 1;
 	}
 	else {

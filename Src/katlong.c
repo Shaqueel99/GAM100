@@ -49,7 +49,7 @@ int write_leaderboard(char name[], char score) {//name and score is input from m
 
 
 int sort_leaderboard(int scorek,int scorem,int pos) {
-	int temp = 0;
+	
 	if (scorek < scorem) {
 		return pos;
 	}

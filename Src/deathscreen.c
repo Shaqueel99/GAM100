@@ -3,7 +3,9 @@
 #include <stdlib.h>
 #include <stdio.h> //for use of sprintf_s
 #include "utils.h"
+#include "leaderboard.h"
 char playername[3];
+char score;
 int i = 0;
 float windows_length, windows_height;
 extern int width, height;

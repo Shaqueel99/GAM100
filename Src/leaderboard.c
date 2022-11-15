@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "mainmenu.h"
 
 CP_Color black, blue, purple, green, red;
 
@@ -43,13 +44,13 @@ void Leaderboard_Init(void)
 
 
 	
-	int temp=0;
+	
 	
 }
 
 void Leaderboard_Update(void)
 {
-	int temp = 0;
+	
 	for (int s = 0; s < sizeof(p_score) / sizeof(p_score[0]); s++) {
 		if (*p_score[s] != 0) {
 			if (sort_leaderboard(*p_score[s], *p_score[s + 1], s) == s) {
@@ -92,8 +93,8 @@ void Leaderboard_Update(void)
 			CP_Font_DrawText(buffer, windows_width / 2.0f + windows_width / 16.0f, windows_height / 8.0f * (2.0f + s));
 		}
 	}
-	if (CP_Input_KeyTriggered(KEY_L)) {
-		CP_Engine_SetNextGameStateForced(game_init, game_update, game_exit);
+	if (CP_Input_KeyTriggered(KEY_ESCAPE)) {
+		CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
 	}
 }
 

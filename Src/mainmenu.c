@@ -3,6 +3,7 @@
 #include "cprocessing.h"
 #include "credits.h"
 #include <stdlib.h>
+#include "leaderboard.h"
 
 // Global Variable
 // Default window_size settings (640 x 960)
@@ -160,7 +161,7 @@ void Main_Menu_Update()
 
 		// Leaderboard
 		if (selection == 2) {
-			CP_Graphics_DrawRect(width * 0.2f, height * 0.4f, width * 0.6f, height * 0.5f);
+			CP_Engine_SetNextGameState(Leaderboard_Init, Leaderboard_Update, Leaderboard_Exit);
 		}
 
 		// Credit

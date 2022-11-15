@@ -236,9 +236,9 @@ void game_update(void)
 
 
 
-        if (CP_Input_KeyTriggered(KEY_L)) {
-            CP_Engine_SetNextGameState(Leaderboard_Init, Leaderboard_Update, Leaderboard_Exit);
-        }
+       // if (CP_Input_KeyTriggered(KEY_L)) {
+         //   CP_Engine_SetNextGameState(Leaderboard_Init, Leaderboard_Update, Leaderboard_Exit);
+        //}
 
 
 

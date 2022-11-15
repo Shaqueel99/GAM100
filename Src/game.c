@@ -236,11 +236,6 @@ void game_update(void)
 
 
 
-       // if (CP_Input_KeyTriggered(KEY_L)) {
-         //   CP_Engine_SetNextGameState(Leaderboard_Init, Leaderboard_Update, Leaderboard_Exit);
-        //}
-
-
 
         //Displaying player
         
@@ -255,8 +250,8 @@ void game_update(void)
 
 
 
-        if (totalElapsedTime > 20.0) {
-            totalElapsedTime = 0.0;
+        if (totalElapsedTime > 20.0f) {
+            totalElapsedTime = 0.0f;
             ++difficulty;
 
             //resets all parameters
@@ -981,4 +976,12 @@ void game_exit(void)
     CP_Sound_Free(&runsound);
     CP_Sound_Free(&Startsound);
     CP_Sound_Free(&damagesound);
+    CP_Image_Free(image_background);
+    CP_Image_Free(image_boulder);
+    CP_Image_Free(image_dino);
+    CP_Image_Free(image_heart);
+    CP_Image_Free(image_invul);
+    CP_Image_Free(image_meat);
+    CP_Image_Free(image_double_meat);
+    CP_Image_Free(image_log);
 }

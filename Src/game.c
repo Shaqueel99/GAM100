@@ -55,6 +55,7 @@ static CP_Sound damagesound = NULL;
 int playervisible = 255;
 // Assets (Image)
 static CP_Image image_background, image_boulder, image_dino, image_heart, image_invul, image_meat, image_double_meat, image_log;
+static CP_Image image_pause_background, image_resume, image_restart, image_mainmenu;
 
 void game_init(void)
 
@@ -98,6 +99,10 @@ void game_init(void)
     image_meat = CP_Image_Load("Assets/game_ui/game_meat.png");
     image_double_meat = CP_Image_Load("Assets/game_ui/game_double_meat.png");
     image_log = CP_Image_Load("Assets/game_ui/game_log.png");
+    image_pause_background = CP_Image_Load("Assets/mainmenu_button/option_background.png");
+    image_resume = CP_Image_Load("Assets/game_ui/pause_resume_button.png");
+    image_restart = CP_Image_Load("Assets/game_ui/pause_restart_button.png");
+    image_mainmenu = CP_Image_Load("Assets/game_ui/pause_mainmenu_button.png");
 
     /* We start unpaused */
     gIsPaused = FALSE;
@@ -241,7 +246,7 @@ void game_update(void)
         
         //CP_Graphics_DrawCircle(current_position.x, current_position.y, radius * 2.0f);
         //CP_Graphics_DrawTriangleAdvanced(current_position.x, current_position.y - radius, current_position.x - radius / 2.0f, current_position.y, current_position.x + radius / 2.0f, current_position.y, 0.0f);
-        CP_Image_Draw(image_dino, current_position.x, current_position.y, width * 0.06f, height * 0.05f, playervisible);
+        CP_Image_DrawAdvanced(image_dino, current_position.x, current_position.y, width * 0.06f, height * 0.05f, playervisible, 270);
 
         //Spawing Boulders
         currentElapsedTime = CP_System_GetDt();
@@ -915,26 +920,31 @@ void game_update(void)
         CP_Sound_PauseAll();
         CP_Settings_Fill(pause);
         CP_Graphics_DrawRect(CP_System_GetWindowWidth() * 0.5f, CP_System_GetWindowHeight() * 0.5f, (float)width, (float)height);
+        CP_Image_Draw(image_pause_background, (float)width / 2.0f, (float)height / 2.0f, (float)width, (float)height, 255);
 
         // set the rectangle drawing mode to CENTER
         CP_Settings_RectMode(CP_POSITION_CENTER);
         CP_Settings_Fill(blue);
         // draw a rectangle at the center of the screen, half the size of the screen
-        CP_Settings_TextSize(60.0f);
-        CP_Graphics_DrawRect(resumeX, resumeY, resumeWidth, resumeHeight); // Resume Button
-        CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_CENTER, CP_TEXT_ALIGN_V_MIDDLE);
-        CP_Settings_Fill(white);
-        CP_Font_DrawText("Resume", resumeX, resumeY);
+        
+        //CP_Settings_TextSize(60.0f);
+        //CP_Graphics_DrawRect(resumeX, resumeY, resumeWidth, resumeHeight); // Resume Button
+        //CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_CENTER, CP_TEXT_ALIGN_V_MIDDLE);
+        //CP_Settings_Fill(white);
+        //CP_Font_DrawText("Resume", resumeX, resumeY);
+        CP_Image_Draw(image_resume, resumeX, resumeY, resumeWidth, resumeHeight, 255);
 
-        CP_Settings_Fill(blue);
-        CP_Graphics_DrawRect(restartX, restartY, restartWidth, restartHeight); //Restart Button
-        CP_Settings_Fill(white);
-        CP_Font_DrawText("Restart", restartX, restartY);
+        //CP_Settings_Fill(blue);
+        //CP_Graphics_DrawRect(restartX, restartY, restartWidth, restartHeight); //Restart Button
+        //CP_Settings_Fill(white);
+        //CP_Font_DrawText("Restart", restartX, restartY);
+        CP_Image_Draw(image_restart, restartX, restartY, restartWidth, restartHeight, 255);
 
-        CP_Settings_Fill(blue);
-        CP_Graphics_DrawRect(b2mmX, b2mmY, b2mmWidth, b2mmHeight);
-        CP_Settings_Fill(white);
-        CP_Font_DrawText("Main Menu", b2mmX, b2mmY);
+        //CP_Settings_Fill(blue);
+        //CP_Graphics_DrawRect(b2mmX, b2mmY, b2mmWidth, b2mmHeight);
+        //CP_Settings_Fill(white);
+        //CP_Font_DrawText("Main Menu", b2mmX, b2mmY);
+        CP_Image_Draw(image_mainmenu, b2mmX, b2mmY, b2mmWidth, b2mmHeight, 255);
 
         if (CP_Input_MouseTriggered(MOUSE_BUTTON_LEFT)) {
             if (areaClick(resumeX, resumeY, resumeWidth, resumeHeight, CP_Input_GetMouseX(), CP_Input_GetMouseY())) {
@@ -976,12 +986,12 @@ void game_exit(void)
     CP_Sound_Free(&runsound);
     CP_Sound_Free(&Startsound);
     CP_Sound_Free(&damagesound);
-    CP_Image_Free(image_background);
-    CP_Image_Free(image_boulder);
-    CP_Image_Free(image_dino);
-    CP_Image_Free(image_heart);
-    CP_Image_Free(image_invul);
-    CP_Image_Free(image_meat);
-    CP_Image_Free(image_double_meat);
-    CP_Image_Free(image_log);
+    CP_Image_Free(&image_background);
+    CP_Image_Free(&image_boulder);
+    CP_Image_Free(&image_dino);
+    CP_Image_Free(&image_heart);
+    CP_Image_Free(&image_invul);
+    CP_Image_Free(&image_meat);
+    CP_Image_Free(&image_double_meat);
+    CP_Image_Free(&image_log);
 }

@@ -1,5 +1,4 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (C:\Users\Admin\source\repos\GAM100\.tmp\Release-x64\) contains files shared from another project (Car Select Game.vcxproj, CProject.vcxproj, Game of Life.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  ben.c
+﻿  ben.c
   credits.c
   katlong.c
   deathscreen.c
@@ -7,19 +6,18 @@
   leaderboard.c
   main.c
   mainmenu.c
-C:\Users\Admin\source\repos\GAM100\Src\mainmenu.c(28,12): warning C4142: 'font_scale': benign redefinition of type
-C:\Users\Admin\source\repos\GAM100\Src\mainmenu.c(11): message : see declaration of 'font_scale'
-C:\Users\Admin\source\repos\GAM100\Src\mainmenu.c(29,13): warning C4142: 'speed_scale': benign redefinition of type
-C:\Users\Admin\source\repos\GAM100\Src\mainmenu.c(12): message : see declaration of 'speed_scale'
+C:\Users\user\Documents\GitHub\GAM100\Src\mainmenu.c(93,1): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   shaqeel.c
+  tutorial.c
   zhiyu.c
   Generating code
-  Previous IPDB not found, fall back to full compilation.
-C:\Users\Admin\source\repos\GAM100\Src\katlong.c(61): warning C4715: 'sort_leaderboard': not all control paths return a value
-C:\Users\Admin\source\repos\GAM100\Src\katlong.c(46): warning C4716: 'write_leaderboard': must return a value
-  All 35 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+C:\Users\user\Documents\GitHub\GAM100\Src\katlong.c(56): warning C4715: 'sort_leaderboard': not all control paths return a value
+C:\Users\user\Documents\GitHub\GAM100\Src\katlong.c(45): warning C4716: 'write_leaderboard': must return a value
+  37 of 39 functions (94.9%) were compiled, the rest were copied from previous compilation.
+    4 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  GAM100.vcxproj -> C:\Users\Admin\source\repos\GAM100\bin\Release-x64\GAM100.exe
+  GAM100.vcxproj -> C:\Users\user\Documents\GitHub\GAM100\bin\Release-x64\GAM100.exe
   1 File(s) copied
   1 File(s) copied
-  28 File(s) copied
+  46 File(s) copied

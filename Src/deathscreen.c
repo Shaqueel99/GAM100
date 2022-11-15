@@ -38,9 +38,9 @@ void Death_Screen_Update()
 
 
     CP_Settings_TextSize(width/10.0f);
-    CP_Font_DrawText("YOU WENT EXTINCT!", CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 3.0f);
+    CP_Font_DrawText("YOU WENT EXTINCT!", CP_System_GetWindowWidth() / 8.0f, CP_System_GetWindowHeight() / 3.0f);
     CP_Settings_TextSize(width/20.0f);
-    CP_Font_DrawText("Press Enter to play again", CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 1.5f);
+    CP_Font_DrawText("Press Enter to play again", CP_System_GetWindowWidth() / 4.0f, CP_System_GetWindowHeight() / 1.5f);
     if (CP_Input_KeyTriggered(KEY_ENTER)) {
         CP_Engine_SetNextGameStateForced(game_init, game_update, game_exit);
         score = '0'; points = 0;
@@ -50,7 +50,7 @@ void Death_Screen_Update()
     char namebuffer[16] = { 0 };
     char pointbuffer[16] = { 0 };
     sprintf_s(pointbuffer, _countof(pointbuffer), "%d", points);
-    CP_Font_DrawText("Points:", CP_System_GetWindowWidth() / 3.2f, CP_System_GetWindowHeight() / 2.0f);
+    CP_Font_DrawText("Points:", CP_System_GetWindowWidth() / 4.0f, CP_System_GetWindowHeight() / 2.0f);
     CP_Font_DrawText(pointbuffer, CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 2.0f);
     CP_Settings_TextSize(width / 25.0f);
     if (i >= 0 && i <= 2) {
@@ -72,7 +72,7 @@ void Death_Screen_Update()
             CP_System_GetWindowWidth() / 5.0f, CP_System_GetWindowHeight() / 10.0f);
         CP_Settings_TextSize(width / 30.0f);
         CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
-        CP_Font_DrawText("Submit Score", CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 1.10f + 8);
+        CP_Font_DrawText("Submit Score", CP_System_GetWindowWidth() / 2.42f, CP_System_GetWindowHeight() / 1.10f + 8);
 
 
         float mouseposx = CP_Input_GetMouseX();
@@ -101,7 +101,7 @@ void Death_Screen_Update()
     
         CP_Settings_TextSize(width / 30.0f);
         CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
-        CP_Font_DrawText("Score Submitted", CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 1.10f + 8);
+        CP_Font_DrawText("Score Submitted", CP_System_GetWindowWidth() / 2.42f, CP_System_GetWindowHeight() / 1.10f + 8);
     }
     }
 

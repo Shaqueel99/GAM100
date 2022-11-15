@@ -3,7 +3,6 @@
 #include "cprocessing.h"
 #include "mainmenu.h"
 #include "deathscreen.h"
-#include "leaderboard.h"
 #include "utils.h"
 #include <math.h>
 #include "game.h"
@@ -53,7 +52,7 @@ static CP_Sound Startsound = NULL;
 static CP_Sound shiftsound = NULL;
 static CP_Sound runsound = NULL;
 static CP_Sound damagesound = NULL;
-
+int playervisible = 255;
 // Assets (Image)
 static CP_Image image_background, image_boulder, image_dino, image_heart, image_invul, image_meat, image_double_meat, image_log;
 
@@ -246,7 +245,7 @@ void game_update(void)
         
         //CP_Graphics_DrawCircle(current_position.x, current_position.y, radius * 2.0f);
         //CP_Graphics_DrawTriangleAdvanced(current_position.x, current_position.y - radius, current_position.x - radius / 2.0f, current_position.y, current_position.x + radius / 2.0f, current_position.y, 0.0f);
-        CP_Image_Draw(image_dino, current_position.x, current_position.y, width * 0.06f, height * 0.05f, 255);
+        CP_Image_Draw(image_dino, current_position.x, current_position.y, width * 0.06f, height * 0.05f, playervisible);
 
         //Spawing Boulders
         currentElapsedTime = CP_System_GetDt();
@@ -830,12 +829,12 @@ void game_update(void)
         }
 
         //Displaying Points
-        CP_Settings_TextSize(20.0f);
+        CP_Settings_TextSize(width * 0.05f);
         CP_Settings_Fill(black);
         char buffer[16] = { 0 };
         sprintf_s(buffer, _countof(buffer), "%d", points);
-        CP_Font_DrawText(buffer, width/10.0f, 20.0f);
-        CP_Font_DrawText("Points:", width/25.0f,20.0f);
+        CP_Font_DrawText("Points:", width* 0.07f, height * 0.05f);
+        CP_Font_DrawText(buffer, width * 0.21f, height * 0.05f);
 
         CP_Settings_Fill(red);
         CP_Settings_RectMode(CP_POSITION_CENTER);
@@ -881,7 +880,9 @@ void game_update(void)
 
         if (invulnerable == 1) { //system to make player invulnerable during buff
             invulnerable_timer += currentElapsedTime;
+            playervisible = 100;
             if (invulnerable_timer >= 5.0f) {
+                playervisible = 255;
                 invulnerable = 0; //turns off invulnerable flag
                 invulnerable_timer = 0.0f; //resets timer
             }
@@ -891,7 +892,9 @@ void game_update(void)
         if (just_got_hit == 1) { //system to make player invulnerable right after getting hit
             ++health_toggle;
             just_got_hit_timer += currentElapsedTime;
+            playervisible = 100;
             if (just_got_hit_timer >= 1.0f) {
+                playervisible = 255;
                 health_toggle = 0; 
                 just_got_hit = 0; //turns off invulnerable flag
                 just_got_hit_timer = 0.0f; //resets timer

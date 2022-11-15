@@ -159,7 +159,7 @@ void Main_Menu_Update()
 
 		// Leaderboard
 		if (selection == 2) {
-			CP_Engine_SetNextGameState(Leaderboard_Init, Leaderboard_Update, Leaderboard_Exit);
+			CP_Engine_SetNextGameStateForced(Leaderboard_Init, Leaderboard_Update, Leaderboard_Exit);
 		}
 
 		// Credit

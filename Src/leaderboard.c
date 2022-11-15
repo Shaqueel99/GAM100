@@ -95,7 +95,7 @@ void Leaderboard_Update(void)
 	for (int s = 0; s < sizeof(p_score) / sizeof(p_score[0]); s++) {
 		char scorebuffer[16] = { 0};
 		sprintf_s(scorebuffer, _countof(scorebuffer), "%d", *p_score[s]);
-		if (*p_score[s] != 0) {
+		if (*p_score[s] >= 0 && strcmp(p_name[s],"")) {
 			CP_Font_DrawText(scorebuffer, windows_width / 2.0f + windows_width / 16.0f, windows_height / 8.0f * (2.0f + s));
 		}
 	}

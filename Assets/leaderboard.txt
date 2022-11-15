@@ -1,6 +1,5 @@
 Name: SHQ  Score: 3
 Name: KIT  Score: 3
 Name: SHQ  Score: 3
-Name: TET  Score: 3
-Name: GGF  Score: 3Name: SHQ  Score: 3
-Name: YEE  Score: 3
+Name: YEE  Score: 10
+Name: YEE  Score: 0

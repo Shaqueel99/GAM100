@@ -17,6 +17,7 @@ struct obstacles {
 };
 void read_leaderboard(char name[], int score[],int order);
 int sort_leaderboard(int scorek,int scorem,int pos);
+int rect_click(float area_center_x, float area_center_y, float area_width, float area_height, float click_x, float click_y);
 //for katlong
 
 

@@ -33,7 +33,6 @@ int read_leaderboard(char name[], int score[], int order) {
 int write_leaderboard(char name[], char score) {//name and score is input from main game, when user finish game and is writing new result in
 	FILE* leaderboard;
 	char new_stats[256];
-	 //placeholder for score
 	sprintf_s(new_stats, 256, "Name: %s  Score: %c\n", name, score);
 	fopen_s(&leaderboard, "..\\..\\Assets\\leaderboard.txt", "a"); //append option always writes data at the end of file, file created if dont exist
 	if (leaderboard != NULL) {
@@ -42,7 +41,7 @@ int write_leaderboard(char name[], char score) {//name and score is input from m
 	
 	}
 	
-	//ToDO: ensure name can be accepted as a string
+	
 }
 
 
@@ -54,14 +53,24 @@ int sort_leaderboard(int scorek,int scorem,int pos) {
 		return pos;
 	}
 
-		
-	
-			
-
 }
 
 
+int rect_click(float area_center_x, float area_center_y, float area_width, float area_height, float click_x, float click_y)
+{
+	float rectx1corner = area_center_x - area_width;
+	float rectx2corner = area_center_x + area_width;
+	float playrecty1corner = area_center_y / 1.10f - area_height;
+	float playrecty2corner = area_center_y / 1.10f + area_height;
 
+
+	if (click_x > (area_center_x - area_width / 2) && click_x < (area_center_x + area_width / 2) && click_y >(area_center_y - area_height / 2) && click_y < (area_center_y + area_height / 2)) {
+		return 1; //mouse has to be clicked, and mouse arrow position must be in rectangle
+	}
+	else {
+		return 0;
+	}
+}
 
 
 

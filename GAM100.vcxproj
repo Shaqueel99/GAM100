@@ -28,12 +28,14 @@
     <ClCompile Include="Src\main.c" />
     <ClCompile Include="Src\mainmenu.c" />
     <ClCompile Include="Src\shaqeel.c" />
+    <ClCompile Include="Src\tutorial.c" />
     <ClCompile Include="Src\zhiyu.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\credits.h" />
     <ClInclude Include="Inc\deathscreen.h" />
     <ClInclude Include="Inc\game.h" />
+    <ClInclude Include="Inc\tutorial.h" />
     <ClInclude Include="Inc\leaderboard.h" />
     <ClInclude Include="Inc\mainmenu.h" />
     <ClInclude Include="Inc\utils.h" />

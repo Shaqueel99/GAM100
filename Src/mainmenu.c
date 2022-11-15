@@ -1,9 +1,10 @@
+#include <stdlib.h>
+#include "cprocessing.h"
 #include "../Inc/game.h"
 #include "utils.h"
-#include "cprocessing.h"
 #include "credits.h"
-#include <stdlib.h>
 #include "leaderboard.h"
+#include "tutorial.h"
 
 // Global Variable
 // Default window_size settings (640 x 960)
@@ -22,6 +23,7 @@ static float totalElapsedTime;
 static float fade_in_time;
 static float toggle_time;
 static int display_option;
+static int tutorial_toggle = 1;
 
 // Initial Value that will change
 // Change main to 0 to display startups
@@ -154,7 +156,13 @@ void Main_Menu_Update()
 
 		// Begin Game
 		if (selection == 1) {
-			CP_Engine_SetNextGameStateForced(game_init, game_update, game_exit);
+			if (tutorial_toggle == 1) {
+				tutorial_toggle = 0;
+				CP_Engine_SetNextGameStateForced(Tutorial_Screen_Init, Tutorial_Screen_Update, Tutorial_Screen_Exit);
+			}
+			else if (tutorial_toggle == 0) {
+				CP_Engine_SetNextGameStateForced(game_init, game_update, game_exit);
+			}
 		}
 
 		// Leaderboard

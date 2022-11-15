@@ -950,6 +950,10 @@ void game_update(void)
                 CP_Engine_SetNextGameStateForced(game_init, game_update, game_update);
             }
             if (areaClick(b2mmX, b2mmY, b2mmWidth, b2mmHeight, CP_Input_GetMouseX(), CP_Input_GetMouseY())) {
+                gIsPaused = FALSE;
+                totalElapsedTime = 0;
+                currentElapsedTime = 0;
+                difficulty = 0;
                 CP_Sound_StopAll();
                 CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
                

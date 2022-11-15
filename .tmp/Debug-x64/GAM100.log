@@ -1,5 +1,18 @@
-﻿  game.c
-  GAM100.vcxproj -> C:\Users\user\Documents\GitHub\GAM100\bin\Debug-x64\GAM100.exe
+﻿  ben.c
+  credits.c
+  deathscreen.c
+  game.c
+  katlong.c
+  leaderboard.c
+  main.c
+  mainmenu.c
+  shaqeel.c
+  zhiyu.c
+  Generating Code...
+C:\Users\Admin\source\repos\GAM100\Src\katlong.c(61): warning C4715: 'sort_leaderboard': not all control paths return a value
+C:\Users\Admin\source\repos\GAM100\Src\katlong.c(46): warning C4716: 'write_leaderboard': must return a value
+  LINK : C:\Users\Admin\source\repos\GAM100\bin\Debug-x64\GAM100.exe not found or not built by the last incremental link; performing full link
+  GAM100.vcxproj -> C:\Users\Admin\source\repos\GAM100\bin\Debug-x64\GAM100.exe
   1 File(s) copied
   1 File(s) copied
   36 File(s) copied

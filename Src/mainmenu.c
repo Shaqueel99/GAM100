@@ -9,8 +9,8 @@
 // Default window_size settings (640 x 960)
 int width = 640;
 int height = 960;
-float font_scale;
-float speed_scale;
+float font_scale = 1.0f;
+float speed_scale = 1.0f;
  
 // Private Variable
 static int selection;
@@ -26,8 +26,6 @@ static int display_option;
 // Initial Value that will change
 // Change main to 0 to display startups
 main = 1;
-font_scale = 1.0;
-speed_scale = 1.0;
 return_true_false = 0;
 display_option = 0;
 CP_Sound mySound = NULL;

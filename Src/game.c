@@ -54,6 +54,9 @@ static CP_Sound shiftsound = NULL;
 static CP_Sound runsound = NULL;
 static CP_Sound damagesound = NULL;
 
+// Assets (Image)
+static CP_Image image_background, image_boulder, image_dino, image_heart, image_invul, image_meat, image_double_meat, image_log;
+
 void game_init(void)
 
 {
@@ -86,6 +89,15 @@ void game_init(void)
     radius = 20.0f;
     CP_System_SetWindowSize((int)windows_length, (int)windows_height);
 
+    // Assets (Image declaration)
+    image_background = CP_Image_Load("Assets/game_ui/game_background.png");
+    image_boulder = CP_Image_Load("Assets/game_ui/game_boulder.png");
+    image_dino = CP_Image_Load("Assets/game_ui/game_dino.png");
+    image_heart = CP_Image_Load("Assets/game_ui/game_heart.png");
+    image_invul = CP_Image_Load("Assets/game_ui/game_invul.png");
+    image_meat = CP_Image_Load("Assets/game_ui/game_meat.png");
+    image_double_meat = CP_Image_Load("Assets/game_ui/game_double_meat.png");
+    image_log = CP_Image_Load("Assets/game_ui/game_log.png");
 
     /* We start unpaused */
     gIsPaused = FALSE;
@@ -197,6 +209,9 @@ void game_update(void)
         CP_Graphics_DrawLine(windows_length / 3.0f, 0.0f, windows_length / 3.0f, windows_height);
         CP_Graphics_DrawLine(windows_length / 3.0f * 2.0f, 0.0f, windows_length / 3.0f * 2.0f, windows_height);
 
+        //Drawing (UI)
+        CP_Image_Draw(image_background, (float)width / 2.0f, height / 2.0f, (float)width, (float)height, 255);
+
         //Movement
         
         if (movingleft == TRUE) {
@@ -228,8 +243,10 @@ void game_update(void)
 
 
         //Displaying player
-        CP_Graphics_DrawCircle(current_position.x, current_position.y, radius * 2.0f);
-        CP_Graphics_DrawTriangleAdvanced(current_position.x, current_position.y - radius, current_position.x - radius / 2.0f, current_position.y, current_position.x + radius / 2.0f, current_position.y, 0.0f);
+        
+        //CP_Graphics_DrawCircle(current_position.x, current_position.y, radius * 2.0f);
+        //CP_Graphics_DrawTriangleAdvanced(current_position.x, current_position.y - radius, current_position.x - radius / 2.0f, current_position.y, current_position.x + radius / 2.0f, current_position.y, 0.0f);
+        CP_Image_Draw(image_dino, current_position.x, current_position.y, width * 0.06f, height * 0.05f, 255);
 
         //Spawing Boulders
         currentElapsedTime = CP_System_GetDt();
@@ -369,38 +386,49 @@ void game_update(void)
                 first.value_y += (first.boulder_spawn == TRUE) ? 8.0f : 0.0f;
                 */
                 spawnCheck(&first, 2.0f, totalElapsedTime, 8.0f);
-                CP_Graphics_DrawCircle(value_x_left, first.value_y, radius * 4.0f);
+                // CP_Graphics_DrawCircle(value_x_left, first.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_left, first.value_y, width * 0.13f, height * 0.09f, 255);
 
                 spawnCheck(&second, 3.0f, totalElapsedTime, 10.0f);
-                CP_Graphics_DrawCircle(value_x_right, second.value_y, radius * 4.0f);
+                //CP_Graphics_DrawCircle(value_x_right, second.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_right, second.value_y, width * 0.13f, height * 0.09f, 255);
 
                 spawnCheck(&third, 4.0f, totalElapsedTime, 15.0f);
-                CP_Graphics_DrawCircle(value_x_mid, third.value_y, radius * 4.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, third.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_mid, third.value_y, width * 0.13f, height * 0.09f, 255);
 
                 CP_Settings_RectMode(CP_POSITION_CENTER);
                 spawnRect(&rect1, 5.5f, totalElapsedTime, 15.0f);
-                CP_Graphics_DrawRect(value_x_right, rect1.value_y, width * 0.15f, height * 0.6f);
+                // CP_Graphics_DrawRect(value_x_right, rect1.value_y, width * 0.15f, height * 0.6f);
+                CP_Image_Draw(image_log, value_x_right, rect1.value_y, width * 0.15f, height * 0.6f, 255);
 
                 spawnCheck(&fourth, 5.5f, totalElapsedTime, 13.0f);
-                CP_Graphics_DrawCircle(value_x_left, fourth.value_y, radius * 4.0f);
+               // CP_Graphics_DrawCircle(value_x_left, fourth.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_left, fourth.value_y, width * 0.13f, height * 0.09f, 255);
 
                 spawnCheck(&fifth, 8.5f, totalElapsedTime, 13.0f);
-                CP_Graphics_DrawCircle(value_x_right, fifth.value_y, radius * 4.0f);
+                //CP_Graphics_DrawCircle(value_x_right, fifth.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_right, fifth.value_y, width * 0.13f, height * 0.09f, 255);
 
                 spawnCheck(&sixth, 10.0f, totalElapsedTime, 10.0f);
-                CP_Graphics_DrawCircle(value_x_mid, sixth.value_y, radius * 4.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, sixth.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_mid, sixth.value_y, width * 0.13f, height * 0.09f, 255);
 
                 spawnCheck(&seventh, 12.0f, totalElapsedTime, 7.0f);
-                CP_Graphics_DrawCircle(value_x_mid, seventh.value_y, radius * 4.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, seventh.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_mid, seventh.value_y, width * 0.13f, height * 0.09f, 255);
 
                 spawnCheck(&eighth, 14.0f, totalElapsedTime, 11.0f);
-                CP_Graphics_DrawCircle(value_x_left, eighth.value_y, radius * 4.0f);
+                //CP_Graphics_DrawCircle(value_x_left, eighth.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_left, eighth.value_y, width * 0.13f, height * 0.09f, 255);
 
                 spawnCheck(&ninth, 15.0f, totalElapsedTime, 9.0f);
-                CP_Graphics_DrawCircle(value_x_right, ninth.value_y, radius * 4.0f);
+                //CP_Graphics_DrawCircle(value_x_right, ninth.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_right, ninth.value_y, width * 0.13f, height * 0.09f, 255);
 
                 spawnCheck(&ten, 16.0f, totalElapsedTime, 12.0f);
-                CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_mid, ten.value_y, width * 0.13f, height * 0.09f, 255);
 
                 if (invulnerable == 0 && just_got_hit == 0) {
                     if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
@@ -732,19 +760,28 @@ void game_update(void)
         first.coins = (totalElapsedTime > 1.0 && first.coins != 2) ? first.coins + 1 : first.coins;
         first.coin_spawn = (first.coins == 1) ? TRUE : first.coin_spawn;
         coin_y += (first.coin_spawn == TRUE) ? 9.0f : 0.0f;
-        if (spawn == 1) { CP_Graphics_DrawCircle(value_x_mid, coin_y, radius * 1.0f); }
+        if (spawn == 1) { 
+            // CP_Graphics_DrawCircle(value_x_mid, coin_y, radius * 1.0f); 
+            CP_Image_Draw(image_meat, value_x_mid, coin_y, width * 0.07f, height * 0.04f, 255);
+        }
 
         CP_Settings_Fill(blue);
         first.pts_boost = (totalElapsedTime > 0.5 && first.pts_boost != 2) ? first.pts_boost + 1 : first.pts_boost;
         first.pts_boost_spawn = (first.pts_boost == 1) ? TRUE : first.pts_boost_spawn;
         pts_boost_y += (first.pts_boost_spawn == TRUE) ? 9.0f : 0.0f;
-        if (spawn_ptsboost == 1) { CP_Graphics_DrawCircle(value_x_mid, pts_boost_y, radius * 1.0f); }
+        if (spawn_ptsboost == 1) { 
+            // CP_Graphics_DrawCircle(value_x_mid, pts_boost_y, radius * 1.0f); 
+            CP_Image_Draw(image_double_meat, value_x_mid, pts_boost_y, width * 0.07f, height * 0.04f, 255);
+        }
 
         CP_Settings_Fill(red);
         first.invul = (totalElapsedTime > 0.0 && first.invul != 2) ? first.invul + 1 : first.invul;
         first.invul_spawn = (first.invul == 1) ? TRUE : first.invul_spawn;
         invul_y += (first.invul_spawn == TRUE) ? 9.0f : 0.0f;
-        if (spawn_invul == 1) { CP_Graphics_DrawCircle(value_x_mid, invul_y, radius * 1.0f); }
+        if (spawn_invul == 1) { 
+            // CP_Graphics_DrawCircle(value_x_mid, invul_y, radius * 1.0f);
+            CP_Image_Draw(image_invul, value_x_mid, invul_y, width * 0.05f, height * 0.04f, 255);
+        }
 
         //Displaying Points
         CP_Settings_TextSize(20.0f);
@@ -756,9 +793,18 @@ void game_update(void)
 
         CP_Settings_Fill(red);
         CP_Settings_RectMode(CP_POSITION_CENTER);
-        if (health >= 3) { CP_Graphics_DrawRect(windows_length / 20 * 15, windows_height / 20, windows_length / 20, windows_height / 40); }
-        if (health >= 2) { CP_Graphics_DrawRect(windows_length / 20 * 17, windows_height / 20, windows_length / 20, windows_height / 40); }
-        if (health >= 1) { CP_Graphics_DrawRect(windows_length / 20 * 19, windows_height / 20, windows_length / 20, windows_height / 40); }
+        if (health >= 3) {
+            //CP_Graphics_DrawRect(windows_length / 20 * 15, windows_height / 20, windows_length / 20, windows_height / 40);
+            CP_Image_Draw(image_heart, width * 0.75f, height * 0.05f, width * 0.07f, height * 0.04f, 255);
+        }
+        if (health >= 2) { 
+            //CP_Graphics_DrawRect(windows_length / 20 * 17, windows_height / 20, windows_length / 20, windows_height / 40); 
+            CP_Image_Draw(image_heart, width * 0.85f, height * 0.05f, width * 0.07f, height * 0.04f, 255);
+        }
+        if (health >= 1) { 
+            //CP_Graphics_DrawRect(windows_length / 20 * 19, windows_height / 20, windows_length / 20, windows_height / 40); 
+            CP_Image_Draw(image_heart, width * 0.95f, height * 0.05f, width * 0.07f, height * 0.04f, 255);
+        }
         if (health <= 0) {
             //dies
             totalElapsedTime = 0;
@@ -800,7 +846,7 @@ void game_update(void)
             ++health_toggle;
             just_got_hit_timer += currentElapsedTime;
             if (just_got_hit_timer >= 1.0f) {
-                health_toggle = 0;
+                health_toggle = 0; 
                 just_got_hit = 0; //turns off invulnerable flag
                 just_got_hit_timer = 0.0f; //resets timer
             }

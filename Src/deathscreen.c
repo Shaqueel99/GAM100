@@ -88,8 +88,10 @@ void Death_Screen_Update()
         {
 
             if (IsAreaClicked(area_center_x, area_center_y, area_width, area_height, mouseposx, mouseposy) == 1) {
-
+               
+                if (playername[0] == '\0') { playername[0] = '?'; }//fallback incase player doesnt input name
                 write_leaderboard(playername, score);
+                
                 submitscore = 0;
 
             };

@@ -38,6 +38,7 @@ void Leaderboard_Init(void)
 		while (fgets(input, 256, leaderboard) != NULL) {
 
 			read_leaderboard(p_name[j], p_score[j], j);
+			
 			j++;
 		}
 		fclose(leaderboard);
@@ -58,7 +59,7 @@ void Leaderboard_Update(void)
 	 totalsortTime += sortTime;
 	 if (totalsortTime < 0.5f) {
 		 for (int s = 0; s < sizeof(p_score) / sizeof(p_score[0]); s++) {
-			 if (*p_score[s] != 0) {
+			 if (*p_score[s] >=0) {
 				 if (sort_leaderboard(*p_score[s], *p_score[s + 1], s) == s) {
 					 int  tempscore = *p_score[s];
 					 char tempname[4];

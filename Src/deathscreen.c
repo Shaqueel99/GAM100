@@ -9,13 +9,14 @@ char score;
 int i = 0;
 float windows_length, windows_height;
 extern int width, height;
+extern float volume;
 int submitscore;
 static CP_Sound deathsound = NULL;
 void Death_Screen_Init()
 {
     CP_Sound_StopAll();
     deathsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinodeath.wav");
-    CP_Sound_PlayAdvanced(deathsound, 0.7f, 1.0f, FALSE, CP_SOUND_GROUP_2);
+    CP_Sound_PlayAdvanced(deathsound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
     submitscore = 1;
     windows_length = (float)width;
     windows_height = (float)height;

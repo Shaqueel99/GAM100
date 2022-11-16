@@ -10,7 +10,7 @@
 #define FALSE 0
 
 extern int width, height;
-extern float speed_scale;
+extern float speed_scale, volume;
 int gIsPaused; 
 int spawn, spawn_ptsboost, spawn_invul;
 int c;
@@ -64,15 +64,15 @@ void game_init(void)
     damagesound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinodamage.wav");
     shiftsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoShifttrim.wav");
     runsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinorunningtrim.wav");
-    CP_Sound_PlayAdvanced(runsound, 0.5f, 0.6f, TRUE, CP_SOUND_GROUP_2);
+    CP_Sound_PlayAdvanced(runsound, volume, 0.6f, TRUE, CP_SOUND_GROUP_2);
     int startsnd=CP_Random_RangeInt(1, 2);
     if (startsnd == 1) {
         Startsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoStart2.wav");
-        CP_Sound_PlayAdvanced(Startsound, 0.7f, 1.0f, FALSE, CP_SOUND_GROUP_2);
+        CP_Sound_PlayAdvanced(Startsound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
     }
     else {
         Startsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoStart1.wav");
-        CP_Sound_PlayAdvanced(Startsound, 0.7f, 1.0f, FALSE, CP_SOUND_GROUP_2);
+        CP_Sound_PlayAdvanced(Startsound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
     }
 
     health = 3;
@@ -248,11 +248,11 @@ void game_update(void)
             if (current_position.x >= right_position.x || current_position.x == mid_position.x) { movingright = FALSE; }
         }
         if (CP_Input_KeyTriggered(KEY_A)) {
-            CP_Sound_PlayAdvanced(shiftsound, 0.5f, 1.0f, FALSE, CP_SOUND_GROUP_2);
+            CP_Sound_PlayAdvanced(shiftsound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
             if (current_position.x == mid_position.x || current_position.x >= right_position.x) { current_position.x -= (25 * speed_scale);   movingleft = TRUE;  movingright = FALSE; }
         }
         else if (CP_Input_KeyTriggered(KEY_D)) {
-            CP_Sound_PlayAdvanced(shiftsound, 0.5f, 1.0f, FALSE, CP_SOUND_GROUP_2);
+            CP_Sound_PlayAdvanced(shiftsound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
             if (current_position.x == mid_position.x || current_position.x <= left_position.x) { current_position.x += (25 * speed_scale);   movingright = TRUE;  movingleft = FALSE; }
 
 
@@ -1726,7 +1726,7 @@ void game_update(void)
 
         if (health_toggle == 1) {
             --health;
-            CP_Sound_PlayAdvanced(damagesound, 0.7f, 1.0f, FALSE, CP_SOUND_GROUP_2);
+            CP_Sound_PlayAdvanced(damagesound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
         }
     }
 

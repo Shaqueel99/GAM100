@@ -12,6 +12,7 @@ int width = 640;
 int height = 960;
 float font_scale = 1.0f;
 float speed_scale = 1.0f;
+float volume = 0.5f;
  
 // Private Variable
 // Initial Value that will change
@@ -214,9 +215,33 @@ void Main_Menu_Update()
 			CP_Image_Draw(image_arrow_left, (float)width * 0.2f, (float)height * 0.6f, displayDraw_side_x, displayDraw_y, 255);
 			CP_Image_Draw(image_arrow_right, (float)width * 0.8f, (float)height * 0.6f, displayDraw_side_x, displayDraw_y, 255);
 			
+			//sound option start
+			CP_Settings_RectMode(CP_POSITION_CENTER);
+			CP_Image_Draw(image_display_button, width * 0.5f, height * 0.20f, (float)width * 0.8f, (float)height * 0.1f, 255);
+			CP_Graphics_DrawRect(width * 0.2f, height * 0.3f, width * 0.1f, height * 0.1f);
+			CP_Graphics_DrawRect(width * 0.8f, height * 0.3f, width * 0.1f, height * 0.1f);
+
+			if (rect_click(width * 0.2f, height * 0.3f, width * 0.1f, height * 0.1f,
+				CP_Input_GetMouseX(), CP_Input_GetMouseY()) == 1 && CP_Input_MouseTriggered(MOUSE_BUTTON_LEFT)
+				&& volume > 0.0f)
+			{//lower volume
+				volume -= 0.1f;
+			}
+
+			if (rect_click(width * 0.8f, height * 0.3f, width * 0.1f, height * 0.1f,
+				CP_Input_GetMouseX(), CP_Input_GetMouseY()) == 1 && CP_Input_MouseTriggered(MOUSE_BUTTON_LEFT)
+				&& volume < 1.0f)
+			{//increase volume
+				volume += 0.1f;
+			}
+			//sound option end
+
+
+
+
 			// Click to swap resolution
 			if (CP_Input_MouseClicked()) {
-				CP_Sound_PlayAdvanced(mySound, 1.0f, 1.0f, FALSE, CP_SOUND_GROUP_2);
+				CP_Sound_PlayAdvanced(mySound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
 				return_true_false = optionClicked(displayPOS_left_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y, click_x, click_y);
 				if (return_true_false == 1 && display_option == 0) display_option = 2;
 				else if (return_true_false == 1 && display_option == 1) display_option = 0;

@@ -4,6 +4,7 @@
 #include "../Inc/deathscreen.h"
 #include <math.h> //for use of sqrt
 CP_Sound eatsound = NULL;
+extern float volume;
 extern health;
 int iscirclecollided(float current_positionx, float current_positiony, float value_x, float value_y,float radius,int isgood) {
     float distancex = current_positionx - value_x;
@@ -19,7 +20,7 @@ int iscirclecollided(float current_positionx, float current_positiony, float val
     }
     else if (finaldistance < (radius * 100.0) && isgood == 1) {
         eatsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinoeattrim1.wav"); 
-        CP_Sound_PlayAdvanced(eatsound, 0.7f, 0.7f, FALSE, CP_SOUND_GROUP_2);
+        CP_Sound_PlayAdvanced(eatsound, volume, 0.7f, FALSE, CP_SOUND_GROUP_2);
         return 2;
     }
     return 0; //to avoid 'not all control paths return value' warning

@@ -11,8 +11,10 @@ struct obstacles {
     int coins;
     int coin_spawn;
     int pts_boost;
+    float pts_boost_y;
     int pts_boost_spawn;
     int invul;
+    float invul_y;
     int invul_spawn;
 };
 void read_leaderboard(char name[], int score[],int order);
@@ -41,6 +43,10 @@ int isRectCollided(float, float, float, float, float, float, float);
 void spawnCheck(struct obstacles*, float, float, float);
 
 void spawnRect(struct rectObstacle*, float, float, float);
+
+void invulSpawn(struct obstacles* invul, float timeCheck, float totalTime, float speed);
+
+void dblPtsSpawn(struct obstacles* dblpts, float timeCheck, float totalTime, float speed);
 //for ben
 
 

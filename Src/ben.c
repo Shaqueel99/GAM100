@@ -8,9 +8,6 @@
 
 extern int height, width;
 
-
-
-CP_Sound deathsoundrect = NULL;
 float retainTime(float* p) {
 	float temp = *p;
 	return temp;
@@ -37,13 +34,7 @@ int areaClick(float area_center_x, float area_center_y, float area_width, float 
 int isRectCollided(float circle_X, float circle_Y, float radius, float rect_X, float rect_Y, float rectWidth, float rectHeight) {
 	float temp_X = circle_X;
 	float temp_Y = circle_Y;
-	int deathsnd = CP_Random_RangeInt(1, 2);
-	if (deathsnd == 1) {
-		deathsoundrect = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinodeath.wav");//kinda sounds like a horse ngl
-	}
-	else {
-		deathsoundrect = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinodamage.wav");
-	}
+
 	// which side of the rect the circle is coming in from
 	if (circle_X < (rect_X-rectWidth/2)) temp_X = rect_X - rectWidth/2; //assigning the temp to the LEFT side of the rectangle
 	else if (circle_X > (rect_X + rectWidth/2)) temp_X = rect_X + rectWidth/2; // assign to RIGHT side
@@ -60,8 +51,6 @@ int isRectCollided(float circle_X, float circle_Y, float radius, float rect_X, f
 	float radiusSquared = radius * radius;
 
 	if (distTotal <= radiusSquared) {
-		CP_Sound_PlayAdvanced(deathsoundrect, 0.7f, 0.7f, FALSE, CP_SOUND_GROUP_2);
-		
 		return 1;
 	}
 	else {
@@ -79,4 +68,16 @@ void spawnRect(struct rectObstacle* rect, float timeCheck, float totalTime, floa
 	rect->rect = (totalTime > timeCheck && rect->rect != 2) ? rect->rect + 1 : rect->rect;
 	rect->rectSpawn = (rect->rect == 1) ? TRUE : rect->rectSpawn;
 	rect->value_y += (rect->rectSpawn == TRUE) ? speed : 0.0f;
+}
+
+void invulSpawn(struct obstacles* invul, float timeCheck, float totalTime, float speed) {
+	invul->invul = (totalTime > timeCheck && invul->invul != 2) ? invul->invul+ 1 : invul->invul;
+	invul->invul_spawn = (invul->invul == 1) ? TRUE : invul->invul_spawn;
+	invul->invul_y += (invul->invul_spawn == TRUE) ? speed : 0.0f;
+}
+
+void dblPtsSpawn(struct obstacles* dblpts, float timeCheck, float totalTime, float speed) {
+	dblpts->pts_boost = (totalTime > timeCheck && dblpts->pts_boost != 2) ? dblpts->pts_boost + 1 : dblpts->pts_boost;
+	dblpts->pts_boost_spawn = (dblpts->pts_boost == 1) ? TRUE : dblpts->pts_boost_spawn;
+	dblpts->pts_boost_y += (dblpts->pts_boost_spawn == TRUE) ? speed : 0.0f;
 }

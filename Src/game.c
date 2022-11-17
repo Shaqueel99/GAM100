@@ -375,29 +375,65 @@ void game_update(void)
                 //CP_Graphics_DrawCircle(value_x_right, fourth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_right, fourth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&fifth, 7.0f, totalElapsedTime, 6.0f);
+                spawnCheck(&fifth, 7.5f, totalElapsedTime, 6.0f);
                 //CP_Graphics_DrawCircle(value_x_right, fifth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_right, fifth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&sixth, 8.0f, totalElapsedTime, 10.0f);
+                spawnCheck(&sixth, 8.0f, totalElapsedTime, 11.3f);
                 //CP_Graphics_DrawCircle(value_x_left, sixth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_left, sixth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&seventh, 10.0f, totalElapsedTime, 11.0f);
+                spawnCheck(&seventh, 8.5f, totalElapsedTime, 9.4f);
                 //CP_Graphics_DrawCircle(value_x_mid, seventh.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_mid, seventh.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&eighth, 13.0f, totalElapsedTime, 11.0f);
+                spawnCheck(&eighth, 8.5f, totalElapsedTime, 9.4f);
                 //CP_Graphics_DrawCircle(value_x_left, eighth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_left, eighth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&ninth, 15.0f, totalElapsedTime, 14.0f);
+                spawnCheck(&ninth, 10.0f, totalElapsedTime, 6.0f);
                 //CP_Graphics_DrawCircle(value_x_right, ninth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_right, ninth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&ten, 16.0f, totalElapsedTime, 12.0f);
-                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                spawnCheck(&ten, 11.0, totalElapsedTime, 10.8);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0);
                 CP_Image_Draw(image_boulder, value_x_mid, ten.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&eleven, 12.0, totalElapsedTime, 13.0);
+                //CP_Graphics_DrawCircle(value_x_left, eleven.value_y, radius * 4.0);
+                CP_Image_Draw(image_boulder, value_x_left, eleven.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&twelve, 13.0, totalElapsedTime, 14.0);
+                //CP_Graphics_DrawCircle(value_x_left, twelve.value_y, radius * 4.0);
+                CP_Image_Draw(image_boulder, value_x_left, twelve.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&thirt, 13.5, totalElapsedTime, 15.0);
+                //CP_Graphics_DrawCircle(value_x_mid, thirt.value_y, radius * 4.0);
+                CP_Image_Draw(image_boulder, value_x_mid, thirt.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&fourt, 15.0, totalElapsedTime, 13.5);
+                //CP_Graphics_DrawCircle(value_x_mid, fourt.value_y, radius * 4.0);
+                CP_Image_Draw(image_boulder, value_x_mid, fourt.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&fifte, 15.0, totalElapsedTime, 13.5);
+                //CP_Graphics_DrawCircle(value_x_right, fifte.value_y, radius * 4.0);
+                CP_Image_Draw(image_boulder, value_x_right, fifte.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&sixte, 15.7, totalElapsedTime, 13.5);
+                //CP_Graphics_DrawCircle(value_x_left, sixte.value_y, radius * 4.0);
+                CP_Image_Draw(image_boulder, value_x_left, sixte.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&sevente, 15.7, totalElapsedTime, 13.5);
+                //CP_Graphics_DrawCircle(value_x_mid, sevente.value_y, radius * 4.0);
+                CP_Image_Draw(image_boulder, value_x_mid, sevente.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&eighte, 16.4, totalElapsedTime, 13.5);
+                //CP_Graphics_DrawCircle(value_x_right, eighte.value_y, radius * 4.0);
+                CP_Image_Draw(image_boulder, value_x_right, eighte.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&ninete, 16.4, totalElapsedTime, 13.5);
+                //CP_Graphics_DrawCircle(value_x_mid, ninete.value_y, radius * 4.0);
+                CP_Image_Draw(image_boulder, value_x_mid, ninete.value_y, width * 0.13f, height * 0.09f, 255);
 
                 // ADD IF INVULNERABLE == 1
                 if (invulnerable == 0 && just_got_hit == 0) {
@@ -431,16 +467,43 @@ void game_update(void)
                     if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
                     };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, eleven.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, twelve.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, thirt.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, fourt.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifte.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, sixte.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sevente.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, eighte.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ninete.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
                 }
 
             }
             else if (selection == -1) {
                 //launch second easy segment instead
-                /*
+                
                 first.boulder = (totalElapsedTime > 2.0 && first.boulder != 2) ? first.boulder + 1 : first.boulder;
                 first.boulder_spawn = (first.boulder == 1) ? TRUE : first.boulder_spawn;
                 first.value_y += (first.boulder_spawn == TRUE) ? 8.0f : 0.0f;
-                */
+                
                 spawnCheck(&first, 2.0f, totalElapsedTime, 8.0f);
                 // CP_Graphics_DrawCircle(value_x_left, first.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_left, first.value_y, width * 0.13f, height * 0.09f, 255);
@@ -458,33 +521,69 @@ void game_update(void)
                 // CP_Graphics_DrawRect(value_x_right, rect1.value_y, width * 0.15f, height * 0.6f);
                 CP_Image_Draw(image_log, value_x_right, rect1.value_y, width * 0.15f, height * 0.6f, 255);
 
-                spawnCheck(&fourth, 5.5f, totalElapsedTime, 13.0f);
-                // CP_Graphics_DrawCircle(value_x_left, fourth.value_y, radius * 4.0f);
+                spawnCheck(&fourth, 4.5f, totalElapsedTime, 13.0f);
+               // CP_Graphics_DrawCircle(value_x_left, fourth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_left, fourth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&fifth, 8.5f, totalElapsedTime, 13.0f);
+                spawnCheck(&fifth, 8.0f, totalElapsedTime, 13.0f);
                 //CP_Graphics_DrawCircle(value_x_right, fifth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_right, fifth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&sixth, 10.0f, totalElapsedTime, 10.0f);
+                spawnCheck(&sixth, 6.5f, totalElapsedTime, 11.0f);
                 //CP_Graphics_DrawCircle(value_x_mid, sixth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_mid, sixth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&seventh, 12.0f, totalElapsedTime, 7.0f);
+                spawnCheck(&seventh, 6.5f, totalElapsedTime, 11.0f);
                 //CP_Graphics_DrawCircle(value_x_mid, seventh.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_mid, seventh.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&eighth, 14.0f, totalElapsedTime, 11.0f);
+                spawnCheck(&eighth, 8.0f, totalElapsedTime, 11.0f);
                 //CP_Graphics_DrawCircle(value_x_left, eighth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_left, eighth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&ninth, 15.0f, totalElapsedTime, 9.0f);
+                spawnCheck(&ninth, 9.0f, totalElapsedTime, 13.0f);
                 //CP_Graphics_DrawCircle(value_x_right, ninth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_right, ninth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&ten, 16.0f, totalElapsedTime, 12.0f);
+                spawnCheck(&ten, 10.0f, totalElapsedTime, 13.0f);
                 //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_mid, ten.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&eleven, 11.0f, totalElapsedTime, 13.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_mid, eleven.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&twelve , 12.0f, totalElapsedTime, 16.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_right, twelve.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&thirt, 11.5f, totalElapsedTime, 15.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_left, thirt.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&fourt, 11.9f, totalElapsedTime, 15.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_mid, fourt.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&fifte, 12.7f, totalElapsedTime, 15.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_right, fifte.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&sixte, 13.0, totalElapsedTime, 15.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_mid, sixte.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&sevente, 15.0f, totalElapsedTime, 19.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_right, sevente.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&eighte, 15.5f, totalElapsedTime, 15.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_mid, eighte.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&ninete, 15.8f, totalElapsedTime, 15.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_left, ninete.value_y, width * 0.13f, height * 0.09f, 255);
 
                 if (invulnerable == 0 && just_got_hit == 0) {
                     if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
@@ -521,6 +620,33 @@ void game_update(void)
                         health = 0; 
                         //RECTANGLE INSTANT DEATH
                     }
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, eleven.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, twelve.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, thirt.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, fourt.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, fifte.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixte.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, sevente.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, eighte.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, ninete.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
                 }
             }
             //random range is set to 0 to 1
@@ -536,45 +662,81 @@ void game_update(void)
         selection = (checker == 1 && selection == 0) ? selection - 1 : selection;
             if (selection == 1) {
                 //launch first medium segment
-                spawnCheck(&first, 2.5f, totalElapsedTime, 8.5f);
+                spawnCheck(&first, 1.3f, totalElapsedTime, 8.3f);
                 //CP_Graphics_DrawCircle(value_x_left, first.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_left, first.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&second, 3.3f, totalElapsedTime, 9.0f);
+                spawnCheck(&second, 1.3f, totalElapsedTime, 8.3f);
                 //CP_Graphics_DrawCircle(value_x_right, second.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_right, second.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&third, 3.8f, totalElapsedTime, 9.0f);
+                spawnCheck(&third, 2.5f, totalElapsedTime, 19.0f);
                 //CP_Graphics_DrawCircle(value_x_mid, third.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_mid, third.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&fourth, 6.0f, totalElapsedTime, 10.0f);
+                spawnCheck(&fourth, 3.5f, totalElapsedTime, 14.0f);
                 //CP_Graphics_DrawCircle(value_x_right, fourth.value_y, radius * 4.0f);
-                CP_Image_Draw(image_boulder, value_x_right, fourth.value_y, width * 0.13f, height * 0.09f, 255);
+                CP_Image_Draw(image_boulder, value_x_left, fourth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&fifth, 8.0f, totalElapsedTime, 11.0f);
+                spawnCheck(&fifth, 3.8f, totalElapsedTime, 14.0f);
                 //CP_Graphics_DrawCircle(value_x_left, fifth.value_y, radius * 4.0f);
-                CP_Image_Draw(image_boulder, value_x_left, fifth.value_y, width * 0.13f, height * 0.09f, 255);
+                CP_Image_Draw(image_boulder, value_x_mid, fifth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&sixth, 8.0f, totalElapsedTime, 11.0f);
+                spawnCheck(&sixth, 4.5f, totalElapsedTime, 14.0f);
                 //CP_Graphics_DrawCircle(value_x_mid, sixth.value_y, radius * 4.0f);
-                CP_Image_Draw(image_boulder, value_x_mid, sixth.value_y, width * 0.13f, height * 0.09f, 255);
+                CP_Image_Draw(image_boulder, value_x_right, sixth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&seventh, 11.0f, totalElapsedTime, 8.0f);
+                spawnCheck(&seventh, 6.0f, totalElapsedTime, 14.0f);
                 //CP_Graphics_DrawCircle(value_x_mid, seventh.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_mid, seventh.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&eighth, 13.0f, totalElapsedTime, 10.0f);
+                spawnCheck(&eighth, 6.8f, totalElapsedTime, 13.5f);
                 //CP_Graphics_DrawCircle(value_x_right, eighth.value_y, radius * 4.0f);
-                CP_Image_Draw(image_boulder, value_x_right, eighth.value_y, width * 0.13f, height * 0.09f, 255);
+                CP_Image_Draw(image_boulder, value_x_mid, eighth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&ninth, 15.0f, totalElapsedTime, 14.0f);
+                spawnCheck(&ninth, 7.6f, totalElapsedTime, 13.5f);
                 //CP_Graphics_DrawCircle(value_x_left, ninth.value_y, radius * 4.0f);
-                CP_Image_Draw(image_boulder, value_x_left, ninth.value_y, width * 0.13f, height * 0.09f, 255);
+                CP_Image_Draw(image_boulder, value_x_mid, ninth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&ten, 16.0f, totalElapsedTime, 12.0f);
+                spawnCheck(&ten, 6.9f, totalElapsedTime, 16.0f);
                 //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
-                CP_Image_Draw(image_boulder, value_x_mid, ten.value_y, width * 0.13f, height * 0.09f, 255);
+                CP_Image_Draw(image_boulder, value_x_left, ten.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&eleven, 7.7f, totalElapsedTime, 16.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_right, eleven.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&twelve, 8.5f, totalElapsedTime, 16.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_left, twelve.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&thirt, 11.0f, totalElapsedTime, 15.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_right, thirt.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&fourt, 12.5f, totalElapsedTime, 19.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_mid, fourt.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&fifte, 13.0f, totalElapsedTime, 19.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_left, fifte.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&sixte, 14.0f, totalElapsedTime, 15.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_mid, sixte.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&sevente, 15.0f, totalElapsedTime, 19.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_left, sevente.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&eighte, 15.5f, totalElapsedTime, 19.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_right, eighte.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&ninete, 16.0f, totalElapsedTime, 19.0f);
+                //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_mid, ninete.value_y, width * 0.13f, height * 0.09f, 255);
 
                 if (invulnerable == 0 && just_got_hit == 0) {
                     if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
@@ -586,70 +748,133 @@ void game_update(void)
                     if (iscirclecollided(current_position.x, current_position.y, value_x_mid, third.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
                     };
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, fourth.value_y, radius, 0) == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, fourth.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
                     };
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, fifth.value_y, radius, 0) == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, fifth.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
                     };
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixth.value_y, radius, 0) == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, sixth.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
                     };
                     if (iscirclecollided(current_position.x, current_position.y, value_x_mid, seventh.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
                     };
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, eighth.value_y, radius, 0) == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, eighth.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
                     };
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, ninth.value_y, radius, 0) == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ninth.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
                     };
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius, 0) == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, ten.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, eleven.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, twelve.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, thirt.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, fourt.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, fifte.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixte.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, sevente.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, eighte.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, eighte.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
                     };
                 }
             }
             else if (selection == -1) {
                 //launch second medium segment instead
-                spawnCheck(&first, 2.8f, totalElapsedTime, 16.0f);
+                spawnCheck(&first, 1.8f, totalElapsedTime, 16.0f);
                 //CP_Graphics_DrawCircle(value_x_left, first.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_left, first.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&second, 3.6f, totalElapsedTime, 14.0f);
+                spawnCheck(&second, 2.6f, totalElapsedTime, 17.0f);
                 //CP_Graphics_DrawCircle(value_x_right, second.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_right, second.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&third, 3.6f, totalElapsedTime, 14.0f);
+                spawnCheck(&third, 2.6f, totalElapsedTime, 17.0f);
                 //CP_Graphics_DrawCircle(value_x_mid, third.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_mid, third.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&fourth, 6.2f, totalElapsedTime, 13.0f);
+                spawnCheck(&fourth, 3.2f, totalElapsedTime, 17.0f);
                 //CP_Graphics_DrawCircle(value_x_right, fourth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_right, fourth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&fifth, 7.0f, totalElapsedTime, 17.0f);
+                spawnCheck(&fifth, 3.8f, totalElapsedTime, 17.0f);
                 //CP_Graphics_DrawCircle(value_x_left, fifth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_left, fifth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&sixth, 7.8f, totalElapsedTime, 14.0f);
+                spawnCheck(&sixth, 4.8f, totalElapsedTime, 15.0f);
                 //CP_Graphics_DrawCircle(value_x_mid, sixth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_mid, sixth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&seventh, 11.0f, totalElapsedTime, 8.0f);
+                spawnCheck(&seventh, 5.0f, totalElapsedTime, 17.0f);
                 //CP_Graphics_DrawCircle(value_x_right, seventh.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_right, seventh.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&eighth, 13.0f, totalElapsedTime, 10.0f);
+                spawnCheck(&eighth, 6.0f, totalElapsedTime, 15.0f);
                 //CP_Graphics_DrawCircle(value_x_left, eighth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_left, eighth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&ninth, 15.0f, totalElapsedTime, 14.0f);
+                spawnCheck(&ninth, 7.0f, totalElapsedTime, 17.0f);
                 //CP_Graphics_DrawCircle(value_x_mid, ninth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_mid, ninth.value_y, width * 0.13f, height * 0.09f, 255);
 
-                spawnCheck(&ten, 16.0f, totalElapsedTime, 12.0f);
+                spawnCheck(&ten, 8.0f, totalElapsedTime, 15.0f);
                 //CP_Graphics_DrawCircle(value_x_right, ten.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_right, ten.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&eleven, 9.5f, totalElapsedTime, 15.0f);
+                //CP_Graphics_DrawCircle(value_x_right, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_mid, eleven.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&twelve, 11.2f, totalElapsedTime, 15.0f);
+                //CP_Graphics_DrawCircle(value_x_right, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_right, twelve.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&thirt, 11.5f, totalElapsedTime, 15.0f);
+                //CP_Graphics_DrawCircle(value_x_right, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_mid, thirt.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&fourt, 13.0f, totalElapsedTime, 19.0f);
+                //CP_Graphics_DrawCircle(value_x_right, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_left, fourt.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&fifte, 14.0f, totalElapsedTime, 19.0f);
+                //CP_Graphics_DrawCircle(value_x_right, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_left, fifte.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&sixte, 14.4f, totalElapsedTime, 19.0f);
+                //CP_Graphics_DrawCircle(value_x_right, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_mid, sixte.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&sevente, 14.8f, totalElapsedTime, 19.0f);
+                //CP_Graphics_DrawCircle(value_x_right, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_right, sevente.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&eighte, 15.2f, totalElapsedTime, 19.0f);
+                //CP_Graphics_DrawCircle(value_x_right, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_mid, eighte.value_y, width * 0.13f, height * 0.09f, 255);
+
+                spawnCheck(&ninete, 15.2f, totalElapsedTime, 19.0f);
+                //CP_Graphics_DrawCircle(value_x_right, ten.value_y, radius * 4.0f);
+                CP_Image_Draw(image_boulder, value_x_left, ninete.value_y, width * 0.13f, height * 0.09f, 255);
 
                 if (invulnerable == 0 && just_got_hit == 0) {
                     if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
@@ -680,6 +905,33 @@ void game_update(void)
                         just_got_hit = 1;
                     };
                     if (iscirclecollided(current_position.x, current_position.y, value_x_right, ten.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, eleven.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, twelve.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, thirt.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, fourt.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, fifte.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixte.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, sevente.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, eighte.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;
+                    };
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, ninete.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
                     };
                 }

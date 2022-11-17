@@ -1059,6 +1059,10 @@ void game_update(void)
                 spawnCheck(&ninete, 16.0f, totalElapsedTime, 20.0f);
                 CP_Graphics_DrawCircle(value_x_left, ninete.value_y, radius * 4.0f);
 
+                if (spawn_ptsboost == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, first.pts_boost_y, radius, 1) == 2) { current_pts_increase = 1; spawn_ptsboost = 0; }
+                };
+
                 if (invulnerable == 0 && just_got_hit == 0) {
 
                     if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.value_y, radius, 0) == 1) {
@@ -1129,9 +1133,6 @@ void game_update(void)
                     };
                     if (isRectCollided(current_position.x, current_position.y, radius, value_x_mid, rect3.value_y, width * 0.15f, height * 0.8f) == 1) {
                         health = 0;
-                    };
-                    if (spawn_ptsboost == 1) {
-                        if (iscirclecollided(current_position.x, current_position.y, value_x_right, first.pts_boost_y, radius, 1) == 2) { current_pts_increase = 1; spawn_ptsboost = 0; }
                     };
                     if (spawn_invul == 1) {
                         if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.invul_y, radius, 1) == 2) { invulnerable = 1; spawn_invul = 0; }
@@ -1375,6 +1376,10 @@ void game_update(void)
                 spawnCheck(&ninete, 16.0f, totalElapsedTime, 20.0f);
                 CP_Graphics_DrawCircle(value_x_left, ninete.value_y, radius * 4.0f);
 
+                if (spawn_ptsboost == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, first.pts_boost_y, radius, 1) == 2) { current_pts_increase = 1; spawn_ptsboost = 0; }
+                };
+
                 if (invulnerable == 0 && just_got_hit == 0) {
 
                     if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.value_y, radius, 0) == 1) {
@@ -1445,9 +1450,6 @@ void game_update(void)
                     };
                     if (isRectCollided(current_position.x, current_position.y, radius, value_x_mid, rect3.value_y, width * 0.15f, height * 0.8f) == 1) {
                         health = 0;
-                    };
-                    if (spawn_ptsboost == 1) {
-                        if (iscirclecollided(current_position.x, current_position.y, value_x_right, first.pts_boost_y, radius, 1) == 2) { current_pts_increase = 1; spawn_ptsboost = 0; }
                     };
                     if (spawn_invul == 1) {
                         if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.invul_y, radius, 1) == 2) { invulnerable = 1; spawn_invul = 0; }

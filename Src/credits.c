@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 CP_Color background, innerBox, white;
+static CP_Image image_background, logo;
 
 
 extern int width, height;
@@ -25,9 +26,9 @@ void Credits_Init()
     white = CP_Color_Create(255, 255, 255, 255);
     
     rectCenterX = width / 2.0f;
-    rectCenterY = height / 2.0f;
-    rectWidth = width / 1.5f;
-    rectHeight = height / 1.3f;
+    rectCenterY = height * 0.46f;
+    rectWidth = width * 0.55f;
+    rectHeight = height * 0.67f;
 
     team.y = height / 5.3f;
     kitkat.y = height * 0.25f;
@@ -51,6 +52,10 @@ void Credits_Update()
     CP_Settings_Fill(myColor);
 
     CP_Graphics_ClearBackground(background);
+    image_background = CP_Image_Load("Assets/Main_Menu.png");
+    logo = CP_Image_Load("Assets/DigiPen_Singapore_WEB_RED.png");
+    CP_Image_Draw(image_background, (float)width / 2.0f, height / 2.0f, (float)width, (float)height, 255);
+    CP_Image_Draw(logo, (float)width * 0.5f, height * 0.88f, (float)width * 0.6f, (float)height * 0.13f, 255);
 
     CP_Settings_RectMode(CP_POSITION_CENTER);
 
@@ -86,5 +91,5 @@ void Credits_Update()
 
 void Credits_Exit()
 {
-    
+    CP_Image_Free(image_background);
 }

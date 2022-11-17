@@ -1,4 +1,4 @@
-Name: SHQ  Score: 3
-Name: KIT  Score: 3
-Name: SHE  Score: 1
+Name: SHQ  Score: 0
+Name: KIT  Score: 1
+Name: SHE  Score: 2
 Name: SH  Score: 3

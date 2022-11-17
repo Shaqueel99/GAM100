@@ -53,7 +53,8 @@ int sort_leaderboard(int scorek,int scorem,int pos) {
 	if (scorek < scorem) {
 		return pos;
 	}
-	return 0;
+
+	return -1;
 
 }
 

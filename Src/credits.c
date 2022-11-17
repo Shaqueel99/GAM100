@@ -14,6 +14,7 @@ struct names {
     float y;
 };
 float rectCenterX, rectCenterY, rectWidth, rectHeight;
+float rectTopLeftX, rectTopLeftY;
 struct names kitkat, shaq, ben, zy, ck, dx, gerald, pres, team, instructors, claude;
 
 void Credits_Init()
@@ -22,13 +23,16 @@ void Credits_Init()
 	CP_System_SetWindowSize(width, height);
 
     background = CP_Color_Create(0, 246, 155, 255);
-    innerBox = CP_Color_Create(0, 0, 0, 100);
+    innerBox = CP_Color_Create(0, 0, 0, 155);
     white = CP_Color_Create(255, 255, 255, 255);
     
     rectCenterX = width / 2.0f;
     rectCenterY = height * 0.46f;
     rectWidth = width * 0.55f;
     rectHeight = height * 0.67f;
+
+    rectTopLeftX = rectCenterX - rectWidth / 2;
+    rectTopLeftY = rectCenterY - rectHeight / 2;
 
     team.y = height / 5.3f;
     kitkat.y = height * 0.25f;
@@ -63,11 +67,17 @@ void Credits_Update()
     CP_Settings_Fill(innerBox);
     CP_Graphics_DrawRect(rectCenterX, rectCenterY, rectWidth, rectHeight);
 
+    CP_Settings_TextSize(20.0f);
+    CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_LEFT, CP_TEXT_ALIGN_V_TOP);
+    CP_Settings_Fill(white);
+    CP_Font_DrawText("All content (c) 2021 ", rectTopLeftX * 1.05f, rectTopLeftY);
+    CP_Font_DrawText("DigiPen Institute of Technology Singapore,", rectTopLeftX * 1.05f, rectTopLeftY * 1.15f);
+    CP_Font_DrawText("all rights reserved.", rectTopLeftX * 1.05f, rectTopLeftY * 1.30f);
 
     CP_Settings_TextSize(50.0f);
     CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_CENTER, CP_TEXT_ALIGN_V_MIDDLE);
     CP_Settings_Fill(white);
-    CP_Font_DrawText("Team", rectCenterX, team.y);
+    CP_Font_DrawText("Team", rectCenterX, team.y * 1.08f);
     CP_Font_DrawText("Instructors", rectCenterX, instructors.y);
     CP_Font_DrawText("President", rectCenterX, pres.y);
 
@@ -92,4 +102,5 @@ void Credits_Update()
 void Credits_Exit()
 {
     CP_Image_Free(image_background);
+    CP_Image_Free(logo);
 }

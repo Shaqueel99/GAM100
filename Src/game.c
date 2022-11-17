@@ -404,6 +404,11 @@ void game_update(void)
                 //CP_Graphics_DrawCircle(value_x_left, eleven.value_y, radius * 4.0);
                 CP_Image_Draw(image_boulder, value_x_left, eleven.value_y, width * 0.13f, height * 0.09f, 255);
 
+                dblPtsSpawn(&first, 12.5f, totalElapsedTime, 13.0f);//right side double points powerup here
+                if (spawn_ptsboost == 1) {
+                    CP_Image_Draw(image_double_meat, value_x_left, first.pts_boost_y, width * 0.07f, height * 0.04f, 255);
+                }
+
                 spawnCheck(&twelve, 13.0f, totalElapsedTime, 14.0f);
                 //CP_Graphics_DrawCircle(value_x_left, twelve.value_y, radius * 4.0);
                 CP_Image_Draw(image_boulder, value_x_left, twelve.value_y, width * 0.13f, height * 0.09f, 255);
@@ -435,6 +440,10 @@ void game_update(void)
                 spawnCheck(&ninete, 16.4f, totalElapsedTime, 13.5f);
                 //CP_Graphics_DrawCircle(value_x_mid, ninete.value_y, radius * 4.0);
                 CP_Image_Draw(image_boulder, value_x_mid, ninete.value_y, width * 0.13f, height * 0.09f, 255);
+
+                if (spawn_ptsboost == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.pts_boost_y, radius, 1) == 2) { current_pts_increase = 1; spawn_ptsboost = 0; }
+                };
 
                 // ADD IF INVULNERABLE == 1
                 if (invulnerable == 0 && just_got_hit == 0) {
@@ -501,10 +510,6 @@ void game_update(void)
             else if (selection == -1) {
                 //launch second easy segment instead
                 
-                first.boulder = (totalElapsedTime > 2.0 && first.boulder != 2) ? first.boulder + 1 : first.boulder;
-                first.boulder_spawn = (first.boulder == 1) ? TRUE : first.boulder_spawn;
-                first.value_y += (first.boulder_spawn == TRUE) ? 8.0f : 0.0f;
-                
                 spawnCheck(&first, 2.0f, totalElapsedTime, 8.0f);
                 // CP_Graphics_DrawCircle(value_x_left, first.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_left, first.value_y, width * 0.13f, height * 0.09f, 255);
@@ -546,6 +551,11 @@ void game_update(void)
                 //CP_Graphics_DrawCircle(value_x_right, ninth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_right, ninth.value_y, width * 0.13f, height * 0.09f, 255);
 
+                invulSpawn(&first, 10.5f, totalElapsedTime, 13.0f); //invulnerability
+                if (spawn_invul == 1) {
+                    CP_Image_Draw(image_invul, value_x_mid, first.invul_y, width * 0.05f, height * 0.04f, 255);
+                }
+
                 spawnCheck(&ten, 10.0f, totalElapsedTime, 13.0f);
                 //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_mid, ten.value_y, width * 0.13f, height * 0.09f, 255);
@@ -585,6 +595,10 @@ void game_update(void)
                 spawnCheck(&ninete, 15.8f, totalElapsedTime, 15.0f);
                 //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_left, ninete.value_y, width * 0.13f, height * 0.09f, 255);
+
+                if (spawn_invul == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.invul_y, radius, 1) == 2) { invulnerable = 1; spawn_invul = 0; }
+                };
 
                 if (invulnerable == 0 && just_got_hit == 0) {
                     if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
@@ -683,6 +697,11 @@ void game_update(void)
                 //CP_Graphics_DrawCircle(value_x_left, fifth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_mid, fifth.value_y, width * 0.13f, height * 0.09f, 255);
 
+                invulSpawn(&first, 4.8f, totalElapsedTime, 14.0f); //invulnerability
+                if (spawn_invul == 1) {
+                    CP_Image_Draw(image_invul, value_x_right, first.invul_y, width * 0.05f, height * 0.04f, 255);
+                }
+
                 spawnCheck(&sixth, 4.5f, totalElapsedTime, 14.0f);
                 //CP_Graphics_DrawCircle(value_x_mid, sixth.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_right, sixth.value_y, width * 0.13f, height * 0.09f, 255);
@@ -739,6 +758,10 @@ void game_update(void)
                 //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_mid, ninete.value_y, width * 0.13f, height * 0.09f, 255);
 
+                if (spawn_invul == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, first.invul_y, radius, 1) == 2) { invulnerable = 1; spawn_invul = 0; }
+                };
+
                 if (invulnerable == 0 && just_got_hit == 0) {
                     if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
@@ -794,7 +817,7 @@ void game_update(void)
                     if (iscirclecollided(current_position.x, current_position.y, value_x_right, eighte.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
                     };
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, eighte.value_y, radius, 0) == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ninete.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
                     };
                 }
@@ -2018,7 +2041,7 @@ void game_update(void)
         CP_Graphics_DrawCircle(value_x_right, third.value_y, radius * 4.0);
         */
 
-
+        /*
         first.coins = (totalElapsedTime > 1.0 && first.coins != 2) ? first.coins + 1 : first.coins;
         first.coin_spawn = (first.coins == 1) ? TRUE : first.coin_spawn;
         coin_y += (first.coin_spawn == TRUE) ? 9.0f : 0.0f;
@@ -2026,7 +2049,7 @@ void game_update(void)
             // CP_Graphics_DrawCircle(value_x_mid, coin_y, radius * 1.0f); 
             CP_Image_Draw(image_meat, value_x_mid, coin_y, width * 0.07f, height * 0.04f, 255);
         }
-
+        */
         /*
         CP_Settings_Fill(blue);
         first.pts_boost = (totalElapsedTime > 0.5 && first.pts_boost != 2) ? first.pts_boost + 1 : first.pts_boost;
@@ -2079,6 +2102,7 @@ void game_update(void)
             CP_Engine_SetNextGameStateForced(Death_Screen_Init, Death_Screen_Update, Death_Screen_Exit);
         }
 
+        /*
         if (spawn == 1) {
             if (iscirclecollided(current_position.x, current_position.y, value_x_mid, coin_y, radius,1) == 2) {points += 1 * multiplier; spawn = 0;}
         }
@@ -2087,6 +2111,14 @@ void game_update(void)
         }
         if (spawn_invul == 1) {
             if (iscirclecollided(current_position.x, current_position.y, value_x_mid, invul_y, radius,1) == 2) { invulnerable = 1; spawn_invul = 0; }
+        }
+        */
+
+        if (health != 0 && multiplier == 1) { //the system for points based on times/ per frame
+            points++;
+        }
+        else if (health != 0 && multiplier == 3) {
+            points += 3;
         }
         
         if (current_pts_increase == 1) { //system to increase multiplier during point boost buff

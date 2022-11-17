@@ -2212,6 +2212,7 @@ void game_update(void)
             }
             if (areaClick(b2mmX, b2mmY, b2mmWidth, b2mmHeight, CP_Input_GetMouseX(), CP_Input_GetMouseY())) {
                 gIsPaused = FALSE;
+                points = 0;
                 totalElapsedTime = 0;
                 currentElapsedTime = 0;
                 difficulty = 0;

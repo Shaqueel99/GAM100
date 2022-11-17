@@ -30,10 +30,10 @@ int read_leaderboard(char name[], int score[], int order) {
 	return 0;
 	
 }
-void write_leaderboard(char name[], char score) {//name and score is input from main game, when user finish game and is writing new result in
+void write_leaderboard(char name[], int score) {//name and score is input from main game, when user finish game and is writing new result in
 	FILE* leaderboard;
 	char new_stats[256];
-	sprintf_s(new_stats, 256, "Name: %s  Score: %c\n", name, score);
+	sprintf_s(new_stats, 256, "Name: %s  Score: %d\n", name, score);
 	fopen_s(&leaderboard, "..\\..\\Assets\\leaderboard.txt", "a"); //append option always writes data at the end of file, file created if dont exist
 	if (leaderboard != NULL) {
 		  

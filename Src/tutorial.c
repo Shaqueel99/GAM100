@@ -10,11 +10,14 @@ image_log, image_boulder, image_heart, image_double_meat, image_invul;
 
 void Tutorial_Screen_Init(void)
 {
+	//windows and button size settings
 	CP_System_SetWindowSize(width, height);
 	rectangle_width = (float)width * 0.4f;
 	rectangle_height = (float)height * 0.1f;
 
+	//tutorial text settings
 	CP_Settings_TextSize(width / 20.0f);
+	CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_LEFT, CP_TEXT_ALIGN_V_BASELINE);
 
 	//image load
 	image_option_background = CP_Image_Load("Assets/mainmenu_button/option_background.png");
@@ -41,7 +44,6 @@ void Tutorial_Screen_Update(void)
 	{
 		CP_Engine_SetNextGameStateForced(game_init, game_update, game_exit);
 	}
-
 
 	//actual tutorial below
 	CP_Image_Draw(image_dino, width / 10.0f * 2.0f, height / 10.0f, width * 0.06f, height * 0.05f, 255);

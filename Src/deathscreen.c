@@ -4,6 +4,7 @@
 #include <stdio.h> //for use of sprintf_s
 #include "utils.h"
 #include "leaderboard.h"
+#include "mainmenu.h"
 char playername[3];
 char score;
 int i = 0;
@@ -49,6 +50,10 @@ void Death_Screen_Update()
     if (CP_Input_KeyTriggered(KEY_ENTER)) {
         CP_Engine_SetNextGameStateForced(game_init, game_update, game_exit);
         score = '0'; points = 0;
+    }
+    if (CP_Input_KeyTriggered(KEY_ESCAPE)) {
+        score = '0'; points = 0;
+        CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
     }
     
     CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
@@ -122,7 +127,11 @@ void Death_Screen_Update()
         sprintf_s(namebuffer, _countof(namebuffer), "%c %c %c", playername[0], playername[1], playername[2]);
         CP_Font_DrawText(namebuffer, CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 1.28f);
 
-
+        if (CP_Input_KeyTriggered(KEY_ESCAPE)) {
+            score = '0'; points = 0;
+            CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
+            
+        }
 
 
 

@@ -16,12 +16,13 @@ struct names {
 float rectCenterX, rectCenterY, rectWidth, rectHeight;
 float rectTopLeftX, rectTopLeftY;
 struct names kitkat, shaq, ben, zy, ck, dx, gerald, pres, team, instructors, claude;
-
+CP_Sound creditssound = NULL;
 void Credits_Init()
 {
-    
+    CP_Sound_ResumeAll();
 	CP_System_SetWindowSize(width, height);
-
+    creditssound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinomenu2.wav");
+    CP_Sound_PlayAdvanced(creditssound, 1.0f, 1.0f, FALSE, CP_SOUND_GROUP_2);
     background = CP_Color_Create(0, 246, 155, 255);
     innerBox = CP_Color_Create(0, 0, 0, 155);
     white = CP_Color_Create(255, 255, 255, 255);
@@ -101,6 +102,7 @@ void Credits_Update()
 
 void Credits_Exit()
 {
-    CP_Image_Free(image_background);
-    CP_Image_Free(logo);
+    CP_Sound_Free(&creditssound);
+    CP_Image_Free(&image_background);
+    CP_Image_Free(&logo);
 }

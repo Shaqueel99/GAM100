@@ -248,12 +248,13 @@ void game_update(void)
             if (current_position.x >= right_position.x || current_position.x == mid_position.x) { movingright = FALSE; }
         }
         if (CP_Input_KeyTriggered(KEY_A)) {
-            CP_Sound_PlayAdvanced(shiftsound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
-            if (current_position.x == mid_position.x || current_position.x >= right_position.x) { current_position.x -= (25 * speed_scale);   movingleft = TRUE;  movingright = FALSE; }
+           
+            if (current_position.x == mid_position.x || current_position.x >= right_position.x) { current_position.x -= (25 * speed_scale);   movingleft = TRUE;  movingright = FALSE; CP_Sound_PlayAdvanced(shiftsound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
+            }
         }
         else if (CP_Input_KeyTriggered(KEY_D)) {
-            CP_Sound_PlayAdvanced(shiftsound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
-            if (current_position.x == mid_position.x || current_position.x <= left_position.x) { current_position.x += (25 * speed_scale);   movingright = TRUE;  movingleft = FALSE; }
+            if (current_position.x == mid_position.x || current_position.x <= left_position.x) { current_position.x += (25 * speed_scale);   movingright = TRUE;  movingleft = FALSE;  CP_Sound_PlayAdvanced(shiftsound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
+            }
 
 
         }

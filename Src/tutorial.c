@@ -7,9 +7,11 @@ static float rectangle_width;
 static float rectangle_height;
 static CP_Image image_option_background, image_start, image_dino, image_meat,
 image_log, image_boulder, image_heart, image_double_meat, image_invul;
-
+CP_Sound tutorialsound = NULL;
 void Tutorial_Screen_Init(void)
 {
+	tutorialsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinomenu2.wav");
+	CP_Sound_PlayAdvanced(tutorialsound, 1.0f, 1.0f, FALSE, CP_SOUND_GROUP_2);
 	//windows and button size settings
 	CP_System_SetWindowSize(width, height);
 	rectangle_width = (float)width * 0.4f;
@@ -65,6 +67,7 @@ void Tutorial_Screen_Update(void)
 void Tutorial_Screen_Exit(void)
 {
 	//image free
+	CP_Sound_Free(&tutorialsound);
 	CP_Image_Free(&image_option_background);
 	CP_Image_Free(&image_start);
 	CP_Image_Free(&image_dino);

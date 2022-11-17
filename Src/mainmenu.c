@@ -38,12 +38,13 @@ CP_Sound mySound = NULL;
 
 void Main_Menu_Init()
 {
+	CP_Sound_ResumeAll();
 	mySound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinomenu2.wav");
 	// Initial Value
 	selection = 0;
 	totalElapsedTime = 0.0f;
 	totalDelayedTime = 0.0f;
-	fade_in_time = 2.0f;	
+	fade_in_time = 0.0f;	
 	delay = 1;
 	CP_System_SetWindowSize(width, height);
 }
@@ -127,16 +128,16 @@ void Main_Menu_Update()
 		if (selection == 0 && CP_Input_MouseClicked() && delay == 0) {
 			
 			return_true_false = optionClicked(start_x, start_y, rectangle_width, rectangle_height, click_x, click_y);
-
+			
 			if (return_true_false == 1) selection = 1;
 			return_true_false = optionClicked(leaderboard_x, leaderboard_y, square_side, rectangle_height, click_x, click_y);
-			if (return_true_false == 1) selection = 2, CP_Sound_PlayAdvanced(mySound, 1.0f, 1.0f, FALSE, CP_SOUND_GROUP_2);
+			if (return_true_false == 1) selection = 2; 
 			return_true_false = optionClicked(credit_x, credit_y, rectangle_width, rectangle_height, click_x, click_y);
-			if (return_true_false == 1) { selection = 3;}
+			if (return_true_false == 1) { selection = 3; }
 			
 			return_true_false = optionClicked(option_x, option_y, square_side, rectangle_height, click_x, click_y);
 			
-			if (return_true_false == 1) selection = 4;
+			if (return_true_false == 1) { selection = 4; CP_Sound_PlayAdvanced(mySound, 1.0f, 1.0f, FALSE, CP_SOUND_GROUP_2); }
 			return_true_false = optionClicked(quit_x, quit_y, rectangle_width, rectangle_height, click_x, click_y);
 			if (return_true_false == 1) selection = 5;
 		}

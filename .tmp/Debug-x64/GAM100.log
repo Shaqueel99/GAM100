@@ -1,5 +1,10 @@
-﻿  katlong.c
+﻿  ben.c
   deathscreen.c
+  game.c
+  leaderboard.c
+  mainmenu.c
+  shaqeel.c
+  tutorial.c
   Generating Code...
   GAM100.vcxproj -> C:\Users\User\Desktop\GAM100\GAM100\bin\Debug-x64\GAM100.exe
   1 File(s) copied

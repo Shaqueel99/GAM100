@@ -2,7 +2,7 @@
 
 
 //for katlong
-void write_leaderboard(char name[], char score);
+void write_leaderboard(char name[], int score);
 
 struct obstacles {
     int boulder;

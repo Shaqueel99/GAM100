@@ -2,6 +2,4 @@ Name: SHQ  Score: 0
 Name: KIT  Score: 1
 Name: SHE  Score: 2
 Name: SH  Score: 3
-Name: DDD  Score: 0
-Name: STR  Score: 1
-Name: DDD  Score: M
+Name: DDD  Score: 222

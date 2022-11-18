@@ -26,7 +26,7 @@ void Tutorial_Screen_Init(void)
 	image_start = CP_Image_Load("Assets/mainmenu_button/start_button.png");
 	image_dino = CP_Image_Load("Assets/game_ui/game_dino.png");
 	image_meat = CP_Image_Load("Assets/game_ui/game_meat.png");
-	image_log = CP_Image_Load("Assets/game_ui/game_log.png");
+	image_log = CP_Image_Load("Assets/game_ui/log_tutorial.png");
 	image_boulder = CP_Image_Load("Assets/game_ui/game_boulder.png");
 	image_heart = CP_Image_Load("Assets/game_ui/game_heart.png");
 	image_double_meat = CP_Image_Load("Assets/game_ui/game_double_meat.png");

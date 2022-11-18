@@ -86,7 +86,7 @@ void Main_Menu_Update()
 	float displayPOS_left_arrow_x = (float)width * 0.15f;
 	float displayPOS_center_x = (float)width * 0.25f;
 	float displayPOS_right_arrow_x = (float)width * 0.75f;
-	float displayPOS_y = (float)height * 0.55f;
+	float displayPOS_y = (float)height * 0.70f;
 
 	// Space to draw out the rectangle
 	float displayDraw_side_x = (float)width * 0.1f;
@@ -208,36 +208,42 @@ void Main_Menu_Update()
 			//CP_Settings_TextSize(50.0f * font_scale);
 			//CP_Font_DrawText("Display Setting", text_Display_x, text_Display_y);
 			CP_Image_Draw(image_option_background, (float)width / 2.0f, (float)height / 2.0f, (float)width, (float)height, 255);
-			CP_Image_Draw(image_display_button, text_Display_x, text_Display_y, (float)width * 0.8f, (float)height * 0.1f, 255);
+			CP_Image_Draw(image_display_button, text_Display_x, (float)height * 0.60f, (float)width * 0.8f, (float)height * 0.1f, 255);
 			CP_Settings_Fill(White);
 			//CP_Graphics_DrawRect(displayPOS_left_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y);
 			//CP_Graphics_DrawRect(displayPOS_center_x, displayPOS_y, displayDraw_center_x, displayDraw_y);
 			//CP_Graphics_DrawRect(displayPOS_right_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y);
-			CP_Image_Draw(image_arrow_left, (float)width * 0.2f, (float)height * 0.6f, displayDraw_side_x, displayDraw_y, 255);
-			CP_Image_Draw(image_arrow_right, (float)width * 0.8f, (float)height * 0.6f, displayDraw_side_x, displayDraw_y, 255);
+			CP_Image_Draw(image_arrow_left, (float)width * 0.2f, (float)height * 0.75f, displayDraw_side_x, displayDraw_y, 255);
+			CP_Image_Draw(image_arrow_right, (float)width * 0.8f, (float)height * 0.75f, displayDraw_side_x, displayDraw_y, 255);
 			
 			//sound option start
 			CP_Settings_RectMode(CP_POSITION_CENTER);
 			CP_Image_Draw(image_display_button, width * 0.5f, height * 0.20f, (float)width * 0.8f, (float)height * 0.1f, 255);
-			CP_Image_Draw(image_display_0, (float)width * 0.5f, (float)height * 0.3f, (float)width * 0.5f, (float)height * 0.1f, 255);
-			CP_Image_Draw(image_arrow_left, width * 0.2f, height * 0.3f, width * 0.1f, height * 0.1f, 255);
-			CP_Image_Draw(image_arrow_right, width * 0.8f, height * 0.3f, width * 0.1f, height * 0.1f, 255);
+			CP_Image_Draw(image_display_0, (float)width * 0.5f, (float)height * 0.35f, (float)width * 0.5f, (float)height * 0.1f, 255);
+			if (volume > 0.0f)
+			{
+				CP_Image_Draw(image_arrow_left, width * 0.2f, height * 0.35f, width * 0.1f, height * 0.1f, 255);
+			}
+			if (volume < 1.0f)
+			{
+				CP_Image_Draw(image_arrow_right, width * 0.8f, height * 0.35f, width * 0.1f, height * 0.1f, 255);
+			}
 			//CP_Graphics_DrawRect(width * 0.2f, height * 0.3f, width * 0.1f, height * 0.1f);
 			//CP_Graphics_DrawRect(width * 0.8f, height * 0.3f, width * 0.1f, height * 0.1f);
 
-			if (rect_click(width * 0.2f, height * 0.3f, width * 0.1f, height * 0.1f,
+			if (rect_click(width * 0.2f, height * 0.35f, width * 0.1f, height * 0.1f,
 				CP_Input_GetMouseX(), CP_Input_GetMouseY()) == 1 && CP_Input_MouseTriggered(MOUSE_BUTTON_LEFT)
 				&& volume > 0.0f)
 			{//lower volume
-				volume -= 0.1f;
+				volume -= 0.25f;
 				CP_Sound_PlayAdvanced(mySound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
 			}
 
-			if (rect_click(width * 0.8f, height * 0.3f, width * 0.1f, height * 0.1f,
+			if (rect_click(width * 0.8f, height * 0.35f, width * 0.1f, height * 0.1f,
 				CP_Input_GetMouseX(), CP_Input_GetMouseY()) == 1 && CP_Input_MouseTriggered(MOUSE_BUTTON_LEFT)
 				&& volume < 1.0f)
 			{//increase volume
-				volume += 0.1f;
+				volume += 0.25f;
 				CP_Sound_PlayAdvanced(mySound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
 			}
 			//sound option end
@@ -247,8 +253,8 @@ void Main_Menu_Update()
 
 			// Click to swap resolution
 			if (CP_Input_MouseClicked()) {
-				//CP_Sound_PlayAdvanced(mySound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
 				return_true_false = optionClicked(displayPOS_left_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y, click_x, click_y);
+				if (return_true_false == 1) CP_Sound_PlayAdvanced(mySound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
 				if (return_true_false == 1 && display_option == 0) display_option = 2;
 				else if (return_true_false == 1 && display_option == 1) display_option = 0;
 				else if (return_true_false == 1 && display_option == 2) display_option = 1;
@@ -266,7 +272,7 @@ void Main_Menu_Update()
 			case 0:
 				// iPhone 4S size
 				//CP_Font_DrawText("640 x 960", width * 0.5f, height * 0.6f);
-				CP_Image_Draw(image_display_0, (float)width * 0.5f, (float)height * 0.6f, (float)width * 0.5f, (float)height * 0.1f, 255);
+				CP_Image_Draw(image_display_0, (float)width * 0.5f, (float)height * 0.75f, (float)width * 0.5f, (float)height * 0.1f, 255);
 				width = 640;
 				height = 960;
 				font_scale = 1.0;
@@ -276,7 +282,7 @@ void Main_Menu_Update()
 			case 1:
 				// iPad Size
 				//CP_Font_DrawText("1024 x 768", width * 0.5f, height * 0.6f);
-				CP_Image_Draw(image_display_1, (float)width * 0.5f, (float)height * 0.6f, (float)width * 0.5f, (float)height * 0.1f, 255);
+				CP_Image_Draw(image_display_1, (float)width * 0.5f, (float)height * 0.75f, (float)width * 0.5f, (float)height * 0.1f, 255);
 				width = 1024;
 				height = 768;
 				font_scale = 0.8f;
@@ -286,7 +292,7 @@ void Main_Menu_Update()
 			case 2:
 				// iPhone Size				
 				//CP_Font_DrawText("320 x 480", width * 0.5f, height * 0.6f);
-				CP_Image_Draw(image_display_2, (float)width * 0.5f, (float)height * 0.6f, (float)width * 0.5f, (float)height * 0.1f, 255);
+				CP_Image_Draw(image_display_2, (float)width * 0.5f, (float)height * 0.75f, (float)width * 0.5f, (float)height * 0.1f, 255);
 				width = 320;
 				height = 480;
 				font_scale = 0.5;

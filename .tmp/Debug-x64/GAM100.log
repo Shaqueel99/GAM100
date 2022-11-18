@@ -1,4 +1,5 @@
 ﻿  mainmenu.c
+C:\Users\user\Documents\GitHub\GAM100\Src\mainmenu.c(273,44): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
   GAM100.vcxproj -> C:\Users\user\Documents\GitHub\GAM100\bin\Debug-x64\GAM100.exe
   1 File(s) copied
   1 File(s) copied

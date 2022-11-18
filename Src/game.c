@@ -164,14 +164,15 @@ position_right_y = windows_height / 4.0 * 3.0;
     sixte.value_y = sevente.value_y = eighte.value_y = ninete.value_y = twoZero.value_y = -height / 12.0f;
     rect1.value_y = rect2.value_y = rect3.value_y = -height / 2.0f;
 
+    first.pts_boost = 0;
+    first.pts_boost_spawn = 0;
+    first.invul = 0;
+    first.invul_spawn = 0;
+
     first.boulder = 0;
     first.coins = 0;
-    first.pts_boost = 0;
-    first.invul = 0;
     first.boulder_spawn = 0;
     first.coin_spawn = 0;
-    first.pts_boost_spawn = 0;
-    first.invul_spawn = 0;
     second.boulder = 0;
     second.boulder_spawn = 0;
     third.boulder = 0;
@@ -295,7 +296,9 @@ void game_update(void)
             rect1.value_y = rect2.value_y = rect3.value_y = -height / 2.0f;
 
             first.pts_boost = 0;
+            first.pts_boost_spawn = 0;
             first.invul = 0;
+            first.invul_spawn = 0;
 
             first.boulder = 0;
             first.coins = 0;
@@ -408,7 +411,7 @@ void game_update(void)
                 CP_Image_Draw(image_boulder, value_x_left, eleven.value_y, width * 0.13f, height * 0.09f, 255);
 
                 dblPtsSpawn(&first, 12.5f, totalElapsedTime, 13.0f);//right side double points powerup here
-                if (spawn_ptsboost == 1) {
+                if (first.pts_boost_spawn == 1) {
                     CP_Image_Draw(image_double_meat, value_x_left, first.pts_boost_y, width * 0.07f, height * 0.04f, 255);
                 }
 
@@ -444,8 +447,8 @@ void game_update(void)
                 //CP_Graphics_DrawCircle(value_x_mid, ninete.value_y, radius * 4.0);
                 CP_Image_Draw(image_boulder, value_x_mid, ninete.value_y, width * 0.13f, height * 0.09f, 255);
 
-                if (spawn_ptsboost == 1) {
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.pts_boost_y, radius, 1) == 2) { current_pts_increase = 1; spawn_ptsboost = 0; }
+                if (first.pts_boost_spawn == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.pts_boost_y, radius, 1) == 2) { current_pts_increase = 1; first.pts_boost_spawn = 0; }
                 };
 
                 // ADD IF INVULNERABLE == 1
@@ -555,7 +558,7 @@ void game_update(void)
                 CP_Image_Draw(image_boulder, value_x_right, ninth.value_y, width * 0.13f, height * 0.09f, 255);
 
                 invulSpawn(&first, 10.5f, totalElapsedTime, 13.0f); //invulnerability
-                if (spawn_invul == 1) {
+                if (first.invul_spawn == 1) {
                     CP_Image_Draw(image_invul, value_x_mid, first.invul_y, width * 0.05f, height * 0.04f, 255);
                 }
 
@@ -599,8 +602,8 @@ void game_update(void)
                 //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_left, ninete.value_y, width * 0.13f, height * 0.09f, 255);
 
-                if (spawn_invul == 1) {
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.invul_y, radius, 1) == 2) { invulnerable = 1; spawn_invul = 0; }
+                if (first.invul_spawn == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.invul_y, radius, 1) == 2) { invulnerable = 1; first.invul_spawn = 0; }
                 };
 
                 if (invulnerable == 0 && just_got_hit == 0) {
@@ -701,7 +704,7 @@ void game_update(void)
                 CP_Image_Draw(image_boulder, value_x_mid, fifth.value_y, width * 0.13f, height * 0.09f, 255);
 
                 invulSpawn(&first, 4.8f, totalElapsedTime, 14.0f); //invulnerability
-                if (spawn_invul == 1) {
+                if (first.invul_spawn == 1) {
                     CP_Image_Draw(image_invul, value_x_right, first.invul_y, width * 0.05f, height * 0.04f, 255);
                 }
 
@@ -761,8 +764,8 @@ void game_update(void)
                 //CP_Graphics_DrawCircle(value_x_mid, ten.value_y, radius * 4.0f);
                 CP_Image_Draw(image_boulder, value_x_mid, ninete.value_y, width * 0.13f, height * 0.09f, 255);
 
-                if (spawn_invul == 1) {
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, first.invul_y, radius, 1) == 2) { invulnerable = 1; spawn_invul = 0; }
+                if (first.invul_spawn == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, first.invul_y, radius, 1) == 2) { invulnerable = 1; first.invul_spawn = 0; }
                 };
 
                 if (invulnerable == 0 && just_got_hit == 0) {
@@ -996,7 +999,7 @@ void game_update(void)
                 CP_Image_Draw(image_boulder, value_x_right, fifth.value_y, width * 0.13f, height * 0.09f, 255);
 
                 invulSpawn(&first, 4.1f, totalElapsedTime, 20.5f); //invulnerability
-                if (spawn_invul == 1) {
+                if (first.invul_spawn == 1) {
                     CP_Image_Draw(image_invul, value_x_left, first.invul_y, width * 0.05f, height * 0.04f, 255);
                 }
 
@@ -1065,8 +1068,8 @@ void game_update(void)
                 CP_Image_Draw(image_boulder, value_x_left, twoZero.value_y, width * 0.13f, height * 0.09f, 255);
                 //CP_Graphics_DrawCircle(value_x_left, twoZero.value_y, radius * 4.0f);
 
-                if (spawn_invul == 1) {
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.invul_y, radius, 1) == 2) { invulnerable = 1; spawn_invul = 0; }
+                if (first.invul_spawn == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.invul_y, radius, 1) == 2) { invulnerable = 1; first.invul_spawn = 0; }
                 };
 
                 if (invulnerable == 0 && just_got_hit == 0) {
@@ -1163,7 +1166,7 @@ void game_update(void)
                 //CP_Graphics_DrawCircle(value_x_mid, sixth.value_y, radius * 4.0f);
 
                 dblPtsSpawn(&first, 4.7f, totalElapsedTime, 22.0f);//right side double points powerup here
-                if (spawn_ptsboost == 1) {
+                if (first.pts_boost_spawn == 1) {
                     CP_Image_Draw(image_double_meat, value_x_mid, first.pts_boost_y, width * 0.07f, height * 0.04f, 255);
                 }
 
@@ -1233,8 +1236,8 @@ void game_update(void)
                 CP_Image_Draw(image_boulder, value_x_left, twoZero.value_y, width * 0.13f, height * 0.09f, 255);
                 //CP_Graphics_DrawCircle(value_x_left, twoZero.value_y, radius * 4.0f);
 
-                if (spawn_ptsboost == 1) {
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.pts_boost_y, radius, 1) == 2) { current_pts_increase = 1; spawn_ptsboost = 0; }
+                if (first.pts_boost_spawn == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.pts_boost_y, radius, 1) == 2) { current_pts_increase = 1; first.pts_boost_spawn = 0; }
                 };
 
                 if (invulnerable == 0 && just_got_hit == 0) {
@@ -1265,7 +1268,7 @@ void game_update(void)
                     if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ninth.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
                     };
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, ten.value_y, radius, 0) == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, ten.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
                     };
                     if (iscirclecollided(current_position.x, current_position.y, value_x_mid, eleven.value_y, radius, 0) == 1) {
@@ -1334,7 +1337,9 @@ void game_update(void)
                 //CP_Graphics_DrawCircle(value_x_right, fourth.value_y, radius * 4.0f);
 
                 invulSpawn(&first, 3.0f, totalElapsedTime, 20.5f); //invulnerability
-                CP_Image_Draw(image_invul, value_x_left, first.invul_y, width * 0.05f, height * 0.04f, 255);
+                if (first.invul_spawn == 1) {
+                    CP_Image_Draw(image_invul, value_x_left, first.invul_y, width * 0.05f, height * 0.04f, 255);
+                }
 
                 CP_Settings_RectMode(CP_POSITION_CENTER);
                 spawnRect(&rect2, 4.0f, totalElapsedTime, 21.0f);
@@ -1358,7 +1363,9 @@ void game_update(void)
                 //CP_Graphics_DrawCircle(value_x_mid, eighth.value_y, radius * 4.0f);
 
                 dblPtsSpawn(&first, 7.0f, totalElapsedTime, 22.0f);//right side double points powerup here
-                CP_Image_Draw(image_double_meat, value_x_right, first.pts_boost_y, width * 0.07f, height * 0.04f, 255);
+                if (first.pts_boost_spawn == 1) {
+                    CP_Image_Draw(image_double_meat, value_x_right, first.pts_boost_y, width * 0.07f, height * 0.04f, 255);
+                }
 
                 spawnCheck(&ninth, 7.5f, totalElapsedTime, 20.0f);
                 CP_Image_Draw(image_boulder, value_x_mid, ninth.value_y, width * 0.13f, height * 0.09f, 255);
@@ -1409,8 +1416,11 @@ void game_update(void)
                 CP_Image_Draw(image_boulder, value_x_left, ninete.value_y, width * 0.13f, height * 0.09f, 255);
                 //CP_Graphics_DrawCircle(value_x_left, ninete.value_y, radius * 4.0f);
 
-                if (spawn_ptsboost == 1) {
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, first.pts_boost_y, radius, 1) == 2) { current_pts_increase = 1; spawn_ptsboost = 0; }
+                if (first.pts_boost_spawn == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, first.pts_boost_y, radius, 1) == 2) { current_pts_increase = 1; first.pts_boost_spawn = 0; }
+                };
+                if (first.invul_spawn == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.invul_y, radius, 1) == 2) { invulnerable = 1; first.invul_spawn = 0; }
                 };
 
                 if (invulnerable == 0 && just_got_hit == 0) {
@@ -1484,9 +1494,6 @@ void game_update(void)
                     if (isRectCollided(current_position.x, current_position.y, radius, value_x_mid, rect3.value_y, width * 0.15f, height * 0.8f) == 1) {
                         health = 0;
                     };
-                    if (spawn_invul == 1) {
-                        if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.invul_y, radius, 1) == 2) { invulnerable = 1; spawn_invul = 0; }
-                    };
                 }
             }
         }
@@ -1528,7 +1535,7 @@ void game_update(void)
                 //CP_Graphics_DrawCircle(value_x_mid, sixth.value_y, radius * 4.0f);
 
                 dblPtsSpawn(&first, 4.7f, totalElapsedTime, 22.0f);//right side double points powerup here
-                if (spawn_ptsboost == 1) {
+                if (first.pts_boost_spawn == 1) {
                     CP_Image_Draw(image_double_meat, value_x_mid, first.pts_boost_y, width * 0.07f, height * 0.04f, 255);
                 }
 
@@ -1598,8 +1605,8 @@ void game_update(void)
                 CP_Image_Draw(image_boulder, value_x_left, twoZero.value_y, width * 0.13f, height * 0.09f, 255);
                 //CP_Graphics_DrawCircle(value_x_left, twoZero.value_y, radius * 4.0f);
 
-                if (spawn_ptsboost == 1) {
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.pts_boost_y, radius, 1) == 2) { current_pts_increase = 1; spawn_ptsboost = 0; }
+                if (first.pts_boost_spawn == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, first.pts_boost_y, radius, 1) == 2) { current_pts_increase = 1; first.pts_boost_spawn = 0; }
                 };
 
                 if (invulnerable == 0 && just_got_hit == 0) {
@@ -1700,7 +1707,7 @@ void game_update(void)
                 //CP_Graphics_DrawCircle(value_x_right, fourth.value_y, radius * 4.0f);
 
                 invulSpawn(&first, 3.0f, totalElapsedTime, 20.5f); //invulnerability
-                if (spawn_invul == 1) {
+                if (first.invul_spawn == 1) {
                     CP_Image_Draw(image_invul, value_x_left, first.invul_y, width * 0.05f, height * 0.04f, 255);
                 }
 
@@ -1726,7 +1733,7 @@ void game_update(void)
                 //CP_Graphics_DrawCircle(value_x_mid, eighth.value_y, radius * 4.0f);
 
                 dblPtsSpawn(&first, 7.0f, totalElapsedTime, 22.0f);//right side double points powerup here
-                if (spawn_ptsboost == 1) {
+                if (first.pts_boost_spawn == 1) {
                     CP_Image_Draw(image_double_meat, value_x_right, first.pts_boost_y, width * 0.07f, height * 0.04f, 255);
                 }
 
@@ -1779,8 +1786,8 @@ void game_update(void)
                 CP_Image_Draw(image_boulder, value_x_left, ninete.value_y, width * 0.13f, height * 0.09f, 255);
                 //CP_Graphics_DrawCircle(value_x_left, ninete.value_y, radius * 4.0f);
 
-                if (spawn_ptsboost == 1) {
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, first.pts_boost_y, radius, 1) == 2) { current_pts_increase = 1; spawn_ptsboost = 0; }
+                if (first.pts_boost_spawn == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, first.pts_boost_y, radius, 1) == 2) { current_pts_increase = 1; first.pts_boost_spawn = 0; }
                 };
 
                 if (invulnerable == 0 && just_got_hit == 0) {
@@ -1854,8 +1861,8 @@ void game_update(void)
                     if (isRectCollided(current_position.x, current_position.y, radius, value_x_mid, rect3.value_y, width * 0.15f, height * 0.8f) == 1) {
                         health = 0;
                     };
-                    if (spawn_invul == 1) {
-                        if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.invul_y, radius, 1) == 2) { invulnerable = 1; spawn_invul = 0; }
+                    if (first.invul_spawn == 1) {
+                        if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.invul_y, radius, 1) == 2) { invulnerable = 1; first.invul_spawn = 0; }
                     };
                 }
             }
@@ -1882,7 +1889,7 @@ void game_update(void)
                 CP_Image_Draw(image_boulder, value_x_right, fifth.value_y, width * 0.13f, height * 0.09f, 255);
 
                 invulSpawn(&first, 4.1f, totalElapsedTime, 20.5f); //invulnerability
-                if (spawn_invul == 1) {
+                if (first.invul_spawn == 1) {
                     CP_Image_Draw(image_invul, value_x_left, first.invul_y, width * 0.05f, height * 0.04f, 255);
                 }
 
@@ -1951,8 +1958,8 @@ void game_update(void)
                 CP_Image_Draw(image_boulder, value_x_left, twoZero.value_y, width * 0.13f, height * 0.09f, 255);
                 //CP_Graphics_DrawCircle(value_x_left, twoZero.value_y, radius * 4.0f);
 
-                if (spawn_invul == 1) {
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.invul_y, radius, 1) == 2) { invulnerable = 1; spawn_invul = 0; }
+                if (first.invul_spawn == 1) {
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_left, first.invul_y, radius, 1) == 2) { invulnerable = 1; first.invul_spawn = 0; }
                 };
 
                 if (invulnerable == 0 && just_got_hit == 0) {
@@ -2121,7 +2128,7 @@ void game_update(void)
             points++;
         }
         else if (health != 0 && multiplier == 3) {
-            points += 3;
+            points += 5;
         }
         
         if (current_pts_increase == 1) { //system to increase multiplier during point boost buff

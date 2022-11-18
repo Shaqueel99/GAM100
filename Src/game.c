@@ -271,7 +271,7 @@ void game_update(void)
         
         //CP_Graphics_DrawCircle(current_position.x, current_position.y, radius * 2.0f);
         //CP_Graphics_DrawTriangleAdvanced(current_position.x, current_position.y - radius, current_position.x - radius / 2.0f, current_position.y, current_position.x + radius / 2.0f, current_position.y, 0.0f);
-        CP_Image_DrawAdvanced(image_dino, current_position.x, current_position.y, width * 0.06f, height * 0.05f, playervisible, 270);
+        CP_Image_DrawAdvanced(image_dino, current_position.x, current_position.y, width * 0.06f, height * 0.05f, playervisible, 0);
 
         //Spawing Boulders
         currentElapsedTime = CP_System_GetDt();

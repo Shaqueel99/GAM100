@@ -270,7 +270,7 @@ void Main_Menu_Update()
 
 
 			// Click to swap resolution
-			if (CP_Input_MouseClicked() & delay == 0) {
+			if (CP_Input_MouseClicked() && delay == 0) {
 				return_true_false = optionClicked(displayPOS_left_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y, click_x, click_y);
 				if (return_true_false == 1) CP_Sound_PlayAdvanced(mySound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
 				if (return_true_false == 1 && display_option == 0) display_option = 2;

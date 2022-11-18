@@ -33,6 +33,7 @@ static int tutorial_toggle = 1;
 static CP_Image logo, dinotech_logo;
 static CP_Image image_mainmenu, image_start, image_leaderboard, image_credit, image_option, image_quit;
 static CP_Image image_option_background, image_display_button, image_display_0, image_display_1, image_display_2, image_arrow_left, image_arrow_right;
+static CP_Image image_volume_button, image_volume_increase, image_volume_decrease, image_volume_0, image_volume_1, image_volume_2, image_volume_3, image_volume_4;
 
 CP_Sound mySound = NULL;
 
@@ -158,6 +159,17 @@ void Main_Menu_Update()
 		image_display_2 = CP_Image_Load("Assets/mainmenu_button/display_setting_2.png");
 		image_arrow_left = CP_Image_Load("Assets/mainmenu_button/display_setting_left.png");
 		image_arrow_right = CP_Image_Load("Assets/mainmenu_button/display_setting_right.png");
+
+		//UI Drawing (Volume)
+		image_volume_button = CP_Image_Load("Assets/mainmenu_button/display_volume_button.png");
+		image_volume_increase = CP_Image_Load("Assets/mainmenu_button/volume_setting_increase.png");
+		image_volume_decrease = CP_Image_Load("Assets/mainmenu_button/volume_setting_decrease.png");
+		image_volume_0 = CP_Image_Load("Assets/mainmenu_button/volume_setting_0.png");
+		image_volume_1 = CP_Image_Load("Assets/mainmenu_button/volume_setting_1.png");
+		image_volume_2 = CP_Image_Load("Assets/mainmenu_button/volume_setting_2.png");
+		image_volume_3 = CP_Image_Load("Assets/mainmenu_button/volume_setting_3.png");
+		image_volume_4 = CP_Image_Load("Assets/mainmenu_button/volume_setting_4.png");
+
 		
 		//UI Drawing (Box)
 		if (selection == 0) {
@@ -218,15 +230,21 @@ void Main_Menu_Update()
 			
 			//sound option start
 			CP_Settings_RectMode(CP_POSITION_CENTER);
-			CP_Image_Draw(image_display_button, width * 0.5f, height * 0.20f, (float)width * 0.8f, (float)height * 0.1f, 255);
-			CP_Image_Draw(image_display_0, (float)width * 0.5f, (float)height * 0.35f, (float)width * 0.5f, (float)height * 0.1f, 255);
+			CP_Image_Draw(image_volume_button, width * 0.5f, height * 0.20f, (float)width * 0.8f, (float)height * 0.1f, 255);
+			// Draw volume % based on volume value
+			if (volume >= 0.0f && volume <= 0.01f) CP_Image_Draw(image_volume_0, (float)width * 0.5f, (float)height * 0.35f, (float)width * 0.5f, (float)height * 0.1f, 255);
+			else if (volume >= 0.24f && volume <= 0.26f) CP_Image_Draw(image_volume_1, (float)width * 0.5f, (float)height * 0.35f, (float)width * 0.5f, (float)height * 0.1f, 255);
+			else if (volume >= 0.49f && volume <= 0.51f) CP_Image_Draw(image_volume_2, (float)width * 0.5f, (float)height * 0.35f, (float)width * 0.5f, (float)height * 0.1f, 255);
+			else if (volume >= 0.74f && volume <= 0.76f) CP_Image_Draw(image_volume_3, (float)width * 0.5f, (float)height * 0.35f, (float)width * 0.5f, (float)height * 0.1f, 255);
+			else if (volume >= 0.99f && volume <= 1.01f) CP_Image_Draw(image_volume_4, (float)width * 0.5f, (float)height * 0.35f, (float)width * 0.5f, (float)height * 0.1f, 255);
+
 			if (volume > 0.0f)
 			{
-				CP_Image_Draw(image_arrow_left, width * 0.2f, height * 0.35f, width * 0.1f, height * 0.1f, 255);
+				CP_Image_Draw(image_volume_decrease, width * 0.2f, height * 0.35f, width * 0.1f, height * 0.1f, 255);
 			}
 			if (volume < 1.0f)
 			{
-				CP_Image_Draw(image_arrow_right, width * 0.8f, height * 0.35f, width * 0.1f, height * 0.1f, 255);
+				CP_Image_Draw(image_volume_increase, width * 0.8f, height * 0.35f, width * 0.1f, height * 0.1f, 255);
 			}
 			//CP_Graphics_DrawRect(width * 0.2f, height * 0.3f, width * 0.1f, height * 0.1f);
 			//CP_Graphics_DrawRect(width * 0.8f, height * 0.3f, width * 0.1f, height * 0.1f);
@@ -326,4 +344,12 @@ void Main_Menu_Exit()
 	CP_Image_Free(&image_display_2);
 	CP_Image_Free(&image_arrow_left);
 	CP_Image_Free(&image_arrow_right);
+	CP_Image_Free(&image_volume_button);
+	CP_Image_Free(&image_volume_increase);
+	CP_Image_Free(&image_volume_decrease);
+	CP_Image_Free(&image_volume_0);
+	CP_Image_Free(&image_volume_1);
+	CP_Image_Free(&image_volume_2);
+	CP_Image_Free(&image_volume_3);
+	CP_Image_Free(&image_volume_4);
 }

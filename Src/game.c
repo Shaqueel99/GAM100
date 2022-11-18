@@ -294,6 +294,9 @@ void game_update(void)
             first.pts_boost_y = -height / 12.0f;
             rect1.value_y = rect2.value_y = rect3.value_y = -height / 2.0f;
 
+            first.pts_boost = 0;
+            first.invul = 0;
+
             first.boulder = 0;
             first.coins = 0;
             first.boulder_spawn = 0;

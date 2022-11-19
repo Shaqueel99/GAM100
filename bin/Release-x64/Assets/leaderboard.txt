@@ -1,5 +1,2 @@
-Name: SHQ  Score: 3
-Name: KIT  Score: 3
-Name: SHQ  Score: 3
-Name: YEE  Score: 10
-Name: YEE  Score: 0
+Name: ?  Score: 256
+Name: WWW  Score: 256

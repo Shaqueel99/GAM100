@@ -43,4 +43,8 @@
     <None Include=".gitattributes" />
     <None Include=".editorconfig" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\Downloads\deathscreennew2.png" />
+    <Image Include="..\..\..\Downloads\deathscreennew1.png" />
+  </ItemGroup>
 </Project>

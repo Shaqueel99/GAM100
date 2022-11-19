@@ -7,7 +7,7 @@ int p = 0;
 int read_leaderboard(char name[], int score[], int order) {
 	FILE* leaderboard;
 	char input[256];
-	fopen_s(&leaderboard, "..\\..\\Assets\\leaderboard.txt", "r"); //read data from txt, file must exist
+	fopen_s(&leaderboard, "Assets/leaderboard.txt", "r"); //read data from txt, file must exist
 	if (leaderboard == NULL) {
 		return 1;
 	}
@@ -34,7 +34,7 @@ void write_leaderboard(char name[], int score) {//name and score is input from m
 	FILE* leaderboard;
 	char new_stats[256];
 	sprintf_s(new_stats, 256, "Name: %s  Score: %d\n", name, score);
-	fopen_s(&leaderboard, "..\\..\\Assets\\leaderboard.txt", "a"); //append option always writes data at the end of file, file created if dont exist
+	fopen_s(&leaderboard, "Assets/leaderboard.txt", "a"); //append option always writes data at the end of file, file created if dont exist
 	if (leaderboard != NULL) {
 		  
 		fwrite(new_stats, sizeof(char), strlen(new_stats), leaderboard);

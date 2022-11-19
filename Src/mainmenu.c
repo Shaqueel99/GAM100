@@ -40,7 +40,7 @@ CP_Sound mySound = NULL;
 void Main_Menu_Init()
 {
 	CP_Sound_ResumeAll();
-	mySound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinomenu2.wav");
+	mySound = CP_Sound_Load("Assets/Soundeffects/Dinomenu2.wav");
 	// Initial Value
 	selection = 0;
 	totalElapsedTime = 0.0f;

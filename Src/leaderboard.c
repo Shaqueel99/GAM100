@@ -23,12 +23,12 @@ CP_Sound leaderboardssound = NULL;
 void Leaderboard_Init(void)
 {
 	CP_Sound_ResumeAll();
-	leaderboardssound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinomenu2.wav");
+	leaderboardssound = CP_Sound_Load("Assets/Soundeffects/Dinomenu2.wav");
 	CP_Sound_PlayAdvanced(leaderboardssound, 1.0f, 1.0f, FALSE, CP_SOUND_GROUP_2);
 	j = 0;
 	totalsortTime = 0;
 	sortTime = 0;
-	fopen_s(&leaderboard, "..\\..\\Assets\\leaderboard.txt", "r");
+	fopen_s(&leaderboard, "Assets/leaderboard.txt", "r");
 	black = CP_Color_Create(0, 0, 0, 255);
 	white = CP_Color_Create(255, 255, 255, 255);
 	purple = CP_Color_Create(76, 0, 153, 255);

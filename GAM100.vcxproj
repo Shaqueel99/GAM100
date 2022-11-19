@@ -50,6 +50,10 @@
     <None Include=".editorconfig" />
     <None Include=".gitattributes" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\Downloads\deathscreennew1.png" />
+    <Image Include="..\..\..\Downloads\deathscreennew2.png" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

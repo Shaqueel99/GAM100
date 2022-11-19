@@ -10,7 +10,7 @@ image_log, image_boulder, image_heart, image_double_meat, image_invul;
 CP_Sound tutorialsound = NULL;
 void Tutorial_Screen_Init(void)
 {
-	tutorialsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinomenu2.wav");
+	tutorialsound = CP_Sound_Load("Assets/Soundeffects/Dinomenu2.wav");
 	CP_Sound_PlayAdvanced(tutorialsound, 1.0f, 1.0f, FALSE, CP_SOUND_GROUP_2);
 	//windows and button size settings
 	CP_System_SetWindowSize(width, height);

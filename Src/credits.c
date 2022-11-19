@@ -21,7 +21,7 @@ void Credits_Init()
 {
     CP_Sound_ResumeAll();
 	CP_System_SetWindowSize(width, height);
-    creditssound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinomenu2.wav");
+    creditssound = CP_Sound_Load("Assets/Soundeffects/Dinomenu2.wav");
     CP_Sound_PlayAdvanced(creditssound, 1.0f, 1.0f, FALSE, CP_SOUND_GROUP_2);
     background = CP_Color_Create(0, 246, 155, 255);
     innerBox = CP_Color_Create(0, 0, 0, 155);
@@ -91,7 +91,7 @@ void Credits_Update()
     CP_Font_DrawText("Benjamin Loke", rectCenterX, ben.y);
 
     CP_Font_DrawText("Cheng Ding Xiang", rectCenterX, dx.y);
-    CP_Font_DrawText("Gerald Yeo", rectCenterX, gerald.y);
+    CP_Font_DrawText("Gerald Wong", rectCenterX, gerald.y);
 
     CP_Font_DrawText("Claude Comair", rectCenterX, claude.y);
     

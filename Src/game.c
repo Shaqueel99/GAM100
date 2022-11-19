@@ -61,17 +61,17 @@ void game_init(void)
 
 {
     playervisible = 255;
-    damagesound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinodamage.wav");
-    shiftsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoShifttrim.wav");
-    runsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinorunningtrim.wav");
+    damagesound = CP_Sound_Load("Assets/Soundeffects/Dinodamage.wav");
+    shiftsound = CP_Sound_Load("Assets/Soundeffects/DinoShifttrim.wav");
+    runsound = CP_Sound_Load("Assets/Soundeffects/Dinorunningtrim.wav");
     CP_Sound_PlayAdvanced(runsound, volume, 0.6f, TRUE, CP_SOUND_GROUP_2);
     int startsnd=CP_Random_RangeInt(1, 2);
     if (startsnd == 1) {
-        Startsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoStart2.wav");
+        Startsound = CP_Sound_Load("Assets/Soundeffects/DinoStart2.wav");
         CP_Sound_PlayAdvanced(Startsound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
     }
     else {
-        Startsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\DinoStart1.wav");
+        Startsound = CP_Sound_Load("Assets/Soundeffects/DinoStart1.wav");
         CP_Sound_PlayAdvanced(Startsound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
     }
 

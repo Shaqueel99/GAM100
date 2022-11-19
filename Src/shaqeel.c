@@ -19,7 +19,7 @@ int iscirclecollided(float current_positionx, float current_positiony, float val
         return 1;
     }
     else if (finaldistance < (radius * 100.0) && isgood == 1) {
-        eatsound = CP_Sound_Load("..\\..\\Assets\\Soundeffects\\Dinoeattrim1.wav"); 
+        eatsound = CP_Sound_Load("Assets/Soundeffects/Dinoeattrim1.wav"); 
         CP_Sound_PlayAdvanced(eatsound, volume, 0.7f, FALSE, CP_SOUND_GROUP_2);
         return 2;
     }
@@ -64,8 +64,8 @@ int IsAreaClicked(float area_center_x, float area_center_y, float area_width, fl
 {
     float rectx1corner = area_center_x - area_width;
     float rectx2corner = area_center_x + area_width;
-    float playrecty1corner = area_center_y / 1.10f - area_height;
-    float playrecty2corner = area_center_y / 1.10f + area_height;
+    float playrecty1corner = area_center_y  - area_height;
+    float playrecty2corner = area_center_y  + area_height;
     
 
     if (click_x < rectx2corner && click_x > rectx1corner && click_y < playrecty2corner && click_y > playrecty1corner) {

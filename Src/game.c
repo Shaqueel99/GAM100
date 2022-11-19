@@ -20,7 +20,7 @@ int checker;
 CP_Color black, blue, purple, green, red, white, pause;
 float windows_length, windows_height, radius=20.0f;
 //float position_left, position_mid, position_right;
-
+float rotation;
 int name = 'a'; 
 char score = '0';
 CP_Vector current_position, left_position, mid_position, right_position;
@@ -60,6 +60,7 @@ static CP_Image image_pause_background, image_resume, image_restart, image_mainm
 void game_init(void)
 
 {
+    rotation = 0;
     playervisible = 255;
     damagesound = CP_Sound_Load("Assets/Soundeffects/Dinodamage.wav");
     shiftsound = CP_Sound_Load("Assets/Soundeffects/DinoShifttrim.wav");
@@ -111,7 +112,7 @@ void game_init(void)
     black = CP_Color_Create(0, 0, 0, 255);
     blue = CP_Color_Create(0, 255, 255, 255);
     purple = CP_Color_Create(76, 0, 153, 255);
-    green = CP_Color_Create(144, 238, 144, 255);
+    green = CP_Color_Create(0, 154, 23, 255);
     red = CP_Color_Create(255, 0, 0, 255);
     white = CP_Color_Create(255, 255, 255, 255);
     pause = CP_Color_Create(0, 0, 0, 100);
@@ -222,22 +223,25 @@ position_right_y = windows_height / 4.0 * 3.0;
     selection = 0;
     checker = -1;
 }
-
+float rot_counter = 0;
 void game_update(void)
 {
     if (gIsPaused == FALSE) {
+       
+        
         CP_Sound_ResumeAll();
         //Displaying background
         CP_Color myColor = CP_Color_Create(211, 211, 211, 255);
         CP_Settings_Fill(myColor);
         CP_Graphics_ClearBackground(green);
         CP_Settings_Stroke(black);
-        CP_Graphics_DrawLine(windows_length / 3.0f, 0.0f, windows_length / 3.0f, windows_height);
-        CP_Graphics_DrawLine(windows_length / 3.0f * 2.0f, 0.0f, windows_length / 3.0f * 2.0f, windows_height);
+       // CP_Graphics_DrawLine(windows_length / 3.0f, 0.0f, windows_length / 3.0f, windows_height);
+       // CP_Graphics_DrawLine(windows_length / 3.0f * 2.0f, 0.0f, windows_length / 3.0f * 2.0f, windows_height);
 
         //Drawing (UI)
-        CP_Image_Draw(image_background, (float)width / 2.0f, height / 2.0f, (float)width, (float)height, 255);
-
+       // CP_Image_Draw(image_background, (float)width / 2.0f, height / 2.0f, (float)width, (float)height, 255);
+        //CP_Image_Draw(image_background, (float)width / 2.0f, height / 2.0f, (float)width, (float)height, 255);
+        CP_Image_DrawAdvanced(image_background, (float)width / 2.0f, height / 2.0f, (float)width, (float)height, 255, rotation);
         //Movement
 
         if (movingleft == TRUE) {
@@ -2101,11 +2105,13 @@ void game_update(void)
             CP_Image_Draw(image_heart, width * 0.85f, height * 0.05f, width * 0.07f, height * 0.04f, 255);
         }
         if (health >= 1) { 
+
             //CP_Graphics_DrawRect(windows_length / 20 * 19, windows_height / 20, windows_length / 20, windows_height / 40); 
             CP_Image_Draw(image_heart, width * 0.95f, height * 0.05f, width * 0.07f, height * 0.04f, 255);
         }
         if (health <= 0) {
             //dies
+            rotation = 0;
             totalElapsedTime = 0;
             score += points;
             health_toggle = 0;
@@ -2155,8 +2161,16 @@ void game_update(void)
         if (just_got_hit == 1) { //system to make player invulnerable right after getting hit
             ++health_toggle;
             just_got_hit_timer += currentElapsedTime;
+            if (rot_counter >= 0.1f) {
+                rot_counter -= 0.1f;
+            }
+
+            rot_counter += CP_System_GetDt();
+            rotation = CP_Math_LerpFloat(0.0f, 15.0f, rot_counter);
+            
             playervisible = 100;
             if (just_got_hit_timer >= 1.0f) {
+                rotation = 0;
                 playervisible = 255;
                 health_toggle = 0; 
                 just_got_hit = 0; //turns off invulnerable flag
@@ -2166,7 +2180,8 @@ void game_update(void)
 
         if (health_toggle == 1) {
             --health;
-            CP_Sound_PlayAdvanced(damagesound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
+            CP_Sound_PlayAdvanced(damagesound, volume*2.0f, 1.0f, FALSE, CP_SOUND_GROUP_2);
+            
         }
     }
 

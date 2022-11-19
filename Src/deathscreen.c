@@ -63,7 +63,8 @@ void Death_Screen_Update()
     sprintf_s(pointbuffer, _countof(pointbuffer), "%d", points);
     CP_Font_DrawText(pointbuffer, CP_System_GetWindowWidth() / 2.5f, CP_System_GetWindowHeight() / 2.008f);
     CP_Settings_TextSize(width / 15.0f);
-    if (i >= 0 && i <= 2) {
+    
+    if (i >= 0 && i <= 2 && playername[2]==NULL) {
         if (nametype(&playername[i]) == 3) { if (i !=2) { ++i; }}
     }
     for (int j = 0; j < 3; j++) { if (CP_Input_KeyTriggered(KEY_BACKSPACE)) { playername[j] = '\0'; i = 0; } }

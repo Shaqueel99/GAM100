@@ -184,6 +184,7 @@ void Death_Screen_Update()
         CP_Input_GetMouseX(), CP_Input_GetMouseY()) == 1 && CP_Input_MouseTriggered(MOUSE_BUTTON_LEFT))
     {
         CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
+        score = '0'; points = 0;
     }
     //CP_Image return_menu_button = CP_Image_Load("Assets/game_ui/return_button.png");
     CP_Image_Draw(return_menu_button, width - height * 0.05f, height - height * 0.05f, height * 0.1f, height * 0.1f, 255);

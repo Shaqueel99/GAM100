@@ -2,6 +2,7 @@
 #include "mainmenu.h"
 #include "cprocessing.h"
 #include <stdlib.h>
+#include "utils.h"
 
 CP_Color background, innerBox, white;
 static CP_Image image_background, logo;
@@ -17,8 +18,10 @@ float rectCenterX, rectCenterY, rectWidth, rectHeight;
 float rectTopLeftX, rectTopLeftY;
 struct names kitkat, shaq, ben, zy, ck, dx, gerald, pres, team, instructors, claude;
 CP_Sound creditssound = NULL;
+static CP_Image return_menu_button;
 void Credits_Init()
 {
+    return_menu_button = CP_Image_Load("Assets/game_ui/return_button.png");
     CP_Sound_ResumeAll();
 	CP_System_SetWindowSize(width, height);
     creditssound = CP_Sound_Load("Assets/Soundeffects/Dinomenu2.wav");
@@ -98,10 +101,19 @@ void Credits_Update()
     if (CP_Input_KeyTriggered(KEY_ESCAPE)) {
         CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
     }
+    if (rect_click(width - height * 0.05f, height - height * 0.05f, height * 0.1f, height * 0.1f,
+        CP_Input_GetMouseX(), CP_Input_GetMouseY()) == 1 && CP_Input_MouseTriggered(MOUSE_BUTTON_LEFT))
+    {
+        CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
+    }
+    //CP_Image return_menu_button = CP_Image_Load("Assets/game_ui/return_button.png");
+    CP_Image_Draw(return_menu_button, width - height * 0.05f, height - height * 0.05f, height * 0.1f, height * 0.1f, 255);
+    //CP_Image_Free(&return_menu_button);
 }
 
 void Credits_Exit()
 {
+    CP_Image_Free(&return_menu_button);
     CP_Sound_Free(&creditssound);
     CP_Image_Free(&image_background);
     CP_Image_Free(&logo);

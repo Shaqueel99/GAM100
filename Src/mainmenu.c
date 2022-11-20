@@ -35,10 +35,12 @@ static CP_Image image_mainmenu, image_start, image_leaderboard, image_credit, im
 static CP_Image image_option_background, image_display_button, image_display_0, image_display_1, image_display_2, image_arrow_left, image_arrow_right;
 static CP_Image image_volume_button, image_volume_increase, image_volume_decrease, image_volume_0, image_volume_1, image_volume_2, image_volume_3, image_volume_4;
 
-CP_Sound mySound = NULL;
+static CP_Sound mySound = NULL;
+static CP_Image return_menu_button;
 
 void Main_Menu_Init()
 {
+	return_menu_button = CP_Image_Load("Assets/game_ui/return_button.png");
 	CP_Sound_ResumeAll();
 	mySound = CP_Sound_Load("Assets/Soundeffects/Dinomenu2.wav");
 	// Initial Value
@@ -227,6 +229,17 @@ void Main_Menu_Update()
 			//CP_Graphics_DrawRect(displayPOS_right_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y);
 			CP_Image_Draw(image_arrow_left, (float)width * 0.2f, (float)height * 0.75f, displayDraw_side_x, displayDraw_y, 255);
 			CP_Image_Draw(image_arrow_right, (float)width * 0.8f, (float)height * 0.75f, displayDraw_side_x, displayDraw_y, 255);
+
+			//for return to main menu button START
+			if (rect_click(width - height * 0.05f, height - height * 0.05f, height * 0.1f, height * 0.1f,
+				CP_Input_GetMouseX(), CP_Input_GetMouseY()) == 1 && CP_Input_MouseTriggered(MOUSE_BUTTON_LEFT))
+			{
+				selection = 0; //return to main menu
+			}
+			//CP_Image return_menu_button = CP_Image_Load("Assets/game_ui/return_button.png");
+			CP_Image_Draw(return_menu_button, width - height * 0.05f, height - height * 0.05f, height * 0.1f, height * 0.1f, 255);
+			//CP_Image_Free(&return_menu_button);
+			//for return to main menu button END
 			
 			//sound option start
 			CP_Settings_RectMode(CP_POSITION_CENTER);
@@ -328,6 +341,7 @@ void Main_Menu_Update()
 
 void Main_Menu_Exit()
 {
+	CP_Image_Free(&return_menu_button);
 	CP_Sound_Free(&mySound);
 	CP_Image_Free(&logo);
 	CP_Image_Free(&dinotech_logo); 

@@ -13,6 +13,7 @@ FILE* leaderboard;
 char input[256];
 static CP_Image leaderboardimage;
 static CP_Image loading;
+static CP_Image return_menu_button;
 extern int width, height;
 char p_name[999][4];//3 digit name, last letter is null character
 int p_score[999][4];
@@ -22,6 +23,7 @@ float sortTime = 0; float totalsortTime = 0;
 CP_Sound leaderboardssound = NULL;
 void Leaderboard_Init(void)
 {
+	return_menu_button = CP_Image_Load("Assets/game_ui/return_button.png");
 	CP_Sound_ResumeAll();
 	leaderboardssound = CP_Sound_Load("Assets/Soundeffects/Dinomenu2.wav");
 	CP_Sound_PlayAdvanced(leaderboardssound, 1.0f, 1.0f, FALSE, CP_SOUND_GROUP_2);
@@ -111,6 +113,16 @@ void Leaderboard_Update(void)
 
 			 CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
 		 }
+		 
+		 if (rect_click(width - height * 0.05f, height - height * 0.05f, height * 0.1f, height * 0.1f, 
+			 CP_Input_GetMouseX(), CP_Input_GetMouseY()) == 1 && CP_Input_MouseTriggered(MOUSE_BUTTON_LEFT))
+		 {
+			 CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
+		 }
+		 //CP_Image return_menu_button = CP_Image_Load("Assets/game_ui/return_button.png");
+		 //CP_Image_Draw(return_menu_button, width / 2.0f, height - height * 0.1f, height * 0.1f, height * 0.1f, 255);
+		 CP_Image_Draw(return_menu_button, width - height * 0.05f, height - height * 0.05f, height * 0.1f, height * 0.1f, 255);
+		 //CP_Image_Free(&return_menu_button);
 	 }
 }
 
@@ -119,4 +131,5 @@ void Leaderboard_Exit(void)
 	CP_Image_Free(&leaderboardimage);
 	CP_Image_Free(&loading);
 	CP_Sound_Free(&leaderboardssound);
+	CP_Image_Free(&return_menu_button);
 }

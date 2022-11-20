@@ -14,9 +14,11 @@ extern float volume;
 int submitscore;
 static CP_Image deathimage;
 static CP_Sound deathsound = NULL;
+static CP_Image return_menu_button;
 float offset = 0;
 void Death_Screen_Init()
 {
+    return_menu_button = CP_Image_Load("Assets/game_ui/return_button.png");
     CP_Sound_StopAll();
     deathsound = CP_Sound_Load("Assets/Soundeffects/Dinodeath.wav");
     CP_Sound_PlayAdvanced(deathsound, volume, 1.0f, FALSE, CP_SOUND_GROUP_2);
@@ -178,11 +180,20 @@ void Death_Screen_Update()
         }
       
     }
+    if (rect_click(width - height * 0.05f, height - height * 0.05f, height * 0.1f, height * 0.1f,
+        CP_Input_GetMouseX(), CP_Input_GetMouseY()) == 1 && CP_Input_MouseTriggered(MOUSE_BUTTON_LEFT))
+    {
+        CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
+    }
+    //CP_Image return_menu_button = CP_Image_Load("Assets/game_ui/return_button.png");
+    CP_Image_Draw(return_menu_button, width - height * 0.05f, height - height * 0.05f, height * 0.1f, height * 0.1f, 255);
+    //CP_Image_Free(&return_menu_button);
     }
 
 
 void Death_Screen_Exit()
 {
+    CP_Image_Free(&return_menu_button);
     CP_Image_Free(&deathimage);
     CP_Sound_Free(&deathsound);
 }

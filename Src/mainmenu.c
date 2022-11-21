@@ -31,7 +31,7 @@ static int display_option = 0;
 static int tutorial_toggle = 1;
 
 static CP_Image logo, dinotech_logo;
-static CP_Image image_mainmenu, image_start, image_leaderboard, image_credit, image_option, image_quit;
+static CP_Image image_mainmenu, image_start, image_leaderboard, image_credit, image_option, image_quit, image_tutorial;
 static CP_Image image_option_background, image_display_button, image_display_0, image_display_1, image_display_2, image_arrow_left, image_arrow_right;
 static CP_Image image_volume_button, image_volume_increase, image_volume_decrease, image_volume_0, image_volume_1, image_volume_2, image_volume_3, image_volume_4;
 
@@ -74,8 +74,10 @@ void Main_Menu_Update()
 	float credit_y = (float)height * 0.65f;
 	float option_x = (float)width * 0.7f;
 	float option_y = (float)height * 0.65f;
-	float quit_x = (float)width * 0.3f;
+	float quit_x = (float)width * 0.2f;
 	float quit_y = (float)height * 0.8f;
+	float tutorial_x = (float)width * 0.7f;
+	float turorial_y = (float)height * 0.8f;
 
 	float rectangle_width = (float)width * 0.4f;
 	float rectangle_height = (float)height * 0.1f;
@@ -143,6 +145,8 @@ void Main_Menu_Update()
 			if (return_true_false == 1) { selection = 4; CP_Sound_PlayAdvanced(mySound, 1.0f, 1.0f, FALSE, CP_SOUND_GROUP_2); }
 			return_true_false = optionClicked(quit_x, quit_y, rectangle_width, rectangle_height, click_x, click_y);
 			if (return_true_false == 1) selection = 5;
+			return_true_false = optionClicked(tutorial_x, turorial_y, square_side, rectangle_height, click_x, click_y);
+			if (return_true_false == 1) selection = 6;
 		}
 
 		//UI Drawing (Main Menu)
@@ -152,6 +156,7 @@ void Main_Menu_Update()
 		image_quit = CP_Image_Load("Assets/mainmenu_button/quit_button.png");
 		image_option = CP_Image_Load("Assets/mainmenu_button/setting_button.png");
 		image_leaderboard = CP_Image_Load("Assets/mainmenu_button/leaderboard_button.png");
+		image_tutorial = CP_Image_Load("Assets/mainmenu_button/tutorial_button.png");
 
 		//UI Drawing (Option)
 		image_option_background = CP_Image_Load("Assets/mainmenu_button/option_background.png");
@@ -180,9 +185,11 @@ void Main_Menu_Update()
 			CP_Settings_Fill(White);
 			CP_Image_Draw(image_start, (float)width * 0.4f, (float)height * 0.55f, rectangle_width, rectangle_height, 255);
 			CP_Image_Draw(image_credit , (float)width * 0.4f, (float)height * 0.7f, rectangle_width, rectangle_height, 255);
-			CP_Image_Draw(image_quit, (float)width * 0.5f, (float)height * 0.85f, rectangle_width, rectangle_height, 255);
+			CP_Image_Draw(image_quit, (float)width * 0.4f, (float)height * 0.85f, rectangle_width, rectangle_height, 255);
 			CP_Image_Draw(image_option, (float)width * 0.775f, (float)height * 0.7f, square_side, rectangle_height, 255); // Small issue with the scaling 
-			CP_Image_Draw(image_leaderboard, (float)width * 0.775f, (float)height * 0.55f, square_side, rectangle_height, 255); // Small issue with the scaling 
+			CP_Image_Draw(image_leaderboard, (float)width * 0.775f, (float)height * 0.55f, square_side, rectangle_height, 255); // Small issue with the scaling
+			CP_Image_Draw(image_tutorial, (float)width * 0.775f, (float)height * 0.85f, square_side, rectangle_height, 255); // Small issue with the scaling
+
 
 			/* ~~~~~~~~~~~~~~~~~~~~~~~ For debugging ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			CP_Graphics_DrawRect(start_x, start_y, rectangle_width, rectangle_height);
@@ -336,6 +343,8 @@ void Main_Menu_Update()
 
 		// Exit
 		if (selection == 5) CP_Engine_Terminate();
+
+		if (selection == 6) CP_Engine_SetNextGameStateForced(Tutorial_Screen_Init, Tutorial_Screen_Update, Tutorial_Screen_Exit);
 	}
 }
 
@@ -350,6 +359,7 @@ void Main_Menu_Exit()
 	CP_Image_Free(&image_credit);
 	CP_Image_Free(&image_quit);
 	CP_Image_Free(&image_option);
+	CP_Image_Free(&image_tutorial);
 	CP_Image_Free(&image_leaderboard);
 	CP_Image_Free(&image_option_background);
 	CP_Image_Free(&image_display_button);

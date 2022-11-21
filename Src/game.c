@@ -58,11 +58,11 @@ static CP_Image image_background, image_boulder, image_dino, image_heart, image_
 static CP_Image image_pause_background, image_resume, image_restart, image_mainmenu;
 int endgamestart;
 float endgame = 0, totalEndgameTime = 0;
-int speed = 25;
+int speed = 50;
 void game_init(void)
 
 {
-    speed = 25;
+    speed = 50;
     totalEndgameTime = 0;
     endgame = 0,
     endgamestart = 0;

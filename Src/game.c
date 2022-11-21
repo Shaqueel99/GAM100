@@ -30,6 +30,8 @@ float value_y, value_x_left, value_x_mid, value_x_right;
 float resumeWidth, resumeHeight, resumeX, resumeY;
 float restartWidth, restartHeight, restartX, restartY;
 float b2mmWidth, b2mmHeight, b2mmX, b2mmY;
+static int upordown;
+static CP_Image dblptsimg;
 
 float coin_y, pts_boost_y, invul_y;
 int points;
@@ -104,6 +106,7 @@ void game_init(void)
     image_resume = CP_Image_Load("Assets/game_ui/pause_resume_button.png");
     image_restart = CP_Image_Load("Assets/game_ui/pause_restart_button.png");
     image_mainmenu = CP_Image_Load("Assets/game_ui/pause_mainmenu_button.png");
+    dblptsimg = CP_Image_Load("Assets/game_ui/dblPts.png");
 
     /* We start unpaused */
     gIsPaused = FALSE;
@@ -222,6 +225,8 @@ position_right_y = windows_height / 4.0 * 3.0;
 
     selection = 0;
     checker = -1;
+
+    upordown = 1;
 }
 float rot_counter = 0;
 void game_update(void)
@@ -264,7 +269,11 @@ void game_update(void)
 
         }
 
-
+        float frame2frame = CP_System_GetDt();
+        float timer = 1;
+        float bluemulti = 255 * frame2frame / timer;
+        float fadetime = 0;
+        float alphamulti = 255 * frame2frame / 2.5f;
 
 
        // if (CP_Input_KeyTriggered(KEY_L)) {
@@ -2087,12 +2096,45 @@ void game_update(void)
         */
 
         //Displaying Points
+        static int blues = 0;
         CP_Settings_TextSize(width * 0.05f);
         CP_Settings_Fill(black);
         char buffer[16] = { 0 };
         sprintf_s(buffer, _countof(buffer), "%d", points);
         CP_Font_DrawText("Points:", width* 0.07f, height * 0.05f);
         CP_Font_DrawText(buffer, width * 0.21f, height * 0.05f);
+
+        if (current_pts_increase == 1) {
+            CP_Settings_Fill(CP_Color_Create(0, 0, blues, 255));
+            CP_Font_DrawText("Points:", width * 0.07f, height * 0.05f);
+            CP_Font_DrawText(buffer, width * 0.21f, height * 0.05f);
+            //char check[16] = { 0 };
+            //sprintf_s(check, _countof(check), "%d", blues);
+            //CP_Font_DrawText(check, width * 0.21f, height * 0.08f);
+            if (upordown == 1) {
+                blues += bluemulti;
+                if (blues >= 255) {
+                    upordown = 0;
+                }
+            }
+            if (upordown == 0) {
+                blues -= bluemulti;
+                if (blues <= 0) {
+                    upordown = 1;
+                }
+            }
+        }
+        
+        if (current_pts_increase == 1) {
+            static int alpha = 255;
+            CP_Image_Draw(dblptsimg, current_position.x, current_position.y * 0.9f, width * 0.25f, height * 0.02f, alpha);
+
+            if (alpha > 0) alpha -= alphamulti;
+            if (alpha == 0) {
+                alpha = 255;
+            }
+        }
+
 
         CP_Settings_Fill(red);
         CP_Settings_RectMode(CP_POSITION_CENTER);
@@ -2134,7 +2176,7 @@ void game_update(void)
             points++;
         }
         else if (health != 0 && multiplier == 3) {
-            points += 5;
+            points += 30;
         }
         
         if (current_pts_increase == 1) { //system to increase multiplier during point boost buff
@@ -2272,4 +2314,5 @@ void game_exit(void)
     CP_Image_Free(&image_meat);
     CP_Image_Free(&image_double_meat);
     CP_Image_Free(&image_log);
+    CP_Image_Free(&dblptsimg);
 }

@@ -1350,8 +1350,8 @@ void game_update(void)
                     if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sixte.value_y, radius, 0) == 1) {
                         just_got_hit = 1;
                     };
-                    if (iscirclecollided(current_position.x, current_position.y, value_x_right, sevente.value_y, radius, 0) == 1) {
-                        just_got_hit = 1;
+                    if (iscirclecollided(current_position.x, current_position.y, value_x_mid, sevente.value_y, radius, 0) == 1) {
+                        just_got_hit = 1;  //bugged lineeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
                     };
                     if (iscirclecollided(current_position.x, current_position.y, value_x_right, eighte.value_y, radius, 0) == 1) {
                         just_got_hit = 1;

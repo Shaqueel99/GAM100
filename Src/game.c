@@ -2238,23 +2238,23 @@ void game_update(void)
         CP_Settings_Fill(black);
         char buffer[16] = { 0 };
         sprintf_s(buffer, _countof(buffer), "%d", points);
-        CP_Font_DrawText("Points:", width * 0.07f, height * 0.05f);
-        CP_Font_DrawText(buffer, width * 0.21f, height * 0.05f);
+        CP_Font_DrawText("Points:", width * 0.05f, height - height * 0.05f);
+        CP_Font_DrawText(buffer, width * 0.19f, height - height * 0.05f);
 
         CP_Settings_Fill(red);
         CP_Settings_RectMode(CP_POSITION_CENTER);
         if (health >= 3) {
             //CP_Graphics_DrawRect(windows_length / 20 * 15, windows_height / 20, windows_length / 20, windows_height / 40);
-            CP_Image_Draw(image_heart, width * 0.75f, height * 0.05f, width * 0.07f, height * 0.04f, 255);
+            CP_Image_Draw(image_heart, width * 0.75f, height - height * 0.05f, width * 0.07f, height * 0.04f, 255);
         }
         if (health >= 2) {
             //CP_Graphics_DrawRect(windows_length / 20 * 17, windows_height / 20, windows_length / 20, windows_height / 40); 
-            CP_Image_Draw(image_heart, width * 0.85f, height * 0.05f, width * 0.07f, height * 0.04f, 255);
+            CP_Image_Draw(image_heart, width * 0.85f, height - height * 0.05f, width * 0.07f, height * 0.04f, 255);
         }
         if (health >= 1) {
 
             //CP_Graphics_DrawRect(windows_length / 20 * 19, windows_height / 20, windows_length / 20, windows_height / 40); 
-            CP_Image_Draw(image_heart, width * 0.95f, height * 0.05f, width * 0.07f, height * 0.04f, 255);
+            CP_Image_Draw(image_heart, width * 0.95f, height - height * 0.05f, width * 0.07f, height * 0.04f, 255);
         }
         if (health <= 0) {
             //dies

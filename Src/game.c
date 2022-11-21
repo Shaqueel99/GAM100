@@ -294,7 +294,7 @@ void game_update(void)
                 if (endgame < 60.0f) {//cap at 60 speed, beyond that its ultra instinct 
                     endgame += 1.5f;
                     totalEndgameTime = 0.0f;
-                   // speed = 50;
+                   
                 }
             }
         }

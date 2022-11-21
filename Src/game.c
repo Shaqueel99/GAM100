@@ -58,9 +58,11 @@ static CP_Image image_background, image_boulder, image_dino, image_heart, image_
 static CP_Image image_pause_background, image_resume, image_restart, image_mainmenu;
 int endgamestart;
 float endgame = 0, totalEndgameTime = 0;
+int speed = 25;
 void game_init(void)
 
 {
+    speed = 25;
     totalEndgameTime = 0;
     endgame = 0,
     endgamestart = 0;
@@ -249,11 +251,11 @@ void game_update(void)
         //Movement
 
         if (movingleft == TRUE) {
-            if (current_position.x != left_position.x && current_position.x != mid_position.x) { current_position.x -= (25 * speed_scale); }
+            if (current_position.x != left_position.x && current_position.x != mid_position.x) { current_position.x -= (speed * speed_scale); }
             if (current_position.x <= left_position.x || current_position.x == mid_position.x) { movingleft = FALSE; }
         }
         if (movingright == TRUE) {
-            if (current_position.x != right_position.x && current_position.x != mid_position.x) { current_position.x += (25 * speed_scale); }
+            if (current_position.x != right_position.x && current_position.x != mid_position.x) { current_position.x += (speed * speed_scale); }
             if (current_position.x >= right_position.x || current_position.x == mid_position.x) { movingright = FALSE; }
         }
         if (CP_Input_KeyTriggered(KEY_A)) {
@@ -292,6 +294,7 @@ void game_update(void)
                 if (endgame < 60.0f) {//cap at 60 speed, beyond that its ultra instinct 
                     endgame += 1.5f;
                     totalEndgameTime = 0.0f;
+                   // speed = 50;
                 }
             }
         }

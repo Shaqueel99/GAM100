@@ -1,10 +1,4 @@
-﻿  deathscreen.c
-C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(69,48): warning C4047: '==': 'int' differs in levels of indirection from 'void *'
-C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(86,30): warning C4047: '==': 'int' differs in levels of indirection from 'void *'
-C:\Users\User\Desktop\GAM100\GAM100\Src\deathscreen.c(87,30): warning C4047: '!=': 'int' differs in levels of indirection from 'void *'
-  game.c
-  Generating Code...
-  LINK : C:\Users\User\Desktop\GAM100\GAM100\bin\Debug-x64\GAM100.exe not found or not built by the last incremental link; performing full link
+﻿  game.c
   GAM100.vcxproj -> C:\Users\User\Desktop\GAM100\GAM100\bin\Debug-x64\GAM100.exe
   1 File(s) copied
   1 File(s) copied

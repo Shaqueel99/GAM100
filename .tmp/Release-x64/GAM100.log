@@ -1,10 +1,9 @@
-﻿  deathscreen.c
-  Generating code
-  1 of 41 functions ( 2.4%) were compiled, the rest were copied from previous compilation.
+﻿  Generating code
+  0 of 41 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    6 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  GAM100.vcxproj -> C:\Users\User\Desktop\GAM100\GAM100\bin\Release-x64\GAM100.exe
+  GAM100.vcxproj -> C:\Users\Admin\source\repos\GAM100\bin\Release-x64\GAM100.exe
   1 File(s) copied
   1 File(s) copied
-  59 File(s) copied
+  65 File(s) copied

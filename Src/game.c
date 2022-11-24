@@ -2262,8 +2262,8 @@ void game_update(void)
         // Benjamin
         if (current_pts_increase == 1) {
             CP_Settings_Fill(CP_Color_Create(0, 0, blues, 255));
-            CP_Font_DrawText("Points:", width * 0.07f, height * 0.05f);
-            CP_Font_DrawText(buffer, width * 0.21f, height * 0.05f);
+            CP_Font_DrawText("Points:", width * 0.05f, height - height * 0.05f);
+            CP_Font_DrawText(buffer, width * 0.19f, height - height * 0.05f);
 
             if (upordown == 1) {
                 blues += bluemulti;

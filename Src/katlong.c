@@ -1,3 +1,13 @@
+/*----------------------------------------------------------------------------------
+All content © 2022 DigiPen Institute of Technology
+
+FILE NAME:                  katlong.c
+AUTHOR:                     Yeo Kat Long <katlong.yeo@digipen.edu>
+CO AUTHOR:                  Mohammad Shaqeel bin Mohammad Fadilah <mohammadshaqeel.b@digipen.edu>					
+
+----------------------------------------------------------------------------------*/
+
+
 #include "cprocessing.h"
 #include <stdio.h>
 #include "leaderboard.h"

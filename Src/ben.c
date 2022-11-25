@@ -1,3 +1,12 @@
+/*----------------------------------------------------------------------------------
+All content © 2022 DigiPen Institute of Technology
+
+FILE NAME:                  ben.c
+AUTHOR:                     Loke Wei Zhi, Benjamin <loke.w@digipen.edu>
+CO AUTHOR:                  NIL
+
+----------------------------------------------------------------------------------*/
+
 #include "cprocessing.h"
 #include <math.h>
 #include "utils.h"
@@ -15,7 +24,6 @@ float retainTime(float* p) {
 
 int areaClick(float area_center_x, float area_center_y, float area_width, float area_height, float click_x, float click_y) // FOR PAUSE
 {
-	// TODO
 	float topleftx = area_center_x - area_width / 2;
 	float btmrightx = area_center_x + area_width / 2;
 

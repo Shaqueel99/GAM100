@@ -1,3 +1,12 @@
+/*----------------------------------------------------------------------------------
+All content © 2022 DigiPen Institute of Technology
+
+FILE NAME:                  shaqeel.c
+AUTHOR:                     Mohammad Shaqeel bin Mohammad Fadilah <mohammadshaqeel.b@digipen.edu>
+CO AUTHOR:                  NIL
+
+----------------------------------------------------------------------------------*/
+
 #include "cprocessing.h"
 #include <stdio.h>
 #include <utils.h>

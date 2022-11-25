@@ -1,3 +1,17 @@
+/*----------------------------------------------------------------------------------
+All content © 2022 DigiPen Institute of Technology
+
+FILE NAME:                  credits.c
+AUTHOR:                     Ong Chee Keong <o.cheekeong@digipen.edu>
+CO AUTHOR:                  Loke Wei Zhi, Benjamin <loke.w@digipen.edu>
+
+*****************************    Iteration           *******************************
+
+CURRENT ITERATION:          Ong Chee Keong <o.cheekeong@digipen.edu>
+PREVIOUS ITERATION:         Loke Wei Zhi, Benjamin <loke.w@digipen.edu>
+
+----------------------------------------------------------------------------------*/
+
 #include "../Inc/game.h"
 #include "mainmenu.h"
 #include "cprocessing.h"
@@ -59,50 +73,12 @@ void Credits_Init()
 void Credits_Update()
 {
     CP_Color myColor = CP_Color_Create(0, 0, 0, 255);
-    // Set the circle color to red
     CP_Settings_Fill(myColor);
 
     CP_Graphics_ClearBackground(background);
     CP_Image_Draw(image_background, rectCenterX, rectCenterY * 1.087f, (float)width, (float)height, 255);
     CP_Image_Draw(logo, (float)width * 0.66f, height * 0.82f, (float)width * 0.6f, (float)height * 0.13f, 255);
-    /*
-    CP_Image_Draw(image_background, (float)width / 2.0f, height / 2.0f, (float)width, (float)height, 255);
-    CP_Image_Draw(logo, (float)width * 0.5f, height * 0.90f, (float)width * 0.6f, (float)height * 0.13f, 255);
-
-    CP_Settings_RectMode(CP_POSITION_CENTER);
-
-    // draw a rectangle at the center of the screen, half the size of the screen
-    CP_Settings_Fill(innerBox);
-    CP_Graphics_DrawRect(rectCenterX, rectCenterY, rectWidth, rectHeight);
-
-    CP_Settings_TextSize(20.0f);
-    CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_LEFT, CP_TEXT_ALIGN_V_TOP);
-    CP_Settings_Fill(white);
-    CP_Font_DrawText("All content (c) 2021 ", rectTopLeftX * 1.05f, rectTopLeftY);
-    CP_Font_DrawText("DigiPen Institute of Technology Singapore,", rectTopLeftX * 1.05f, rectTopLeftY * 1.15f);
-    CP_Font_DrawText("all rights reserved.", rectTopLeftX * 1.05f, rectTopLeftY * 1.30f);
-    CP_Font_DrawText("Press D to next", rectTopLeftX * 2.6f, rectTopLeftY * 6.2f);
-
-    CP_Settings_TextSize(45.0f);
-    CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_CENTER, CP_TEXT_ALIGN_V_MIDDLE);
-    CP_Settings_Fill(white);
-    CP_Font_DrawText("Team", rectCenterX, team.y * 1.08f);
-    CP_Font_DrawText("Instructors", rectCenterX, instructors.y);
-    CP_Font_DrawText("President", rectCenterX, prez.y);
-
-    CP_Settings_TextSize(30.0f);
-    CP_Font_DrawText("Yeo Kat Long", rectCenterX, kitkat.y);
-    CP_Font_DrawText("Chua Zhi Yu", rectCenterX, zy.y);
-    CP_Font_DrawText("Mohammed Shaqeel", rectCenterX, shaq.y);
-    CP_Font_DrawText("Ong Chee Keong", rectCenterX, ck.y);
-    CP_Font_DrawText("Benjamin Loke", rectCenterX, ben.y);
-
-    CP_Font_DrawText("Cheng Ding Xiang", rectCenterX, dx.y);
-    CP_Font_DrawText("Gerald Wong", rectCenterX, gerald.y);
-
-    CP_Font_DrawText("Claude Comair", rectCenterX, clau.y);
-    */
-    
+   
     if (CP_Input_KeyTriggered(KEY_ESCAPE)) {
         CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
     }
@@ -111,9 +87,7 @@ void Credits_Update()
     {
         CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
     }
-    //CP_Image return_menu_button = CP_Image_Load("Assets/game_ui/return_button.png");
     CP_Image_Draw(return_menu_button, width - height * 0.05f, height - height * 0.05f, height * 0.1f, height * 0.1f, 255);
-    //CP_Image_Free(&return_menu_button);
 }
 
 void Credits_Exit()

@@ -1,3 +1,12 @@
+/*----------------------------------------------------------------------------------
+All content © 2022 DigiPen Institute of Technology
+
+FILE NAME:                  zhiyu.c
+AUTHOR:                     Chua Zhi Yu <zhiyu.chua@digipen.edu>
+CO AUTHOR:                  NIL
+
+----------------------------------------------------------------------------------*/
+
 #include "cprocessing.h"
 #include <stdio.h>
 

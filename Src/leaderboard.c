@@ -1,3 +1,13 @@
+/*----------------------------------------------------------------------------------
+All content © 2022 DigiPen Institute of Technology
+
+FILE NAME:                  leaderboard.c
+AUTHOR:                     Yeo Kat Long <katlong.yeo@digipen.edu>
+CO AUTHOR:                  Mohammad Shaqeel bin Mohammad Fadilah <mohammadshaqeel.b@digipen.edu>
+							
+----------------------------------------------------------------------------------*/
+
+
 #include "cprocessing.h"
 #include "leaderboard.h"
 #include "utils.h"
@@ -119,10 +129,7 @@ void Leaderboard_Update(void)
 		 {
 			 CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
 		 }
-		 //CP_Image return_menu_button = CP_Image_Load("Assets/game_ui/return_button.png");
-		 //CP_Image_Draw(return_menu_button, width / 2.0f, height - height * 0.1f, height * 0.1f, height * 0.1f, 255);
 		 CP_Image_Draw(return_menu_button, width - height * 0.05f, height - height * 0.05f, height * 0.1f, height * 0.1f, 255);
-		 //CP_Image_Free(&return_menu_button);
 	 }
 }
 

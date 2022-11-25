@@ -1,3 +1,28 @@
+/*----------------------------------------------------------------------------------
+All content © 2022 DigiPen Institute of Technology
+
+FILE NAME:                  mainmenu.c
+AUTHOR:                     Chua Zhi Yu <zhiyu.chua@digipen.edu>
+CO AUTHOR:                  Mohammad Shaqeel bin Mohammad Fadilah <mohammadshaqeel.b@digipen.edu>
+							Yeo Kat Long <katlong.yeo@digipen.edu>
+
+*****************************    MAIN MENU          *******************************
+
+GAME INTRO:					Chua Zhi Yu
+MAIN MENU (GENERAL):		Chua Zhi Yu
+
+*****************************    GAME AUDIO        *******************************
+
+GAME VOLUME:			  Mohammad Shaqeel bin Mohammad Fadilah
+VOLUME SETTING:           Yeo Kat Long
+
+*****************************    GAME ASSETS       *******************************
+
+GAME ASSETS:                Chua Zhi Yu
+
+----------------------------------------------------------------------------------*/
+
+
 #include <stdlib.h>
 #include "cprocessing.h"
 #include "../Inc/game.h"
@@ -223,17 +248,9 @@ void Main_Menu_Update()
 
 		// Option
 		if (selection == 4) {
-			//CP_Settings_Fill(White);
-			//CP_Graphics_DrawRect(width * 0.1f, height * 0.4f, width * 0.8f, height * 0.1f);
-			//CP_Settings_Fill(Blue);
-			//CP_Settings_TextSize(50.0f * font_scale);
-			//CP_Font_DrawText("Display Setting", text_Display_x, text_Display_y);
 			CP_Image_Draw(image_option_background, (float)width / 2.0f, (float)height / 2.0f, (float)width, (float)height, 255);
 			CP_Image_Draw(image_display_button, text_Display_x, (float)height * 0.60f, (float)width * 0.8f, (float)height * 0.1f, 255);
 			CP_Settings_Fill(White);
-			//CP_Graphics_DrawRect(displayPOS_left_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y);
-			//CP_Graphics_DrawRect(displayPOS_center_x, displayPOS_y, displayDraw_center_x, displayDraw_y);
-			//CP_Graphics_DrawRect(displayPOS_right_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y);
 			CP_Image_Draw(image_arrow_left, (float)width * 0.2f, (float)height * 0.75f, displayDraw_side_x, displayDraw_y, 255);
 			CP_Image_Draw(image_arrow_right, (float)width * 0.8f, (float)height * 0.75f, displayDraw_side_x, displayDraw_y, 255);
 
@@ -243,11 +260,8 @@ void Main_Menu_Update()
 			{
 				selection = 0; //return to main menu
 			}
-			//CP_Image return_menu_button = CP_Image_Load("Assets/game_ui/return_button.png");
 			CP_Image_Draw(return_menu_button, width - height * 0.05f, height - height * 0.05f, height * 0.1f, height * 0.1f, 255);
-			//CP_Image_Free(&return_menu_button);
-			//for return to main menu button END
-			
+			//for return to main menu button END	
 			//sound option start
 			CP_Settings_RectMode(CP_POSITION_CENTER);
 			CP_Image_Draw(image_volume_button, width * 0.5f, height * 0.20f, (float)width * 0.8f, (float)height * 0.1f, 255);
@@ -266,8 +280,6 @@ void Main_Menu_Update()
 			{
 				CP_Image_Draw(image_volume_increase, width * 0.8f, height * 0.35f, width * 0.1f, height * 0.1f, 255);
 			}
-			//CP_Graphics_DrawRect(width * 0.2f, height * 0.3f, width * 0.1f, height * 0.1f);
-			//CP_Graphics_DrawRect(width * 0.8f, height * 0.3f, width * 0.1f, height * 0.1f);
 
 			if (rect_click(width * 0.2f, height * 0.35f, width * 0.1f, height * 0.1f,
 				CP_Input_GetMouseX(), CP_Input_GetMouseY()) == 1 && CP_Input_MouseTriggered(MOUSE_BUTTON_LEFT)
@@ -286,9 +298,6 @@ void Main_Menu_Update()
 			}
 			//sound option end
 
-
-
-
 			// Click to swap resolution
 			if (CP_Input_MouseClicked() && delay == 0) {
 				return_true_false = optionClicked(displayPOS_left_arrow_x, displayPOS_y, displayDraw_side_x, displayDraw_y, click_x, click_y);
@@ -304,13 +313,11 @@ void Main_Menu_Update()
 			}
 
 			// Switch statement to let user choose resolution
-			/* To be added (Click to confirm) */
 			CP_Settings_Fill(Blue);
 			CP_Settings_TextSize(40.0f * font_scale);
 			switch (display_option) {
 			case 0:
 				// iPhone 4S size
-				//CP_Font_DrawText("640 x 960", width * 0.5f, height * 0.6f);
 				CP_Image_Draw(image_display_0, (float)width * 0.5f, (float)height * 0.75f, (float)width * 0.5f, (float)height * 0.1f, 255);
 				width = 640;
 				height = 960;
@@ -320,7 +327,6 @@ void Main_Menu_Update()
 				break;			
 			case 1:
 				// iPad Size
-				//CP_Font_DrawText("1024 x 768", width * 0.5f, height * 0.6f);
 				CP_Image_Draw(image_display_1, (float)width * 0.5f, (float)height * 0.75f, (float)width * 0.5f, (float)height * 0.1f, 255);
 				width = 1024;
 				height = 768;
@@ -330,7 +336,6 @@ void Main_Menu_Update()
 				break;
 			case 2:
 				// iPhone Size				
-				//CP_Font_DrawText("320 x 480", width * 0.5f, height * 0.6f);
 				CP_Image_Draw(image_display_2, (float)width * 0.5f, (float)height * 0.75f, (float)width * 0.5f, (float)height * 0.1f, 255);
 				width = 320;
 				height = 480;

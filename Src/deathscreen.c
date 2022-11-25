@@ -1,3 +1,12 @@
+/*----------------------------------------------------------------------------------
+All content © 2022 DigiPen Institute of Technology
+
+FILE NAME:                  deathscreen.c
+AUTHOR:                     Mohammad Shaqeel bin Mohammad Fadilah <mohammadshaqeel.b@digipen.edu>
+CO AUTHOR:                  NIL
+
+----------------------------------------------------------------------------------*/
+
 #include "../Inc/game.h"
 #include "cprocessing.h"
 #include <stdlib.h>
@@ -44,16 +53,8 @@ void Death_Screen_Update()
     CP_Settings_RectMode(CP_POSITION_CENTER);
 
     // draw a rectangle at the center of the screen, half the size of the screen
-    
-
-
-
-
     CP_Settings_TextSize(width/20.0f);
-  //  if (CP_Input_KeyTriggered(KEY_ENTER)) {
-   //     CP_Engine_SetNextGameStateForced(game_init, game_update, game_exit);
-    //    score = '0'; points = 0;
-   // }
+
     if (CP_Input_KeyTriggered(KEY_ESCAPE)) {
         score = '0'; points = 0;
         CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
@@ -85,20 +86,12 @@ void Death_Screen_Update()
     }
     if (playername[0] == '\0') { offset = 0; }
     if (playername[0] != '\0') { offset = 999; }
-   // if (playername[1] != NULL) { offset = 100;}
-   // if (playername[2] != NULL) { offset = 999; }
   
-    
-    
     CP_Graphics_DrawLine((CP_System_GetWindowWidth() / 2.34f)+offset, CP_System_GetWindowHeight() / 1.32f, (CP_System_GetWindowWidth() / 2.34f)+offset, CP_System_GetWindowHeight() / 1.27f);
         CP_Settings_Fill(CP_Color_Create(255, 0, 0, 255));
         CP_Settings_RectMode(CP_POSITION_CENTER);
         CP_Settings_TextSize(width / 30.0f);
         CP_Settings_Fill(CP_Color_Create(0, 0, 0, 255));
-
-    // CP_Graphics_DrawRect(CP_System_GetWindowWidth() / 2.0f, CP_System_GetWindowHeight() / 1.58f,
-        // CP_System_GetWindowWidth() / 1.25f, CP_System_GetWindowHeight() / 9.5f);
-
 
      //for submit score button
         float mouseposx = CP_Input_GetMouseX();
@@ -186,9 +179,7 @@ void Death_Screen_Update()
         CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
         score = '0'; points = 0;
     }
-    //CP_Image return_menu_button = CP_Image_Load("Assets/game_ui/return_button.png");
     CP_Image_Draw(return_menu_button, width - height * 0.05f, height - height * 0.05f, height * 0.1f, height * 0.1f, 255);
-    //CP_Image_Free(&return_menu_button);
     }
 
 

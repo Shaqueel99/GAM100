@@ -2266,13 +2266,13 @@ void game_update(void)
             CP_Font_DrawText(buffer, width * 0.19f, height - height * 0.05f);
 
             if (upordown == 1) {
-                blues += bluemulti;
+                blues += (int)bluemulti;
                 if (blues >= 255) {
                     upordown = 0;
                 }
             }
             if (upordown == 0) {
-                blues -= bluemulti;
+                blues -= (int)bluemulti;
                 if (blues <= 0) {
                     upordown = 1;
                 }
@@ -2285,7 +2285,7 @@ void game_update(void)
             static int alpha = 255;
             CP_Image_Draw(dblptsimg, current_position.x, current_position.y * 0.9f, width * 0.25f, height * 0.02f, alpha);
 
-            if (alpha > 0) alpha -= alphamulti;
+            if (alpha > 0) alpha -= (int)alphamulti;
             if (alpha == 0) {
                 alpha = 255;
             }
@@ -2297,13 +2297,13 @@ void game_update(void)
             static int inAlpha = 255;
             CP_Image_Draw(invulimg, current_position.x, current_position.y * 1.1f, width * 0.25f, height * 0.02f, inAlpha);
 
-            if (inAlpha > 0) inAlpha -= alphamulti;
+            if (inAlpha > 0) inAlpha -= (int)alphamulti;
             if (inAlpha == 0) {
                 inAlpha = 255;
             }
         }
 
-
+        
         CP_Settings_Fill(red);
         CP_Settings_RectMode(CP_POSITION_CENTER);
         if (health >= 3) {

@@ -63,7 +63,7 @@ void Credits_Update()
     CP_Settings_Fill(myColor);
 
     CP_Graphics_ClearBackground(background);
-    CP_Image_Draw(image_background, rectCenterX, rectCenterY, (float)width, (float)height, 255);
+    CP_Image_Draw(image_background, rectCenterX, rectCenterY * 1.087f, (float)width, (float)height, 255);
     CP_Image_Draw(logo, (float)width * 0.66f, height * 0.82f, (float)width * 0.6f, (float)height * 0.13f, 255);
     /*
     CP_Image_Draw(image_background, (float)width / 2.0f, height / 2.0f, (float)width, (float)height, 255);

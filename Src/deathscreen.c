@@ -44,7 +44,7 @@ void Death_Screen_Update()
     CP_Settings_RectMode(CP_POSITION_CENTER);
 
     // draw a rectangle at the center of the screen, half the size of the screen
-
+    
 
 
 
@@ -66,7 +66,7 @@ void Death_Screen_Update()
     CP_Font_DrawText(pointbuffer, CP_System_GetWindowWidth() / 2.5f, CP_System_GetWindowHeight() / 2.008f);
     CP_Settings_TextSize(width / 15.0f);
     
-    if (i >= 0 && i <= 2 && playername[2]==NULL) {
+    if (i >= 0 && i <= 2 && playername[2]=='\0') {
         if (nametype(&playername[i]) == 3) { if (i !=2) { ++i; }}
     }
     for (int j = 0; j < 3; j++) { if (CP_Input_KeyTriggered(KEY_BACKSPACE)) { playername[j] = '\0'; i = 0; } }
@@ -83,8 +83,8 @@ void Death_Screen_Update()
         CP_Settings_Stroke(CP_Color_Create(0, 0, 0, 255));
         totalblinkTime = 0;
     }
-    if (playername[0] == NULL) {offset = 0;}
-    if (playername[0] != NULL) { offset = 999; }
+    if (playername[0] == '\0') { offset = 0; }
+    if (playername[0] != '\0') { offset = 999; }
    // if (playername[1] != NULL) { offset = 100;}
    // if (playername[2] != NULL) { offset = 999; }
   

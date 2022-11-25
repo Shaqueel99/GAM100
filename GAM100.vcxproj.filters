@@ -12,6 +12,7 @@
     <ClCompile Include="Src\credits.c" />
     <ClCompile Include="Src\zhiyu.c" />
     <ClCompile Include="Src\tutorial.c" />
+    <ClCompile Include="Src\credits2.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\game.h" />
@@ -23,6 +24,7 @@
     <ClInclude Include="Inc\leaderboard.h" />
     <ClInclude Include="Inc\credits.h" />
     <ClInclude Include="Inc\tutorial.h" />
+    <ClInclude Include="Inc\credits2.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Src\ben.c" />
     <ClCompile Include="Src\credits.c" />
+    <ClCompile Include="Src\credits2.c" />
     <ClCompile Include="Src\katlong.c" />
     <ClCompile Include="Src\deathscreen.c" />
     <ClCompile Include="Src\game.c" />
@@ -33,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\credits.h" />
+    <ClInclude Include="Inc\credits2.h" />
     <ClInclude Include="Inc\deathscreen.h" />
     <ClInclude Include="Inc\game.h" />
     <ClInclude Include="Inc\tutorial.h" />

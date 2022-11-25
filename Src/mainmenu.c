@@ -47,7 +47,7 @@ void Main_Menu_Init()
 	selection = 0;
 	totalElapsedTime = 0.0f;
 	totalDelayedTime = 0.0f;
-	fade_in_time = 0.0f;	
+	fade_in_time = 2.0f;	
 	delay = 1;
 	CP_System_SetWindowSize(width, height);
 }

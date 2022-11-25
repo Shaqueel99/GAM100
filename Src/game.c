@@ -300,8 +300,8 @@ void game_update(void)
         float frame2frame = CP_System_GetDt();
         float timer = 1;
         float bluemulti = 255 * frame2frame / timer;
-        float fadetime = 0;
         float alphamulti = 255 * frame2frame / 2.5f;
+        float invulmulti = 255 * frame2frame / 0.5f;
 
 
          //Displaying player
@@ -2175,7 +2175,7 @@ void game_update(void)
             CP_Image_Draw(dblptsimg, current_position.x, current_position.y * 0.9f, width * 0.25f, height * 0.02f, alpha);
 
             if (alpha > 0) alpha -= (int)alphamulti;
-            if (alpha == 0) {
+            if (alpha <= 0) {
                 alpha = 255;
             }
         }
@@ -2185,8 +2185,8 @@ void game_update(void)
             static int inAlpha = 255;
             CP_Image_Draw(invulimg, current_position.x, current_position.y * 1.1f, width * 0.25f, height * 0.02f, inAlpha);
 
-            if (inAlpha > 0) inAlpha -= (int)alphamulti;
-            if (inAlpha == 0) {
+            if (inAlpha > 0) inAlpha -= (int)invulmulti;
+            if (inAlpha <= 0) {
                 inAlpha = 255;
             }
         }

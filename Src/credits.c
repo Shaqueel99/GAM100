@@ -5,7 +5,7 @@
 #include "utils.h"
 
 CP_Color background, innerBox, white;
-static CP_Image image_background, logo;
+static CP_Image image_background, logo, names;
 
 
 extern int width, height;
@@ -21,6 +21,9 @@ CP_Sound creditssound = NULL;
 static CP_Image return_menu_button;
 void Credits_Init()
 {
+
+    image_background = CP_Image_Load("Assets/Credits.png");
+    logo = CP_Image_Load("Assets/DigiPen_Singapore_WEB_RED.png");
     return_menu_button = CP_Image_Load("Assets/game_ui/return_button.png");
     CP_Sound_ResumeAll();
 	CP_System_SetWindowSize(width, height);
@@ -60,10 +63,11 @@ void Credits_Update()
     CP_Settings_Fill(myColor);
 
     CP_Graphics_ClearBackground(background);
-    image_background = CP_Image_Load("Assets/Main_Menu.png");
-    logo = CP_Image_Load("Assets/DigiPen_Singapore_WEB_RED.png");
+    CP_Image_Draw(image_background, rectCenterX, rectCenterY * 1.087f, (float)width, (float)height, 255);
+    CP_Image_Draw(logo, (float)width * 0.66f, height * 0.82f, (float)width * 0.6f, (float)height * 0.13f, 255);
+    /*
     CP_Image_Draw(image_background, (float)width / 2.0f, height / 2.0f, (float)width, (float)height, 255);
-    CP_Image_Draw(logo, (float)width * 0.5f, height * 0.88f, (float)width * 0.6f, (float)height * 0.13f, 255);
+    CP_Image_Draw(logo, (float)width * 0.5f, height * 0.90f, (float)width * 0.6f, (float)height * 0.13f, 255);
 
     CP_Settings_RectMode(CP_POSITION_CENTER);
 
@@ -77,16 +81,16 @@ void Credits_Update()
     CP_Font_DrawText("All content (c) 2021 ", rectTopLeftX * 1.05f, rectTopLeftY);
     CP_Font_DrawText("DigiPen Institute of Technology Singapore,", rectTopLeftX * 1.05f, rectTopLeftY * 1.15f);
     CP_Font_DrawText("all rights reserved.", rectTopLeftX * 1.05f, rectTopLeftY * 1.30f);
+    CP_Font_DrawText("Press D to next", rectTopLeftX * 2.6f, rectTopLeftY * 6.2f);
 
-    CP_Settings_TextSize(50.0f);
+    CP_Settings_TextSize(45.0f);
     CP_Settings_TextAlignment(CP_TEXT_ALIGN_H_CENTER, CP_TEXT_ALIGN_V_MIDDLE);
     CP_Settings_Fill(white);
     CP_Font_DrawText("Team", rectCenterX, team.y * 1.08f);
     CP_Font_DrawText("Instructors", rectCenterX, instructors.y);
-    CP_Font_DrawText("President", rectCenterX, pres.y);
+    CP_Font_DrawText("President", rectCenterX, prez.y);
 
-
-    CP_Settings_TextSize(35.0f);
+    CP_Settings_TextSize(30.0f);
     CP_Font_DrawText("Yeo Kat Long", rectCenterX, kitkat.y);
     CP_Font_DrawText("Chua Zhi Yu", rectCenterX, zy.y);
     CP_Font_DrawText("Mohammed Shaqeel", rectCenterX, shaq.y);
@@ -96,7 +100,8 @@ void Credits_Update()
     CP_Font_DrawText("Cheng Ding Xiang", rectCenterX, dx.y);
     CP_Font_DrawText("Gerald Wong", rectCenterX, gerald.y);
 
-    CP_Font_DrawText("Claude Comair", rectCenterX, claude.y);
+    CP_Font_DrawText("Claude Comair", rectCenterX, clau.y);
+    */
     
     if (CP_Input_KeyTriggered(KEY_ESCAPE)) {
         CP_Engine_SetNextGameStateForced(Main_Menu_Init, Main_Menu_Update, Main_Menu_Exit);
@@ -117,4 +122,5 @@ void Credits_Exit()
     CP_Sound_Free(&creditssound);
     CP_Image_Free(&image_background);
     CP_Image_Free(&logo);
+
 }

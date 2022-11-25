@@ -2303,7 +2303,7 @@ void game_update(void)
             }
         }
 
-
+        
         CP_Settings_Fill(red);
         CP_Settings_RectMode(CP_POSITION_CENTER);
         if (health >= 3) {
